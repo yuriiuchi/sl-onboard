@@ -1,0 +1,5 @@
+export type TelaOrigem =
+  | 'PROCESSO_RECEBIMENTO'
+  | 'PROCESSO_EXPEDICAO'
+  | 'DOCUMENTO'
+  | 'CONFIGURACAO';

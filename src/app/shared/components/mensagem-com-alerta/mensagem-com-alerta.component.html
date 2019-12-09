@@ -1,0 +1,17 @@
+<po-modal
+    p-click-out="true"
+    [p-primary-action]="primaryAction"
+    [p-secondary-action]="secondaryAction"
+    [p-title]="message?.titleText || ''"
+    [p-size]="modalSize">
+    <p
+        *ngIf="message && message.text && message.text !== ''"
+        class="po-font-text">
+        {{ message.text }}
+    </p>
+    <p
+        *ngIf="message && message.detailText && message.detailText !== ''"
+        class="po-font-text-bold po-text-color-07 po-mt-1">
+        {{ message.detailText }}
+    </p>
+</po-modal>

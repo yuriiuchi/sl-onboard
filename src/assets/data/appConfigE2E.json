@@ -1,0 +1,20 @@
+{
+  "urlAutoridadeRAC": "http://{tenant}.logistica.suitetotvs.suitelog.totvs.com.br/totvs.rac",
+  "idClienteRAC": "wms",
+  "urlWMS": {
+    "unidade": "http://localhost:1080/api/v1/unidade",
+    "unidadeQuery": "http://localhost:1080/api/v1/unidadeQuery",
+    "endereco": "http://localhost:1080/api/v1/endereco",
+    "documento": "http://localhost:1080/api/v1/documento",
+    "documentoQuery": "http://localhost:1080/api/v1/documentoQuery",
+    "recebimento": "http://localhost:1080/api/v1/recebimento",
+    "recebimentoQuery": "http://localhost:1080/api/v1/recebimentoQuery",
+    "estoque": "http://localhost:1080/api/v1/estoque",
+    "estoqueQuery": "http://localhost:1080/api/v1/estoqueQuery",
+    "expedicao": "http://localhost:1080/api/v1/expedicao",
+    "expedicaoQuery": "http://localhost:1080/api/v1/expedicaoQuery",
+    "selecaoEstoque": "http://localhost:1080/api/v1/selecaoEstoque",
+    "separacao": "http://localhost:1080/api/v1/separacao",
+    "conferenciaExp": "http://localhost:1080/api/v1/conferenciaExp"
+  }
+}

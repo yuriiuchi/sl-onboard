@@ -1,0 +1,236 @@
+<form [formGroup]="form.estruturaFisicaFormGroup">
+  <div class="po-row">
+
+    <!-- Ativar/Desativar configuracoes -->
+    <div class="po-xl-3 po-lg-3 po-md-3 po-sm-12 sem-padding-left divisor-vertical">
+
+      <p class="po-font-subtitle">
+        {{ descricaoTipoEstrutura }}
+      </p>
+
+      <p class="po-mt-3 po-font-text-bold">
+        {{ global.i18n.literals['indiqueCoordenadasUtilizadas'] }}
+      </p>
+
+      <div *ngFor="let configuracao of form.configuracoes; let i = index;"
+        formArrayName="configuracoes">
+        <div [formGroupName]="i">
+          <po-switch
+            formControlName="ativo"
+            [p-label-position]="posicaoLabelDireita"
+            [name]="'configuracao-' + configuracao.label"
+            [p-label-on]="global.i18n.literals[configuracao.label]"
+            [p-label-off]="global.i18n.literals[configuracao.label]">
+          </po-switch>
+        </div>
+      </div>
+      <div
+        *ngIf="form.estruturaFisicaFormGroup.dirty && form.estruturaFisicaFormGroup.errors && form.estruturaFisicaFormGroup.errors['nenhumSwitchMarcado']"
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-text-color-07 po-font-text-small sem-padding-left po-mt-1">
+        ! {{ global.i18n.literals['indiqueAoMenosUmaCoordenada'] }}. 
+      </div>
+    </div>
+
+    <div class="po-xl-9 po-lg-9 po-md-9 po-sm-12">
+      <div class="po-row po-mb-2">
+
+          <!-- Container DESKTOP -->
+          <div class="po-xl-7 po-lg-7 po-md-7 po-sm-12">
+
+            <div class="po-mb-2">
+              <po-tag
+                [p-orientation]="orientacaoTipoVisualizacao"
+                [p-value]="global.i18n.literals['desktop']">
+              </po-tag>
+            </div>
+            <div class="po-color-white">
+              <po-container>
+                <p class="po-ml-2 po-mt-1 po-font-text-smaller">{{ global.i18n.literals['visualizacao'] }}</p>
+                <div class="po-ml-2 po-mr-2 po-mb-1">
+                  <ng-container *ngFor="let configuracao of form.configuracoes">
+                    <po-tag
+                      *ngIf="configuracao.ativo"
+                      class="po-pr-1"
+                      [p-type]="tipoTagVisualizacao"
+                      [p-orientation]="orientacaoTipoVisualizacao"
+                      [p-value]="configuracao.descricao || configuracao.descricaoPadrao" >
+                    </po-tag>
+                  </ng-container>
+                </div>
+              </po-container>
+            </div>
+          </div>
+
+          <!-- Container Dispositivos Moveis -->
+          <div class="po-xl-5 po-lg-5 po-md-5 po-sm-12">
+
+            <div class="po-mb-2">
+              <po-tag
+                [p-orientation]="orientacaoTipoVisualizacao"
+                [p-value]="global.i18n.literals['dispositivosMoveis']" >
+              </po-tag>
+            </div>
+            <div class="po-color-white">
+              <po-container>
+                <p class="po-ml-2 po-mt-1 po-font-text-smaller">{{ global.i18n.literals['visualizacao'] }}</p>
+                <div class="po-ml-2 po-mr-2 po-mb-1">
+                  <ng-container *ngFor="let configuracao of form.configuracoes">
+                    <po-tag
+                      *ngIf="configuracao.ativo"
+                      class="po-pr-1"
+                      [p-type]="tipoTagVisualizacao"
+                      [p-orientation]="orientacaoTipoVisualizacao"
+                      [p-value]="configuracao.descricaoMobile || configuracao.descricaoMobilePadrao" >
+                    </po-tag>
+                  </ng-container>
+                </div>
+              </po-container>
+            </div>
+          </div>
+      </div>
+
+
+      <!-- Personalizacao das configuracoes -->
+      <div
+        class="po-mb-3"
+        *ngFor="let configuracao of form.configuracoes; let i = index;"
+        formArrayName="configuracoes">
+
+        <div class="po-row" *ngIf="configuracao.ativo">
+
+          <div [formGroupName]="i" class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-1">
+            <po-divider
+              [p-label]="global.i18n.literals[configuracao.label] + ' (' + global.i18n.literals[configuracao.label + 'Abreviado'] + ')'">
+            </po-divider>
+
+            <!-- Personalizacao padrao de todas as configuracoes -->
+            <div class="po-xl-6 po-lg-6 po-md-6 po-sm-12 sem-padding-left">
+              <po-radio-group
+                formControlName="nomenclaturaPersonalizada"
+                p-columns="1"
+                [p-help]="global.i18n.literals['outrasOpcoes'] + ': ' + global.i18n.literals[configuracao.tipoConfiguracao + 'OutrasOpcoes']"
+                [p-label]="global.i18n.literals['editarNomenclaturaSistema']"
+                [name]="'nomenclaturaPersonalizada-' + configuracao.label"
+                [p-options]="opcoesSimNao"
+                p-required>
+              </po-radio-group>
+              <po-input
+                p-clean="true"
+                *ngIf="configuracao.nomenclaturaPersonalizada === 'SIM'"
+                formControlName="nomenclatura"
+                class="po-xl-10 po-lg-10 po-md-10 po-sm-12 sem-padding-left"
+                [name]="'nomenclatura-' + configuracao.label"
+                [p-maxlength]="tamanhoMaximoDescricao"
+                [p-placeholder]="global.i18n.literals['informeNomeCoordenada']">
+              </po-input>
+              <div
+                *ngIf="configuracao.controleNomenclatura.dirty && configuracao.controleNomenclatura.errors && configuracao.controleNomenclatura.errors['required']"
+                class="po-sm-12 po-md-12 po-lg-12 po-xl-12 sem-padding-left sem-padding-right po-text-color-07 po-font-text-small po-mb-1">
+                ! {{ global.i18n.literals['campoObrigatorioDeveSerInformado'] }}. 
+              </div>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-6 po-sm-12 sem-padding-left">
+              <po-radio-group
+                formControlName="abreviaturaPersonalizada"
+                p-columns="1"
+                [p-help]="global.i18n.literals['outrasOpcoes'] + ': ' + global.i18n.literals[configuracao.tipoConfiguracao + 'OutrasOpcoesMobile']"
+                [p-label]="global.i18n.literals['editarAbreviaturaSistema']"
+                [name]="'abreviaturaPersonalizada-' + configuracao.label"
+                [p-options]="opcoesSimNao"
+                p-required>
+              </po-radio-group>
+              <po-input
+                p-clean="true"
+                *ngIf="configuracao.abreviaturaPersonalizada === 'SIM'"
+                formControlName="abreviatura"
+                class="po-xl-10 po-lg-10 po-md-10 po-sm-12 sem-padding-left"
+                [name]="'abreviatura-' + configuracao.label"
+                [p-maxlength]="tamanhoMaximoDescricaoMobile"
+                [p-placeholder]="global.i18n.literals['informeAbreviaturaCoordenada']">
+              </po-input>
+              <div
+                *ngIf="configuracao.controleAbreviatura.dirty && configuracao.controleAbreviatura.errors && configuracao.controleAbreviatura.errors['required']"
+                class="po-sm-12 po-md-12 po-lg-12 po-xl-12 sem-padding-left sem-padding-right po-text-color-07 po-font-text-small po-mb-1">
+                ! {{ global.i18n.literals['campoObrigatorioDeveSerInformado'] }}. 
+              </div>
+            </div>
+
+            <!-- Personalizacao especifica da configuracao: coluna -->
+            <ng-container *ngIf="configuracao.tipoConfiguracao === 'coluna'">
+              <div class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-1 sem-padding-left">
+                <po-switch
+                  formControlName="definirLado"
+                  [p-label-position]="posicaoLabelDireita"
+                  [name]="'definirLado-' + configuracao.label"
+                  [p-label-on]="global.i18n.literals['labelDefinirLadoRua']"
+                  [p-label-off]="global.i18n.literals['labelDefinirLadoRua']">
+                </po-switch>
+              </div>
+
+              <ng-container *ngIf="configuracao['definirLado']">
+                <div class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-1 sem-padding-left">
+                  <po-radio-group
+                    formControlName="opcaoLado"
+                    p-columns="1"
+                    [name]="'opcaoLado-' + configuracao.label"
+                    [p-options]="opcoesDefinicaoLado"
+                    p-required>
+                  </po-radio-group>
+                  <div
+                    *ngIf="configuracao['controleOpcaoLado'].dirty && configuracao['controleOpcaoLado'].errors && configuracao['controleOpcaoLado'].errors['required']"
+                    class="po-sm-12 po-md-12 po-lg-12 po-xl-12 sem-padding-left sem-padding-right po-text-color-07 po-font-text-small po-mb-1">
+                    ! {{ global.i18n.literals['campoObrigatorioDeveSerInformado'] }}. 
+                  </div>
+                </div>
+
+                <div 
+                  *ngIf="configuracao['opcaoLado'] === 'LADO_UTILIZA_PREFIXO'"
+                  class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-1 sem-padding-left">
+                  <po-radio-group
+                    formControlName="utilizaPrefixo"
+                    p-columns="1"
+                    [p-help]="global.i18n.literals['prefixoUtilizadoPadrao']"
+                    [p-label]="global.i18n.literals['editarPrefixoSistema']"
+                    [name]="'utilizaPrefixo-' + configuracao.label"
+                    [p-options]="opcoesSimNao"
+                    p-required>
+                  </po-radio-group>
+                  <po-input
+                    p-clean="true"
+                    *ngIf="configuracao['utilizaPrefixo'] === 'SIM'"
+                    formControlName="prefixoEsquerdo"
+                    class="po-xl-3 po-lg-3 po-md-3 po-sm-12 po-mt-1 sem-padding-left"
+                    [name]="'prefixoEsquerdo-' + configuracao.label"
+                    [p-maxlength]="tamanhoMaximoPrefixo"
+                    [p-label]="global.i18n.literals['esquerda']"
+                    [p-placeholder]="global.i18n.literals['informePrefixo']">
+                  </po-input>
+                  <po-input
+                    p-clean="true"
+                    *ngIf="configuracao['utilizaPrefixo'] === 'SIM'"
+                    formControlName="prefixoDireito"
+                    class="po-xl-3 po-lg-3 po-md-3 po-sm-12 po-mt-1 sem-padding-left"
+                    [name]="'prefixoDireito-' + configuracao.label"
+                    [p-maxlength]="tamanhoMaximoPrefixo"
+                    [p-label]="global.i18n.literals['direita']"
+                    [p-placeholder]="global.i18n.literals['informePrefixo']">
+                  </po-input>
+                </div>
+                <div 
+                  *ngIf="configuracao['opcaoLado'] === 'LADO_UTILIZA_PREFIXO'"
+                  class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-1 sem-padding-left">
+                  <div
+                    *ngIf="(configuracao['controlePrefixoEsquerdo'].dirty && configuracao['controlePrefixoEsquerdo'].errors && configuracao['controlePrefixoEsquerdo'].errors['required']) || configuracao['controlePrefixoDireito'].dirty && configuracao['controlePrefixoDireito'].errors && configuracao['controlePrefixoDireito'].errors['required']"
+                    class="po-xl-12 po-lg-12 po-md-12 po-sm-12 sem-padding-left sem-padding-right po-text-color-07 po-font-text-small po-mb-1">
+                    ! {{ global.i18n.literals['camposObrigatoriosDevemSerInformados'] }}. 
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,20 @@
+{
+  "urlAutoridadeRAC": "PLACE_HOLDER_RAC_AUTHORITY",
+  "idClienteRAC": "PLACE_HOLDER_RAC_CLIENTID",
+  "urlWMS": {
+    "unidade": "PLACE_HOLDER_WMS_UNIDADE_CORE",
+    "unidadeQuery": "PLACE_HOLDER_WMS_UNIDADE_QUERY",
+    "endereco": "PLACE_HOLDER_WMS_ENDERECO_CORE",
+    "documento": "PLACE_HOLDER_WMS_DOCUMENTO_CORE",
+    "documentoQuery": "PLACE_HOLDER_WMS_DOCUMENTO_QUERY",
+    "recebimento": "PLACE_HOLDER_WMS_RECEBIMENTO_CORE",
+    "recebimentoQuery": "PLACE_HOLDER_WMS_RECEBIMENTO_QUERY",
+    "estoque": "PLACE_HOLDER_WMS_ESTOQUE_CORE",
+    "estoqueQuery": "PLACE_HOLDER_WMS_ESTOQUE_QUERY",
+    "expedicao": "PLACE_HOLDER_WMS_EXPEDICAO_CORE",
+    "expedicaoQuery": "PLACE_HOLDER_WMS_EXPEDICAO_QUERY",
+    "selecaoEstoque": "PLACE_HOLDER_WMS_SELECAO_ESTOQUE_CORE",
+    "separacao": "PLACE_HOLDER_WMS_SEPARACAO_CORE",
+    "conferenciaExp": "PLACE_HOLDER_WMS_CONFERENCIA_EXP_CORE"
+  }
+}

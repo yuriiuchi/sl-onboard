@@ -1,0 +1,283 @@
+resources:
+  - repo: self
+
+trigger:
+  - master
+
+variables:
+  registry: docker.totvs.io
+  jobProject: sl_wms
+  jobName: sl-wms-thf-pr
+  jobTag: $(Build.BuildId)
+  jobImageName: $(registry)/$(jobProject)/$(jobName):$(jobTag)
+  jobContainerName: slwmsthf-$(jobTag)
+  project: 'sl_wms'
+  imageName: 'sl-wms-thf'
+  tagBuild: '$(Build.BuildNumber)'
+  image: $(registry)/$(project)/$(imageName)
+
+jobs:
+  # Build CI Image Docker
+  - job: build
+    displayName: Build CI Image Docker
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - script: docker build --rm -f ci/ci.Dockerfile -t $(jobImageName) .
+        displayName: Build Image
+      - task: Docker@1
+        displayName: Push image
+        inputs:
+          containerregistrytype: Dockerregistry
+          dockerRegistryEndpoint: $(registry)
+          command: Push an image
+          imageName: $(jobImageName)
+          qualifyImageName: false
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+
+  # Build Project
+  - job: build_project
+    displayName: Build Project
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-build $(jobImageName) build
+        displayName: Processing build
+      - script: docker rm $(jobContainerName)-build --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # Lint
+  - job: lint
+    displayName: Lint
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-lint $(jobImageName) lint
+        displayName: Processing lint
+      - script: docker cp $(jobContainerName)-lint:/sources/tslint-result.json $(System.DefaultWorkingDirectory)
+        displayName: Copying lint result to sonar
+        continueOnError: 'true'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          path: $(System.DefaultWorkingDirectory)/tslint-result.json
+          artifact: lintResult
+        continueOnError: 'true'
+      - script: docker rm $(jobContainerName)-lint --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # Test
+  - job: test
+    displayName: Test
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-test $(jobImageName) test
+        displayName: Processing test
+      - script: docker cp $(jobContainerName)-test:/sources/sonar-report $(System.DefaultWorkingDirectory)/sonar-report
+        displayName: Copying tests results to sonar
+        continueOnError: 'true'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          path: $(System.DefaultWorkingDirectory)/sonar-report
+          artifact: sonarReport
+        continueOnError: 'true'
+      - script: docker cp $(jobContainerName)-test:/sources/junit $(System.DefaultWorkingDirectory)/junit
+        displayName: Copying tests results
+        continueOnError: 'true'
+      - task: PublishTestResults@2
+        displayName: Publishing tests results
+        inputs:
+          searchFolder: $(System.DefaultWorkingDirectory)/junit
+          testRunTitle: Tests
+          testResultsFormat: JUnit
+          testResultsFiles: "**/TESTS*.xml"
+          mergeTestResults: true
+      - script: docker cp $(jobContainerName)-test:/sources/coverage $(System.DefaultWorkingDirectory)/coverage
+        displayName: Copying coverage results
+        continueOnError: 'true'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          path: $(System.DefaultWorkingDirectory)/coverage
+          artifact: coverage
+        continueOnError: 'true'
+      - task: PublishCodeCoverageResults@1
+        displayName: Publishing coverage results
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          failIfCoverageEmpty: true
+      - script: docker rm $(jobContainerName)-test --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # E2E
+  - job: e2e
+    displayName: E2E
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-e2e $(jobImageName) e2e
+        displayName: Processing e2e
+      - script: docker cp $(jobContainerName)-e2e:/sources/e2e/junit $(System.DefaultWorkingDirectory)/e2e/junit
+        displayName: Copying e2e results
+        continueOnError: 'true'
+      - task: PublishTestResults@2
+        displayName: Publishing e2e results
+        inputs:
+          searchFolder: $(System.DefaultWorkingDirectory)/e2e/junit
+          testRunTitle: E2E
+          testResultsFormat: JUnit
+          testResultsFiles: "**/junit*.xml"
+          mergeTestResults: true
+      - script: docker rm $(jobContainerName)-e2e --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # Sonar
+  # - job: sonar
+  #   displayName: SonarQube
+  #   dependsOn:
+  #   - build_project
+  #   - lint
+  #   - test
+  #   - e2e
+  #   pool:
+  #     name: Framework-Builds
+  #     demands: Agent.OS -equals Linux
+  #   steps:
+  #     - task: Docker@2
+  #       displayName: Login to container registry
+  #       inputs:
+  #         command: login
+  #         dockerFile: ci/ci.Dockerfile
+  #         containerRegistry: $(registry)
+  #     - script: docker create --name $(jobContainerName)-sonar -e SONAR_TOKEN=$(sonarToken) $(jobImageName) sonar
+  #       displayName: Creating sonar container
+  #     - task: DownloadPipelineArtifact@2
+  #       inputs:
+  #         artifact: lintResult
+  #         path: $(System.DefaultWorkingDirectory)
+  #     - script: docker cp $(System.DefaultWorkingDirectory)/tslint-result.json $(jobContainerName)-sonar:/sources
+  #       displayName: Copying lint results
+  #     - task: DownloadPipelineArtifact@2
+  #       inputs:
+  #         artifact: sonarReport
+  #         path: $(System.DefaultWorkingDirectory)/sonar-report
+  #     - script: docker cp $(System.DefaultWorkingDirectory)/sonar-report $(jobContainerName)-sonar:/sources/sonar-report
+  #       displayName: Copying tests results
+  #     - task: DownloadPipelineArtifact@2
+  #       inputs:
+  #         artifact: coverage
+  #         path: $(System.DefaultWorkingDirectory)/coverage
+  #     - script: docker cp $(System.DefaultWorkingDirectory)/coverage $(jobContainerName)-sonar:/sources/coverage
+  #       displayName: Copying coverage results
+  #     - script: docker start $(jobContainerName)-sonar -a
+  #       displayName: Publishing sonar results
+  #     - script: docker rm $(jobContainerName)-sonar --force
+  #       displayName: Removing container
+  #       continueOnError: 'true'
+  #       condition: succeededOrFailed()
+  #     - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+  #       displayName: Removing local image
+  #       continueOnError: 'true'
+  #       condition: succeededOrFailed()
+
+  # Service image
+  - job: serviceImage
+    displayName: Service Image
+    #dependsOn:
+    #- sonar
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - script: |
+          docker build --no-cache --pull -f Dockerfile -t $(image):$(jobTag) .
+          docker tag $(image):$(jobTag) $(image):latest
+        displayName: Build image (TAG and LATEST)
+      - task: Docker@1
+        displayName: Push image TAG
+        inputs:
+          containerregistrytype: Dockerregistry
+          dockerRegistryEndpoint: $(registry)
+          command: Push an image
+          imageName: '$(image):$(jobTag)'
+          qualifyImageName: false
+      - task: Docker@1
+        displayName: Push image LATEST
+        inputs:
+          containerregistrytype: Dockerregistry
+          dockerRegistryEndpoint: $(registry)
+          command: Push an image
+          imageName: '$(image):latest'
+          qualifyImageName: false
+      - script: |
+          docker rmi $(image):$(jobTag)
+          docker rmi $(image):latest
+        displayName: Remove images (TAG and LATEST)
+        continueOnError: 'true'
+      - script: "sed -i 's/PLACE_HOLDER_TAG/$(jobTag)/g' ci.TAG.txt"
+        displayName: 'Replace PLACE_HOLDER_TAG'
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: ci.TAG.txt'
+        inputs:
+          PathtoPublish: 'ci.TAG.txt'
+          ArtifactName: 'ci.TAG.txt'

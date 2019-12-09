@@ -1,0 +1,168 @@
+trigger:
+  - none
+
+pr:
+  - master
+
+variables:
+  registry: docker.totvs.io
+  jobProject: sl_wms
+  jobName: sl-wms-thf-pr
+  jobTag: $(Build.BuildId)
+  jobImageName: $(registry)/$(jobProject)/$(jobName):$(jobTag)
+  jobContainerName: sl-wms-thf-$(jobTag)
+
+jobs:
+  # Build CI Image Docker
+  - job: build
+    displayName: Build CI Image Docker
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - script: docker build --rm -f ci/ci.Dockerfile -t $(jobImageName) .
+        displayName: Build Image
+      - task: Docker@1
+        displayName: Push image
+        inputs:
+          containerregistrytype: Dockerregistry
+          dockerRegistryEndpoint: $(registry)
+          command: Push an image
+          imageName: $(jobImageName)
+          qualifyImageName: false
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # Build Project
+  - job: build_project
+    displayName: Build Project
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-build $(jobImageName) build
+        displayName: Processing build
+      - script: docker rm $(jobContainerName)-build --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # Lint
+  - job: lint
+    displayName: Lint
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-lint $(jobImageName) lint
+        displayName: Processing lint
+      - script: docker rm $(jobContainerName)-lint --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # Test
+  - job: test
+    displayName: Test
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-test $(jobImageName) test
+        displayName: Processing test
+      - script: docker cp $(jobContainerName)-test:/sources/junit $(System.DefaultWorkingDirectory)/junit
+        displayName: Copying tests results
+        continueOnError: 'true'
+      - task: PublishTestResults@2
+        displayName: Publishing tests results
+        inputs:
+          searchFolder: $(System.DefaultWorkingDirectory)/junit
+          testRunTitle: Tests
+          testResultsFormat: JUnit
+          testResultsFiles: "**/TESTS*.xml"
+          mergeTestResults: true
+      - script: docker cp $(jobContainerName)-test:/sources/coverage $(System.DefaultWorkingDirectory)/coverage
+        displayName: Copying coverage results
+        continueOnError: 'true'
+      - task: PublishCodeCoverageResults@1
+        displayName: Publishing coverage results
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          failIfCoverageEmpty: true
+      - script: docker rm $(jobContainerName)-test --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+
+  # E2E
+  - job: e2e
+    displayName: E2E
+    dependsOn: build
+    pool:
+      name: Framework-Builds
+      demands: Agent.OS -equals Linux
+    steps:
+      - task: Docker@2
+        displayName: Login to container registry
+        inputs:
+          command: login
+          dockerFile: ci/ci.Dockerfile
+          containerRegistry: $(registry)
+      - script: docker run --name $(jobContainerName)-e2e $(jobImageName) e2e
+        displayName: Processing e2e
+      - script: docker cp $(jobContainerName)-e2e:/sources/e2e/junit $(System.DefaultWorkingDirectory)/e2e/junit
+        displayName: Copying e2e results
+        continueOnError: 'true'
+      - task: PublishTestResults@2
+        displayName: Publishing e2e results
+        inputs:
+          searchFolder: $(System.DefaultWorkingDirectory)/e2e/junit
+          testRunTitle: E2E
+          testResultsFormat: JUnit
+          testResultsFiles: "**/junit*.xml"
+          mergeTestResults: true
+      - script: docker rm $(jobContainerName)-e2e --force
+        displayName: Removing container
+        continueOnError: 'true'
+        condition: succeededOrFailed()
+      - script: docker rmi $(jobImageName) 2> /dev/null || exit 0
+        displayName: Removing local image
+        continueOnError: 'true'
+        condition: succeededOrFailed()

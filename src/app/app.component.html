@@ -1,0 +1,39 @@
+<div *ngIf="!mostraComponentes" class="home-loading">
+  <div class="loading">
+    <img src="./assets/graphics/totvs-logo-grey.svg" alt="Logo Totvs">
+    <br><br>
+    <h4>
+      <div class="ellipsis-loader ellipsis-loader--lighter">
+        <div class="ellipsis-loader__dot"></div>
+        <div class="ellipsis-loader__dot"></div>
+        <div class="ellipsis-loader__dot"></div>
+        <div class="ellipsis-loader__dot"></div>
+        <div class="ellipsis-loader__dot"></div>
+      </div>
+    </h4>
+  </div>
+</div>
+<div [hidden]="!mostraComponentes" [ngClass]="{'po-wrapper': apresentarMenu}">
+
+  <po-toolbar
+    p-title="ONBOARD"
+    [p-profile]="informacoesPerfilUsuario"
+    [p-profile-actions]="acoesPerfilUsuario">
+  </po-toolbar>
+
+  <po-menu
+    *ngIf="apresentarMenu"
+    p-collapsed
+    p-filter
+    p-logo="assets/graphics/totvs-logo-grey.svg"
+    p-short-logo="assets/graphics/totvs-short-logo-grey.svg"
+    [p-menus]="itensMenu">
+  </po-menu>
+
+  <router-outlet></router-outlet>
+</div>
+<lib-change-language
+  #modalTrocarIdioma
+  [literals]="literaisModalTrocarIdioma"
+  (afterChangeLanguage)="ajustarComponentesAposTrocarIdioma($event)">
+</lib-change-language>

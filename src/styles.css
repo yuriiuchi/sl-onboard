@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+[pad-top-bottom] {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+[float-right] {
+  float: right !important;
+}
+
+[float-left] {
+  float: left !important;
+}
+
+[float-clear-left] {
+  clear: left;
+}
+
+.sem-padding-left {
+  padding-left: 0px !important;
+}
+
+.sem-padding-right {
+  padding-right: 0px !important;
+}
+
+.po-clickable:disabled {
+  cursor: default !important;
+}
+
+.maiusculo input {
+  text-transform: uppercase;
+}
+
+.maiusculo ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  text-transform: none;
+}
+
+.maiusculo :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  text-transform: none;
+}
+
+.maiusculo ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  text-transform: none;
+}
+
+.maiusculo :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  text-transform: none;
+}
+
+.maiusculo ::placeholder {
+  /* Recent browsers */
+  text-transform: none;
+}
+
+.icon-24px > * {
+  font-size: 24px !important;
+}
+
+.grid-column-align-right {
+  text-align: right !important;
+}
+
+.tamanho-icone-mostra-detalhe {
+  font-size: 24px !important;
+}
+
+.div-imagem-sem-registros {
+  width: 100%;
+  text-align: center;
+}
+/* Para ajustar os espaçamentos das telas.
+.po-page .po-page-header {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.po-page .po-page-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.po-page .po-disclaimer-group {
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 1366px) {
+  .po-page .po-disclaimer-group {
+    margin-bottom: 8px;
+  }
+}
+*/
+
+.po-button {
+  min-width: 100px;
+}

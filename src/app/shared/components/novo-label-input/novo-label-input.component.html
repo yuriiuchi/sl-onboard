@@ -1,0 +1,9 @@
+<div float-left class="titulo po-pl-0">
+  {{ titulo }}
+</div>
+<div class="small-margin po-font-text-small-bold po-pl-0 po-text-color-01 po-clickable" float-right
+  (click)="solicitarAberturaModal()">{{global.i18n.literals['novo']}}
+</div>
+<span float-right *ngIf="opcional" class="app-novo-label-optional po-pr-1 ">
+  ({{ opcionalTitulo }})
+</span>

@@ -1,0 +1,20 @@
+{
+  "urlAutoridadeRAC": "http://{tenant}.rac.totvs.com.br/totvs.rac",
+  "idClienteRAC": "wms",
+  "urlWMS": {
+    "unidade": "http://localhost:8481/api/v1",
+    "unidadeQuery": "http://localhost:8480/api/v1",
+    "endereco": "http://localhost:8283/api/v1",
+    "documento": "http://localhost:8581/api/v1",
+    "documentoQuery": "http://localhost:8580/api/v1",
+    "recebimento": "http://localhost:8181/api/v1",
+    "recebimentoQuery": "http://localhost:8180/api/v1",
+    "estoque": "http://localhost:8281/api/v1",
+    "estoqueQuery": "http://localhost:8280/api/v1",
+    "expedicao": "http://localhost:8381/api/v1",
+    "expedicaoQuery": "http://localhost:8380/api/v1",
+    "selecaoEstoque": "http://localhost:8382/api/v1",
+    "separacao": "http://localhost:8383/api/v1",
+    "conferenciaExp": "http://localhost:8384/api/v1"
+  }
+}
