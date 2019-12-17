@@ -7,26 +7,45 @@
         <po-step [p-label]="'inicio'" [p-status]="">
             <app-turma #formTurma></app-turma>
         </po-step>
-        <po-step [p-label]="'Professor'" [p-status]="" *ngIf="validarFormularioTurma()">
+        <po-step [p-label]="global.i18n.literals['professor']" [p-status]="" *ngIf="validarFormularioTurma()">
             <po-combo
                 class="po-md-6"
                 name="combo"
-                p-label="Professor"
+                [p-label]=global.i18n.literals.professor
                 [p-options]="professorList">
             </po-combo>
-            <div class="po-row">
+            <po-button
+                class="po-pl-1"
+                p-type="link"
+                [p-label]="global.i18n.literals.novo"
+                (p-click)="abrirModalProfessor()">
+            </po-button>
+
+            <!-- <div class="po-row">
                 <div class="po-md-6">
                     <app-professor #formProfessor></app-professor>
                 </div>
-            </div> 
+            </div>  -->
         </po-step>
-        <po-step [p-label]="'Alunos'" [p-status]="" *ngIf="validarFormularioProfessor()">
+        <po-step [p-label]="global.i18n.literals['aluno']" [p-status]="" *ngIf="validarFormularioProfessor()">
                 <app-aluno></app-aluno>
         </po-step>
 
     </po-stepper>
 
     <po-button p-label="volta" (click)="teste2()"></po-button>    
-    <po-button p-label="proximo" (click)="teste()"></po-button>    
+    <po-button p-label="proximo" (click)="teste()"></po-button>  
+    
+    
+    <po-modal #modalProfessor
+        [p-title]="global.i18n.literals.cadatroProfessor">
+        <div class="po-row">
+            <div class="po-md-6">
+                <app-professor #formProfessor></app-professor>
+            </div>
+        </div> 
+  </po-modal>
+
+
 
 </po-page-default>

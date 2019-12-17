@@ -17,7 +17,7 @@ export class AlunoComponent extends BaseComponent implements OnInit {
         super()
 
         this.formAluno = new FormGroup({
-            nome: new FormControl('', [Validators.required]),
+            nome: new FormControl('',  [Validators.required]),
             email: new FormControl('', [Validators.required, Validators.email]),
             cpf: new FormControl('', [Validators.required, cpfValidator()]),
             matricula: new FormControl('', [Validators.required]),
@@ -29,6 +29,10 @@ export class AlunoComponent extends BaseComponent implements OnInit {
 
     public validForm(): boolean {       
         return this.formAluno.valid;
+    }
+
+    salvar(): void {
+        alert('salvar aluno');
     }
 
 }

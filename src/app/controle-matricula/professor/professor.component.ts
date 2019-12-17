@@ -26,4 +26,8 @@ export class ProfessorComponent extends BaseComponent implements OnInit {
         return this.formProfessor.valid;
     }
 
+    salvar(): void {
+        alert('salvar professor');
+    }
+
 }

@@ -517,7 +517,11 @@
     "matriculas": "Registers", 
     "matr": "Regs",
     "apelido": "Nickname",
-    "maxAlunos": "Maximum Students"
+    "maxAlunos": "Maximum Students",
+    "professor": "Teacher",
+    "aluno": "Student",
+    "cadatroProfessor": "Teacher registration"
+
   },
   "es": {
     "acaoExcluiraItens": "Esta acción eliminará permanentemente todos los elementos. ¿Desea continuar?",
@@ -1037,7 +1041,10 @@
     "matriculas": "Registro", 
     "matr": "Matr",
     "apelido": "Apodo",
-    "maxAlunos": "Máximo Estudiantes"
+    "maxAlunos": "Máximo Estudiantes",
+    "professor": "Maestra",
+    "aluno": "Estudiante",
+    "cadatroProfessor": "Registro de docentes"
   },
   "pt-br": {
     "acaoExcluiraItens": "Essa ação irá excluir permanentemente todos os itens, deseja continuar?",
@@ -1557,6 +1564,9 @@
     "matriculas": "Matriculas", 
     "matr": "Matr",
     "apelido": "apelido",
-    "maxAlunos": "Máximo Alunos"
+    "maxAlunos": "Máximo Alunos",
+    "professor": "Professor",
+    "aluno": "Aluno",
+    "cadatroProfessor": "Cadastro de professor" 
   }
 }

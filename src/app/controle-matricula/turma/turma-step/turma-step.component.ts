@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 import { BaseComponent } from './../../../../app/base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
-import { PoStepperComponent } from '@portinari/portinari-ui';
+import { PoStepperComponent, PoModalComponent } from '@portinari/portinari-ui';
 import { TurmaComponent } from '../turma/turma.component';
 import { ProfessorComponent } from '../../professor/professor.component';
 
@@ -16,6 +16,8 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     @ViewChild('stepper', {static: true}) stepper : PoStepperComponent;
     @ViewChild('formTurma', {static: true}) formTurma : TurmaComponent;
     @ViewChild('formProfessor', {static: false}) formProfessor : ProfessorComponent;
+
+    @ViewChild('modalProfessor', { static: true }) modalProfessor: PoModalComponent;
 
     professorList = [{ value: 'Option 1' }, { value: 'Option 2' }];
   
@@ -52,5 +54,9 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     canActiveTeste2(form: ProfessorComponent){
         this.stepper.steps[0].label = 'testestestsetestes' 
         return this.formTurma.simples.validForm;
+    }
+
+    abrirModalProfessor(): void {
+        this.modalProfessor.open();
     }
 } 

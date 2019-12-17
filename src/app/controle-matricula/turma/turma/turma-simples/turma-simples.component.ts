@@ -34,10 +34,10 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
         super();
 
         this.formTurmaSimples = new FormGroup({
-            nome: new FormControl('', [Validators.required]),
-            apelido: new FormControl('', [Validators.required]),
-            nrVagas: new FormControl('', [Validators.required, Validators.min(1), Validators.max(100)]),
-            inicio: new FormControl('', [Validators.required])
+            nome: new FormControl(''),// , [Validators.required]),
+            apelido: new FormControl(''),// , [Validators.required]),
+            nrVagas: new FormControl(''),// , [Validators.required, Validators.min(1), Validators.max(100)]),
+            inicio: new FormControl(''),// , [Validators.required])
         })
     }
 
