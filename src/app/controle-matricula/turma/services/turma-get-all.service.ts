@@ -4,19 +4,19 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { IGetAllPagination, MappedGetAll, IListDto, ApiQueryString, QueryFilter, FieldValue } from 'totvs-log-base-foundation';
-import { AppConfigService }  from './../../../../app/app-config.service';
+import { AppConfigService } from './../../../../app/app-config.service';
 import { Turma } from './../entities/turma.entitiy';
 import { ITurmaGetAll } from './../entities/turma-get-all.interface';
 
 @Injectable()
 export class TurmaGetAllService implements IGetAllPagination<Turma> {
 
-    private mappedGetAll: MappedGetAll<ITurmaGetAll, Turma>
+    private mappedGetAll: MappedGetAll<ITurmaGetAll, Turma>;
 
     constructor(
         private http: HttpClient,
-        private appConfig:  AppConfigService
-    ){
+        private appConfig: AppConfigService
+    ) {
         this.mappedGetAll = new MappedGetAll<ITurmaGetAll, Turma>(
             this.http,
             `${this.appConfig.configuracoes.urlWMS.recebimentoQuery}/turmas`,
@@ -29,8 +29,8 @@ export class TurmaGetAllService implements IGetAllPagination<Turma> {
                             // return listaPaginada;
                             return backend;
                         }
-            } 
-        )
+            }
+        );
     }
 
     get page(): number {

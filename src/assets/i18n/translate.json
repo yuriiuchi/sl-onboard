@@ -520,7 +520,8 @@
     "maxAlunos": "Maximum Students",
     "professor": "Teacher",
     "aluno": "Student",
-    "cadatroProfessor": "Teacher registration"
+    "cadastroProfessor": "Teacher registration",
+    "cadastroAluno": "Student registration"
 
   },
   "es": {
@@ -1044,7 +1045,8 @@
     "maxAlunos": "Máximo Estudiantes",
     "professor": "Maestra",
     "aluno": "Estudiante",
-    "cadatroProfessor": "Registro de docentes"
+    "cadastroProfessor": "Registro de docentes",
+    "cadastroAluno": "Registro Estudiante"
   },
   "pt-br": {
     "acaoExcluiraItens": "Essa ação irá excluir permanentemente todos os itens, deseja continuar?",
@@ -1567,6 +1569,7 @@
     "maxAlunos": "Máximo Alunos",
     "professor": "Professor",
     "aluno": "Aluno",
-    "cadatroProfessor": "Cadastro de professor" 
+    "cadastroProfessor": "Cadastro de professor",
+    "cadastroAluno": "Cadastro de aluno"
   }
 }

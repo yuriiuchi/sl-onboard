@@ -2,7 +2,8 @@
 
 <div class="po-grid">
   <div class="po-row">
-    <kendo-grid class="wms-max-width thf-shadow-container"
+    <kendo-grid 
+      class="wms-max-width thf-shadow-container"
       [data]="turmasGrid"
       [columnMenu]="true"
       [sortable]="sortable"
@@ -13,8 +14,8 @@
       [filter]="gridState.filter" 
      >
       <kendo-grid-column [width]="120" field="descricao" class="grid-column-align-left" [title]="global.i18n.literals.turma"></kendo-grid-column>
-      <kendo-grid-column [width]="60" field="inicio" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
-      <kendo-grid-column [width]="40" field="nrVagas" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column> 
+      <kendo-grid-column [width]="30" field="inicio" filter="date" [format]="global.i18n.literals.dateFormat" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
+      <kendo-grid-column [width]="20" field="nrVagas" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column> 
       
     </kendo-grid>
   </div>

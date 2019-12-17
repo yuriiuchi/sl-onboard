@@ -1,8 +1,7 @@
 import { dataService } from './../../../../src/app/memory/data-service/data-service-mapper';
 import { InMemoryDataService } from './../../../../src/app/memory/data-service/in-memory-data.service';
 
-import { collectionName, turma } from './turma.mock';
-//import { ITurmaListar } from './../../../../src/app/controle-matricula/entities/turma-get-all.interface';
+import { collectionName, turmas } from './turma.mock';
 
 dataService(collectionName, (dbService: InMemoryDataService) => {
     dbService.addReplaceUrl('recebimentoQuery/turmas', collectionName);
@@ -13,7 +12,7 @@ dataService(collectionName, (dbService: InMemoryDataService) => {
     //     return new Date(documento.dataEmissao) >= new Date(value + ' 00:00:00 -03');
     // });
 
-    turma.forEach(turma => {
+    turmas.forEach(turma => {
         dbService.storeData(collectionName, turma);
     });
 });

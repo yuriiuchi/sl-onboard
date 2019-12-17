@@ -1,0 +1,15 @@
+<h1>Aluno list component</h1>
+
+<po-button p-label="'label botao'" (click)="abrirModalAluno()">
+
+</po-button>
+
+
+<po-modal #modalAluno
+    [p-title]="global.i18n.literals.cadastroAluno">
+    <div class="po-row">
+        <div class="po-md-6">
+            <app-aluno #formAluno></app-aluno>
+        </div>
+    </div> 
+</po-modal>

@@ -8,21 +8,21 @@ import { BaseComponent } from '../../base/base.component';
     styleUrls: ['./professor.component.css']
 })
 export class ProfessorComponent extends BaseComponent implements OnInit {
-    
+
     private formProfessor: FormGroup;
 
     constructor() {
-        super()
+        super();
 
         this.formProfessor = new FormGroup({
             nome: new FormControl('', [Validators.required]),
             titulacao: new FormControl('', [Validators.required])
-        })
+        });
     }
 
     ngOnInit() {}
 
-    public validForm(): boolean {       
+    public validForm(): boolean {
         return this.formProfessor.valid;
     }
 

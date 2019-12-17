@@ -12,6 +12,7 @@ import { TurmaStepComponent } from './turma/turma-step/turma-step.component';
 import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { AlunoComponent } from './aluno/aluno.component';
+import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { AlunoComponent } from './aluno/aluno.component';
         TurmaStepComponent,
         TurmaSimplesComponent,
         ProfessorComponent,
-        AlunoComponent
+        AlunoComponent,
+        AlunoListComponent
     ],
     imports: [
         SharedModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { cpfValidator } from 'totvs-log-base-foundation';
@@ -10,11 +10,11 @@ import { BaseComponent } from '../../base/base.component';
     styleUrls: ['./aluno.component.css']
 })
 export class AlunoComponent extends BaseComponent implements OnInit {
-    
+
     private formAluno: FormGroup;
 
     constructor() {
-        super()
+        super();
 
         this.formAluno = new FormGroup({
             nome: new FormControl('',  [Validators.required]),
@@ -22,17 +22,16 @@ export class AlunoComponent extends BaseComponent implements OnInit {
             cpf: new FormControl('', [Validators.required, cpfValidator()]),
             matricula: new FormControl('', [Validators.required]),
             formaIngresso: new FormControl('', [Validators.required])
-        })
+        });
     }
 
     ngOnInit() {}
 
-    public validForm(): boolean {       
+    public validForm(): boolean {
         return this.formAluno.valid;
     }
 
     salvar(): void {
         alert('salvar aluno');
     }
-
 }
