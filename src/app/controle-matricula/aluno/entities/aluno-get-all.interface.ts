@@ -5,6 +5,5 @@ export interface IAlunoGetAll {
     email: string,
     cpf: string,
     matricula: number,
-    formaIngresso: string,
-    turmaId: string
+    formaIngresso: string
 }

@@ -10,7 +10,8 @@ import { TurmaListComponent } from './turma/turma-list/turma-list.component';
 import { TurmaGetAllService } from './turma/services/turma-get-all.service';
 import { TurmaStepComponent } from './turma/turma-step/turma-step.component';
 import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples.component';
-import { TurmaDetalheComponent } from './turma/turma/turma-detalhe/turma-detalhe.component'
+import { ProfessorComponent } from './professor/professor.component';
+import { AlunoComponent } from './aluno/aluno.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { TurmaDetalheComponent } from './turma/turma/turma-detalhe/turma-detalhe
         TurmaComponent,
         TurmaStepComponent,
         TurmaSimplesComponent,
-        TurmaDetalheComponent
+        ProfessorComponent,
+        AlunoComponent
     ],
     imports: [
         SharedModule,

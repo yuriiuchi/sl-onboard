@@ -3,6 +3,7 @@ import { Pessoa } from './../../pessoa/entities/pessoa.entity';
 export class Professor extends Pessoa {
 
     constructor(
+        id: string,
         nome: String,
         email: String,
         public cpf: String,
@@ -11,7 +12,7 @@ export class Professor extends Pessoa {
         super(nome, email);
     }
     public empty() {
-        return new Professor("", "", "", "");
+        return new Professor("","", "", "", "");
     }
 
 }

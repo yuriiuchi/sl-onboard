@@ -21,7 +21,6 @@ export class ControleMatriculaComponent implements OnInit {
 
     ngOnInit(): void {
         this.onChangeIdiomas();
-        console.log('controle matricula component aqui aqui aqui aqui');
     }
 
     private criarBreadcrumb(): void {

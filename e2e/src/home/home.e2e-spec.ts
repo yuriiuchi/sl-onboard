@@ -12,11 +12,11 @@ describe('home.e2e-spec | HomePage', () => {
 
     // Deve apresentar a mensagem de boas-vindas para o usuário
     const mensagem = await homePage.getMensagemDeBoasVindas();
-    expect(mensagem).toContain('José Antônio');
+    expect(mensagem).toContain('Yuri Iuchi');
 
     // Deve apresentar o toolbar com as informações do usuário'
     const toolbar = await homePage.getNomeUnidadeToolbar();
-    expect(toolbar.nomeCompleto).toEqual('José Antônio');
+    expect(toolbar.nomeCompleto).toEqual('Yuri Iuchi');
     expect(toolbar.nomeUnidade).toEqual('Unidade TOTVS S.A.');
   });
 });

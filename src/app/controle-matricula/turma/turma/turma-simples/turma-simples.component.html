@@ -1,21 +1,39 @@
 <form [formGroup]="formTurmaSimples">
-    <div class="thf-row">
+    <div class="po-row">
         <po-input 
-            class="thf-pl-0 thf-md-12"
+            class="po-pl-0 po-md-12"
             formControlName="nome"
             p-label="Nome da Turma"
             name="turmaNome"
             p-placeholder="nome da turma"
         ></po-input>
     </div>
-    <div class="thf-row">
-            <po-input 
-                class="thf-pl-0 thf-md-12"
-                formControlName="apelido"
-                p-label="Apelido"
-                name="turmaApelido"
-                p-placeholder="apelido"
-            ></po-input>
-        </div>
+    <div class="po-row">
+        <po-input 
+            class="po-pl-0 po-md-12"
+            formControlName="apelido"
+            p-label="Apelido"
+            name="turmaApelido"
+            p-placeholder="apelido"
+        ></po-input>
+    </div>
+
+    <div class="po-row">
+        <po-number
+            float-clear-left
+            formControlName="nrVagas" 
+            [p-label]="global.i18n.literals['maxAlunos']"
+            class="po-pl-0 po-md-6 "
+            [p-placeholder]="global.i18n.literals['maxAlunos']"
+            >
+        </po-number>
+    
+        <po-datepicker 
+            formControlName="inicio"
+            [p-label]="global.i18n.literals['inicio']"
+            [p-placeholder]="global.i18n.literals['dateFormat']"             
+            class="po-pl-0 po-md-6">
+        </po-datepicker> 
+    </div>  
 </form>
     

@@ -13,4 +13,5 @@ export interface IUrlWms {
   selecaoEstoque: string;
   separacao: string;
   conferenciaExp: string;
+  controleMatricula: string;
 }

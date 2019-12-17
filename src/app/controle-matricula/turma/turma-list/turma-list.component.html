@@ -1,7 +1,4 @@
-<!-- <h1>Turma list</h1> -->
-<!-- <po-page-list appPageListOtherPage 
-  [p-disclaimer-group]="disclaimerGroup"> -->
-<po-page-list [p-actions]="actions"> <!--  [p-filter]="pageFilter" [p-breadcrumb]="breadcrumbItems"-->
+<po-page-list [p-actions]="actions"> 
 
 <div class="po-grid">
   <div class="po-row">
@@ -15,17 +12,8 @@
       (dataStateChange)="dataStateChange($event)" 
       [filter]="gridState.filter" 
      >
-     <!--filterable="menu"    [resizable]="true" [reorderable]="true" -->
-<!--     
-      <ng-template kendoGridToolBarTemplate position="top">
-        <app-kendo-grid-export [pos-in-group]="true"></app-kendo-grid-export>
-      </ng-template> -->
-
-      <!-- <ng-template kendoGrid kendoGridGroupHeaderTemplate let-value="value">
-        {{value}}
-      </ng-template> -->
       <kendo-grid-column [width]="120" field="descricao" class="grid-column-align-left" [title]="global.i18n.literals.turma"></kendo-grid-column>
-      <kendo-grid-column [width]="60" field="ano" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
+      <kendo-grid-column [width]="60" field="inicio" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
       <kendo-grid-column [width]="40" field="nrVagas" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column> 
       
     </kendo-grid>

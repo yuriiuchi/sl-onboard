@@ -1,1 +1,56 @@
-<h1>Aluno Component</h1>
+<form [formGroup]="formAluno">
+    <div class="po-row">
+        <po-input 
+        class="po-pl-0 po-md-6"
+            formControlName="nome"
+            p-label="Aluno"
+            name="aluno"
+            p-placeholder="nome do aluno"
+        ></po-input>     
+    </div>
+
+    <div class="po-row">
+        <po-input 
+        class="po-pl-0 po-md-6"
+            formControlName="email"
+            p-label="email"
+            name="email"
+            p-placeholder="email"
+        ></po-input>
+    </div>
+
+    <div class="po-row">
+        <po-input 
+        class="po-pl-0 po-md-6"
+            formControlName="cpf"
+            p-label="cpf"
+            name="cpf"
+            p-placeholder="cpf"
+            p-mask="999.999.999-99"
+           
+        ></po-input>
+        <!-- cpfValidate -->
+    </div>
+    
+    <div class="po-row">
+        <po-input 
+        class="po-pl-0 po-md-6"
+            formControlName="matricula"
+            p-label="matricula"
+            name="matricula"
+            p-placeholder="matricula"
+        ></po-input>
+    </div>
+    
+    <div class="po-row">
+        <po-input 
+        class="po-pl-0 po-md-6"
+            formControlName="formaIngresso"
+            p-label="formaIngresso"
+            name="formaIngresso"
+            p-placeholder="formaIngresso"
+        ></po-input>
+    </div>
+
+</form>
+        

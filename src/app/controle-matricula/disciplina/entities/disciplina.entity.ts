@@ -2,6 +2,8 @@ import { Professor }  from './../../professor/entities/professor.entity'
 
 export class Disciplina{
 
+    public id: string;
+
     constructor(
         public descricao: String, 
         public sigla: String, 

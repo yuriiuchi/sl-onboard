@@ -12,7 +12,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: 'b8fa33b2-065e-407d-8853-da8e460e1ddc',
@@ -21,7 +21,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: '43f46843-612f-421c-8746-271602f20861',
@@ -30,7 +30,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: 'bfb006d9-23aa-417f-ae72-0a6706d9288f',
@@ -39,7 +39,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: 'ee1f27d0-41d0-4c11-bb0f-9fc8e611a1d3',
@@ -48,7 +48,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: '568e9bcc-4a2c-4a2b-83e6-b6bcedbd2f92',
@@ -57,7 +57,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: 'c2587dd7-a066-4627-bc0a-93f2edf3a43b',
@@ -66,7 +66,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   },
   {
     id: '86cced0c-b6de-4a17-aa22-a88ab4d4f81d',
@@ -75,7 +75,7 @@ export const aluno: Array<IAlunoGetAll> = [
     cpf: '0293745511',
     matricula: 1500,
     formaIngresso: 'EAD',
-    turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
+    //turmaId: 'e34f3f2b-f21f-459c-b203-55ae6e81e8a5'
   }
 ];
 

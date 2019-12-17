@@ -12,10 +12,6 @@ const routes: Routes = [
         path: 'incluir',
         component:  TurmaStepComponent
     }
-    // {
-    //     path: 'turma',
-    //     loadChildren: () => import('./turma/turma.module').then(m => m.TurmaModule)
-    // }
 ];
 @NgModule({
     declarations: [

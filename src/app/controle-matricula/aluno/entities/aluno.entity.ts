@@ -3,7 +3,9 @@ import { Pessoa } from "./../../pessoa/entities/pessoa.entity";
 
 export class Aluno extends Pessoa {
 
-    constructor(
+    id: String = "";
+
+    constructor(        
         nome: String,
         email: String,
         public cpf: String,

@@ -1,21 +1,8 @@
-<div class="po-mt-3 thfml-2">
-    <div class="po-row po-pb-3">
-        <po-button-group class="po-md-6" [p-buttons]="botoesAbas" [p-toggle]="'single'">
-        </po-button-group>
-    </div>
+<div class="po-mt-3 thfml-2">   
     <div class="po-row">
         <div 
-        class="po-md-6"
-        [hidden]="esconderTurmaSimples">
-            <app-turma-simples></app-turma-simples>
+        class="po-md-6">
+            <app-turma-simples #simples></app-turma-simples>
         </div>
-    </div>
-
-    <div class="po-row">
-        <div 
-        class="po-md-6"
-        [hidden]="!esconderTurmaSimples">
-            <app-turma-detalhe></app-turma-detalhe>
-        </div>
-    </div>
+    </div>   
 </div>

@@ -511,11 +511,13 @@
     "voltar": "Return",
     "wms": "WMS - Warehouse Management System",
     "xml": "XML",
-    "controleMatricula": "Controle de matriculas-EN",
-    "turmas": "Turmas-EN",
-    "inclusaoNovaTurma": "Inclusão de nova turma-EN",
-    "matriculas": "Matriculas-EN", 
-    "matr": "Matr-EN"
+    "controleMatricula": "Registration Control",
+    "turmas": "Classes",
+    "inclusaoNovaTurma": "Inclusion New Class",
+    "matriculas": "Registers", 
+    "matr": "Regs",
+    "apelido": "Nickname",
+    "maxAlunos": "Maximum Students"
   },
   "es": {
     "acaoExcluiraItens": "Esta acción eliminará permanentemente todos los elementos. ¿Desea continuar?",
@@ -1029,11 +1031,13 @@
     "voltar": "Volver",
     "wms": "WMS - Sistema de Administración de Inventario",
     "xml": "XML",
-    "controleMatricula": "Controle de matriculas-ES",
-    "turmas": "Turmas-ES",
-    "inclusaoNovaTurma": "Inclusão de nova turma-ES",
-    "matriculas": "Matriculas-ES", 
-    "matr": "Matr-ES"
+    "controleMatricula": "Controle de registro",
+    "turmas": "Clase",
+    "inclusaoNovaTurma": "Inclusion Nueva Clase",
+    "matriculas": "Registro", 
+    "matr": "Matr",
+    "apelido": "Apodo",
+    "maxAlunos": "Máximo Estudiantes"
   },
   "pt-br": {
     "acaoExcluiraItens": "Essa ação irá excluir permanentemente todos os itens, deseja continuar?",
@@ -1551,6 +1555,8 @@
     "turmas": "Turmas",
     "inclusaoNovaTurma": "Inclusão de nova turma",
     "matriculas": "Matriculas", 
-    "matr": "Matr"
+    "matr": "Matr",
+    "apelido": "apelido",
+    "maxAlunos": "Máximo Alunos"
   }
 }

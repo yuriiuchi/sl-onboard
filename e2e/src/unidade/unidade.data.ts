@@ -15,27 +15,12 @@ dataService(collectionName, (dbService: InMemoryDataService) => {
     return dbService.post$(collectionName, body, url).pipe(
       mergeMap((res) => {
         return new Observable(observer => {
-          // estruturasFisicasPadroes.forEach((item, index) => {
-          //   item['id'] = undefined;
-          //   item['unidadeId'] = res.body.id;
-          //   dbService.storeData(collectionEstruturas, item).then(() => {
-          //     if (index === (estruturasFisicasPadroes.length - 1)) {
-          //       observer.next(res);
-          //       observer.complete();
-          //     }
-          //   }, err => observer.error(err));
-          // });
+
         });
       }),
       mergeMap((res) => {
         return new Observable(observer => {
-          // dbService.storeData(collectionUnidadesEstoque, {
-          //   id: res['body'].id,
-          //   controleEstoque: 'UNITIZADOR'
-          // }).then(() => {
-          //   observer.next(res);
-          //   observer.complete();
-          // }, err => observer.error(err));
+
         });
       })
     );
@@ -50,7 +35,7 @@ dataService(collectionName, (dbService: InMemoryDataService) => {
   if (window.location.pathname !== '/configuracaoInicial') {
     unidades.forEach(unidade => {
       dbService.storeData(collectionName, unidade).then((id) => {
-        // console.log('Inserido ' + collectionName + ' com id: ' + id);
+
       });
     });
   }
