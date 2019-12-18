@@ -50,7 +50,9 @@ export class AppConfigServiceMock {
         expedicaoQuery: 'http://backend.totvs.com.br/expedicaoQuery',
         selecaoEstoque: 'http://backend.totvs.com.br/selecaoEstoque',
         separacao: 'http://backend.totvs.com.br/separacao',
-        conferenciaExp: 'http://backend.totvs.com.br/conferenciaExp'
+        conferenciaExp: 'http://backend.totvs.com.br/conferenciaExp',
+        controleMatricula: 'http://backend.totvs.com.br/controleMatricula',
+        controleMatriculaQuery: 'http://backend.totvs.com.br/controleMatriculaQuery'
       }
     };
   }

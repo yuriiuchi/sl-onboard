@@ -1,7 +1,7 @@
 
 export interface IDisciplinaGetAll {
-    id: string,
-    descricao: String, 
-    sigla: String, 
-    cargaHoraria: Number
+    id: string;
+    descricao: string;
+    sigla: string;
+    cargaHoraria: number;
 }

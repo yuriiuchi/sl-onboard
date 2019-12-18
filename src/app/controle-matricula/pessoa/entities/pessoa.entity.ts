@@ -1,7 +1,7 @@
 export class Pessoa {
 
     constructor(
-        public nome: String,
-        public email: String) {
+        public nome: string,
+        public email: string) {
     }
 }

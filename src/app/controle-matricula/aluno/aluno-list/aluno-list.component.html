@@ -4,11 +4,58 @@
 
 </po-button>
 
+<!-- <po-page-list [p-actions]="actions">  -->
+
+<div class="po-grid">
+    <div class="po-row">
+    <kendo-grid 
+        class="wms-max-width thf-shadow-container"
+        [data]="alunosGrid"
+        [columnMenu]="true"
+        [sortable]="sortable"
+        [sort]="gridState.sort"
+        [groupable]="true" 
+        [group]="gridState.group"
+        (dataStateChange)="alteracaoEstadoDados($event)" 
+        [filter]="gridState.filter" 
+        >
+        <kendo-grid-column [width]="120" field="nome" class="grid-column-align-left" [title]="global.i18n.literals.aluno"></kendo-grid-column>
+        <!-- <kendo-grid-column [width]="30" field="inicio" filter="date" [format]="global.i18n.literals.dateFormat" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
+        <kendo-grid-column [width]="20" field="nrVagas" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column>  -->
+        
+        <!-- id: 'ff0d32a4-f6f3-4319-89b7-d657d869c95c',
+        nome: 'Aluno 01',
+        email: 'aluno01@totvs.com.br',
+        cpf: '0293745511',
+        matricula: 1500,
+        formaIngresso: 'EAD', -->
+
+    </kendo-grid>
+    </div>
+</div>
+
+<!-- </po-page-list> -->
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <po-modal #modalAluno
     [p-title]="global.i18n.literals.cadastroAluno">
     <div class="po-row">
-        <div class="po-md-6">
+        <div class="po-md-12">
             <app-aluno #formAluno></app-aluno>
         </div>
     </div> 

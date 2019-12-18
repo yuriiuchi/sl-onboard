@@ -1,22 +1,22 @@
 
-import { Pessoa } from "./../../pessoa/entities/pessoa.entity";
+import { Pessoa } from './../../pessoa/entities/pessoa.entity';
 
 export class Aluno extends Pessoa {
 
-    id: String = "";
+    id: string = '';
 
-    constructor(        
-        nome: String,
-        email: String,
-        public cpf: String,
-        public matricula: Number,
-        public formaIngresso: String
+    constructor(
+        nome: string,
+        email: string,
+        public cpf: string,
+        public matricula: number,
+        public formaIngresso: string
     ) {
         super(nome, email);
     }
 
     public static empty(): Aluno {
-        return new Aluno("", "", "",  0, "");
+        return new Aluno('', '', '',  0, '');
     }
 }
 enum FormaIngressoFaculdade {

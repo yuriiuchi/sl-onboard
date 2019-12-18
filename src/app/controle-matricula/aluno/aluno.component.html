@@ -1,7 +1,7 @@
 <form [formGroup]="formAluno">
     <div class="po-row">
         <po-input 
-        class="po-sm-12 po-md-12 po-lg-12"
+        class="po-lg-12 po-md-12 po-sm-12"
             formControlName="nome"
             p-label="Aluno"
             name="aluno"
@@ -11,45 +11,45 @@
 
     <div class="po-row">
         <po-input 
-        class="po-sm-12 po-md-12 po-lg-12"
+        class="po-lg-12 po-md-12 po-sm-12"
             formControlName="email"
             p-label="email"
             name="email"
             p-placeholder="email"
         ></po-input>
     </div>
-
     <div class="po-row">
         <po-input 
-        class="po-sm-12 po-md-12 po-lg-12"
+        class="po-lg-4 po-md-4 po-sm-12"
             formControlName="cpf"
             p-label="cpf"
             name="cpf"
             p-placeholder="cpf"
             p-mask="999.999.999-99"
-           
-        ></po-input>
-        <!-- cpfValidate -->
-    </div>
-    
-    <div class="po-row">
+        ></po-input>    
+   
         <po-input 
-        class="po-sm-12 po-md-12 po-lg-12"
+        class="po-lg-4 po-md-4 po-sm-12"
             formControlName="matricula"
             p-label="matricula"
             name="matricula"
             p-placeholder="matricula"
-        ></po-input>
-    </div>
-    
-    <div class="po-row">
-        <po-input 
+        ></po-input>    
+
+        <po-combo
+            class="po-lg-4 po-md-4 po-sm-12"
+            name="combo"
+            [p-label]=global.i18n.literals.formaIngresso
+            [p-options]="formaIngressoList">
+        </po-combo>
+
+         <!-- <po-input 
         class="po-sm-12 po-md-12 po-lg-12"
             formControlName="formaIngresso"
             p-label="formaIngresso"
             name="formaIngresso"
             p-placeholder="formaIngresso"
-        ></po-input>
+        ></po-input> -->
     </div>
 
     <po-button p-label="Salvar" (click)="salvar()"></po-button>    

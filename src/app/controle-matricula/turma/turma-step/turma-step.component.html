@@ -1,8 +1,6 @@
-
 <po-page-default [p-title]="global.i18n.literals['inclusaoNovaTurma']">
-
     <po-stepper 
-        class="thf-xl-12 thf-lg-12 thf-md-12 thf-sm-12" 
+        class="po-xl-12 po-lg-12 po-md-12 po-sm-12" 
         p-orientation="vertical" 
         [p-step]="1"
         (p-change-step)="changeStep($event)" 
@@ -14,12 +12,15 @@
         <po-step p-label="Lista Alunos">
             <app-aluno-list></app-aluno-list> 
         </po-step>
+        <po-step p-label="lista Disciplinas">
+                <app-list-disciplina ></app-list-disciplina>
+        </po-step>
         <po-step 
             [p-label]="global.i18n.literals['professor']" 
             [p-status]="" 
             *ngIf="validarFormularioTurma()">
             <po-combo
-                class="po-md-6"
+                class="po-lg-6 po-md-6 po-sm-12"
                 name="combo"
                 [p-label]=global.i18n.literals.professor
                 [p-options]="professorList">
@@ -38,20 +39,18 @@
             *ngIf="validarFormularioProfessor()">
                 <!-- <app-aluno></app-aluno> -->
         </po-step>
-
     </po-stepper>
 
-    <po-button p-label="volta" (click)="teste2()"></po-button>    
-    <po-button p-label="proximo" (click)="teste()"></po-button>  
+    <po-button p-label="volta" (click)="voltarStep()"></po-button>    
+    <po-button p-label="proximo" (click)="proximoStep()"></po-button>  
     
-    
-    <po-modal #modalProfessor
-        [p-title]="global.i18n.literals.cadastroProfessor">
-        <div class="po-row">
-                <app-professor #formProfessor></app-professor>
+    <po-modal 
+        #modalProfessor
+        [p-title]="global.i18n.literals.cadastroProfessor"
+        [p-primary-action]="modalProfessorAcaoPrimaria"
+        [p-secondary-action]="modalProfessorAcaoSecundaria">>
+        <div class="po-lg-12 po-md-12 po-sm-12">
+            <app-professor #formProfessor></app-professor>
         </div> 
     </po-modal>
-
-
-
 </po-page-default>

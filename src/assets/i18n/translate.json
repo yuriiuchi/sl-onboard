@@ -521,8 +521,12 @@
     "professor": "Teacher",
     "aluno": "Student",
     "cadastroProfessor": "Teacher registration",
-    "cadastroAluno": "Student registration"
-
+    "cadastroAluno": "Student registration",
+    "formaIngresso": "Ticket form",
+    "titulacao": "titration",
+    "disciplina": "disciplina-US",
+    "sigla": "sigla-US",
+    "cargaHoraria": "Carga horaria-US"
   },
   "es": {
     "acaoExcluiraItens": "Esta acción eliminará permanentemente todos los elementos. ¿Desea continuar?",
@@ -1046,7 +1050,12 @@
     "professor": "Maestra",
     "aluno": "Estudiante",
     "cadastroProfessor": "Registro de docentes",
-    "cadastroAluno": "Registro Estudiante"
+    "cadastroAluno": "Registro Estudiante",
+    "formaIngresso": "Formulario de boleto",
+    "titulacao": "titulación",
+    "disciplina": "disciplina-ES",
+    "sigla": "sigla-ES",
+    "cargaHoraria": "Carga horaria-ES"
   },
   "pt-br": {
     "acaoExcluiraItens": "Essa ação irá excluir permanentemente todos os itens, deseja continuar?",
@@ -1570,6 +1579,11 @@
     "professor": "Professor",
     "aluno": "Aluno",
     "cadastroProfessor": "Cadastro de professor",
-    "cadastroAluno": "Cadastro de aluno"
+    "cadastroAluno": "Cadastro de aluno",
+    "formaIngresso": "Forma Ingresso",
+    "titulacao": "titulacao",
+    "disciplina": "disciplina",
+    "sigla": "sigla",
+    "cargaHoraria": "Carga horaria"
   }
 }

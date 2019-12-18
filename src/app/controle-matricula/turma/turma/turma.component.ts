@@ -1,30 +1,30 @@
-import { OnInit, Component, ViewChild } from '@angular/core'
+import { OnInit, Component, ViewChild } from '@angular/core';
 
 import { GlobalService } from 'totvs-log-web-foundation';
 
 import { PoButtonGroupItem } from '@portinari/portinari-ui';
 import { TurmaSimplesComponent } from './turma-simples/turma-simples.component';
+
 @Component({
     selector:  'app-turma',
     templateUrl: './turma.component.html',
     styleUrls: ['./turma.component.css']
 })
-export class TurmaComponent implements OnInit{
+export class TurmaComponent implements OnInit {
 
-    @ViewChild('simples', { static: true }) public simples : TurmaSimplesComponent;
-    
-    botoesAbas: Array<PoButtonGroupItem>
-    esconderTurmaSimples: boolean = false;
-    
-    constructor(public global: GlobalService){
-        
+    @ViewChild('simples', { static: true }) public simples: TurmaSimplesComponent;
+
+    botoesAbas: Array<PoButtonGroupItem>;
+
+    constructor(public global: GlobalService) {
+
     }
-    
-    ngOnInit(): void{
+
+    ngOnInit(): void {
         this.onChangeIdiomas();
     }
 
-    onChangeIdiomas(): void{
-        
-    }  
+    onChangeIdiomas(): void {
+
+    }
 }

@@ -13,6 +13,9 @@ import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples
 import { ProfessorComponent } from './professor/professor.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
+import { AlunoGetAllService } from './aluno/services/aluno-get-all.service';
+import { DisciplinaListComponent } from './disciplina/disciplina-list/disciplina-list.component'
+import { DisciplinaGetAllService } from './disciplina/services/disciplina-get-all.service';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,9 @@ import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
         TurmaSimplesComponent,
         ProfessorComponent,
         AlunoComponent,
-        AlunoListComponent
+        AlunoListComponent,
+        TurmaListComponent,
+        DisciplinaListComponent
     ],
     imports: [
         SharedModule,
@@ -32,7 +37,9 @@ import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
         PoButtonGroupModule
     ],
     providers: [
-        TurmaGetAllService
+        TurmaGetAllService,
+        AlunoGetAllService,
+        DisciplinaGetAllService
     ]
 })
 export class ControleMatriculaModule {}

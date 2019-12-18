@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { BaseComponent } from '../../base/base.component';
+import { GlobalService } from 'totvs-log-web-foundation';
 @Component({
     selector:  'app-professor',
     templateUrl: './professor.component.html',
@@ -10,8 +11,9 @@ import { BaseComponent } from '../../base/base.component';
 export class ProfessorComponent extends BaseComponent implements OnInit {
 
     private formProfessor: FormGroup;
+    private titulacaoList = [{ value: 'Mestre' }, { value: 'Doutor' }, { value: 'PHD'}];
 
-    constructor() {
+    constructor(private global: GlobalService) {
         super();
 
         this.formProfessor = new FormGroup({

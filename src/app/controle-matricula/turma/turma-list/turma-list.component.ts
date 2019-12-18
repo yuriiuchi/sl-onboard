@@ -69,6 +69,7 @@ export class TurmaListComponent extends BaseComponent implements OnInit {
   private incluirNovaTurma(): void {
     this.router.navigate(['incluir'], { relativeTo: this.activatedRoute });
   }
+
   private getActions(): Array<PoPageAction> {
     return [
       { label: this.global.i18n.literals.inclusaoNovaTurma, action: this.incluirNovaTurma.bind(this), icon: 'po-icon-plus' }

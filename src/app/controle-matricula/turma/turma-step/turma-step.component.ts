@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { BaseComponent } from './../../../../app/base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
-import { PoStepperComponent, PoModalComponent } from '@portinari/portinari-ui';
+import { PoStepperComponent, PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
 import { TurmaComponent } from '../turma/turma.component';
 import { ProfessorComponent } from '../../professor/professor.component';
 
@@ -13,21 +13,35 @@ import { ProfessorComponent } from '../../professor/professor.component';
 })
 export class TurmaStepComponent extends BaseComponent implements OnInit {
 
-    @ViewChild('stepper', {static: true}) stepper : PoStepperComponent;
-    @ViewChild('formTurma', {static: true}) formTurma : TurmaComponent;
-    @ViewChild('formProfessor', {static: false}) formProfessor : ProfessorComponent;
-
+    @ViewChild('stepper', {static: true}) stepper: PoStepperComponent;
+    @ViewChild('formTurma', {static: true}) formTurma: TurmaComponent;
+    @ViewChild('formProfessor', {static: false}) formProfessor: ProfessorComponent;
     @ViewChild('modalProfessor', { static: true }) modalProfessor: PoModalComponent;
 
-    professorList = [{ value: 'Option 1' }, { value: 'Option 2' }];
-  
+    professorList = [{ value: 'Professor 01' }, { value: 'Professor 02' }, { value: 'Professor 03'}];
+
+    modalProfessorAcaoPrimaria: PoModalAction = {
+        action: () => {
+            alert('acao primaria');
+            this.modalProfessor.close();
+        },
+        label: this.global.i18n.literals.salvar
+      };
+
+    modalProfessorAcaoSecundaria: PoModalAction = {
+    action: () => {
+        alert('acao secundaria');
+    },
+    label: this.global.i18n.literals.cancelar
+    };
+
     constructor(private global: GlobalService) {
         super();
     }
 
     ngOnInit(): void {
 
-    } 
+    }
 
     validarFormularioProfessor(): boolean {
         return this.formProfessor ? this.formProfessor.validForm() : false;
@@ -37,26 +51,26 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
         return this.formTurma ? this.formTurma.simples.validForm() : false;
     }
 
-    changeStep($event){
-        //console.log($event);
+    changeStep($event) {
+        // console.log($event);
     }
-    
 
-    teste(){
-        if (this.formTurma.simples.validForm()){
+    proximoStep() {
+        if (this.formTurma.simples.validForm()) {
             this.stepper.next();
         }
     }
-    teste2(){
+
+    voltarStep() {
         this.stepper.previous();
     }
 
-    canActiveTeste2(form: ProfessorComponent){
-        this.stepper.steps[0].label = 'testestestsetestes' 
+    canActiveTeste2(form: ProfessorComponent) {
+        this.stepper.steps[0].label = 'testestestsetestes';
         return this.formTurma.simples.validForm;
     }
 
     abrirModalProfessor(): void {
         this.modalProfessor.open();
     }
-} 
+}

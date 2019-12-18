@@ -1,18 +1,18 @@
-import { Professor }  from './../../professor/entities/professor.entity'
+import { Professor } from './../../professor/entities/professor.entity';
 
-export class Disciplina{
+export class Disciplina {
 
     public id: string;
 
     constructor(
-        public descricao: String, 
-        public sigla: String, 
-        public cargaHoraria: Number
-    ){
-       
+        public descricao: string,
+        public sigla: string,
+        public cargaHoraria: number
+    ) {
+
     }
 
-    public static empty(){
-        return new Disciplina("", "", 0);       
+    public static empty() {
+        return new Disciplina('', '', 0);
     }
 }

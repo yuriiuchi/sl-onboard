@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { cpfValidator } from 'totvs-log-base-foundation';
 
 import { BaseComponent } from '../../base/base.component';
+import { GlobalService } from 'totvs-log-web-foundation';
 @Component({
     selector:  'app-aluno',
     templateUrl: './aluno.component.html',
@@ -12,8 +13,9 @@ import { BaseComponent } from '../../base/base.component';
 export class AlunoComponent extends BaseComponent implements OnInit {
 
     private formAluno: FormGroup;
+    formaIngressoList = [{ value: 'ENADE' }, { value: 'Vestibular' }];
 
-    constructor() {
+    constructor(private global: GlobalService) {
         super();
 
         this.formAluno = new FormGroup({

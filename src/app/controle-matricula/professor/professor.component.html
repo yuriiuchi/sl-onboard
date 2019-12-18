@@ -1,7 +1,7 @@
 <form [formGroup]="formProfessor">
     <div class="po-row">
         <po-input 
-        class="po-pl-0 po-md-12"
+        class="po-lg-12 po-md-12 po-sm-12"
             formControlName="nome"
             p-label="Professor"
             name="professor"
@@ -9,16 +9,13 @@
         ></po-input>
     </div>
     <div class="po-row">
-        <po-input 
-        class="po-pl-0 po-md-12"
+        <po-combo
+            class="po-lg-12 po-md-12 po-sm-12"
+            name="comboTitulacao"
             formControlName="titulacao"
-            p-label="titulacao"
-            name="titulacao"
-            p-placeholder="titulacao"
-        ></po-input>
+            [p-label]=global.i18n.literals.titulacao
+            [p-options]="titulacaoList">
+        </po-combo>
     </div>
-
-    <po-button p-label="Salvar" (click)="salvar()"></po-button>    
-    
 </form>
     
