@@ -4,15 +4,15 @@ export class Professor extends Pessoa {
 
     constructor(
         id: string,
-        nome: String,
-        email: String,
-        public cpf: String,
-        public titulacao: String
+        nome: string,
+        email: string,
+        public cpf: string,
+        public titulacao: string
     ) {
         super(nome, email);
     }
     public empty() {
-        return new Professor("","", "", "", "");
+        return new Professor('', '', '', '', '');
     }
 
 }
