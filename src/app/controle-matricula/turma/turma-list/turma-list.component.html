@@ -3,7 +3,7 @@
 <div class="po-grid">
   <div class="po-row">
     <kendo-grid 
-      class="wms-max-width thf-shadow-container"
+      class="wms-max-width po-shadow-container"
       [data]="turmasGrid"
       [columnMenu]="true"
       [sortable]="sortable"
@@ -14,10 +14,24 @@
       [filter]="gridState.filter" 
      >
       <kendo-grid-column [width]="120" field="descricao" class="grid-column-align-left" [title]="global.i18n.literals.turma"></kendo-grid-column>
-      <kendo-grid-column [width]="30" field="inicio" filter="date" [format]="global.i18n.literals.dateFormat" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
+      <kendo-grid-column [width]="30" field="inicio" filter="date" [format]="global.i18n.literals.dateFormat" class="grid-column-align-rigth" [title]="global.i18n.literals.ano">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{dataItem.inicio | date: global.i18n.literals['dateFormat']}}
+      </ng-template>
+      </kendo-grid-column>
       <kendo-grid-column [width]="20" field="nrVagas" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column> 
       
+      <kendo-grid-column [width]="15" [columnMenu]="false" class="no-padding text-center">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="po-icon po-icon-more po-text-color-01 k-grid-more-actions"
+            (click)="clickMoreActions($event, dataItem)"></span>
+        </ng-template>
+      </kendo-grid-column>
+
     </kendo-grid>
+
+    <po-popup #popupMoreActions [p-actions]="popupActions" p-position="bottom-left">
+    </po-popup>
   </div>
 </div>
 

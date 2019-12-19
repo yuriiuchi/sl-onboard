@@ -6,28 +6,28 @@ import { finalize } from 'rxjs/operators';
 import { IGetAllPagination, MappedGetAll, IListDto, ApiQueryString, QueryFilter, FieldValue } from 'totvs-log-base-foundation';
 import { AppConfigService } from './../../../../app/app-config.service';
 import { Aluno } from './../entities/aluno.entity';
-import { IAlunoGetAll } from './../entities/aluno-get-all.interface';
+import { IAluno } from './../entities/aluno.interface';
 
 @Injectable()
 export class AlunoGetAllService implements IGetAllPagination<Aluno> {
 
-    private mappedGetAll: MappedGetAll<IAlunoGetAll, Aluno>;
+    private mappedGetAll: MappedGetAll<IAluno, Aluno>;
 
     constructor(
         private http: HttpClient,
         private appConfig: AppConfigService
     ) {
-        this.mappedGetAll = new MappedGetAll<IAlunoGetAll, Aluno>(
+        this.mappedGetAll = new MappedGetAll<IAluno, Aluno>(
             this.http,
             `${this.appConfig.configuracoes.urlWMS.recebimentoQuery}/alunos`,
             {
-                MapTo: (backend: IListDto<IAlunoGetAll>) => {
-                            // const listaPaginada = {
-                            //     hasNext: backend.hasNext,
-                            //     items: backend.items.map( x => Turma.fromDto(x))
-                            // }
-                            // return listaPaginada;
-                            return backend;
+                MapTo: (backend: IListDto<IAluno>) => {
+                             const listaPaginada = {
+                                 hasNext: backend.hasNext,
+                                 items: backend.items.map( x => Aluno.fromDto(x))
+                             };
+                             return listaPaginada;
+                            //return backend;
                         }
             }
         );

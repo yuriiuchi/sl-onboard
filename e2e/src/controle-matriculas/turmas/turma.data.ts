@@ -4,6 +4,7 @@ import { InMemoryDataService } from './../../../../src/app/memory/data-service/i
 import { collectionName, turmas } from './turma.mock';
 
 dataService(collectionName, (dbService: InMemoryDataService) => {
+    dbService.addReplaceUrl('recebimento/turmas', collectionName);
     dbService.addReplaceUrl('recebimentoQuery/turmas', collectionName);
 
     // dbService.addSearchTermMap(collectionName, ['identificador']);
@@ -13,6 +14,6 @@ dataService(collectionName, (dbService: InMemoryDataService) => {
     // });
 
     turmas.forEach(turma => {
-        dbService.storeData(collectionName, turma);
+        dbService.storeData(collectionName, turma).then( () => { });
     });
 });

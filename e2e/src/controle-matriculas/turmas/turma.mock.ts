@@ -28,7 +28,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 01',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -58,7 +58,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 01',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -75,7 +75,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 01',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       },
       {
@@ -83,7 +83,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 01',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -113,7 +113,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 03',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       },
       {
@@ -121,7 +121,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 04',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -138,7 +138,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 04',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -162,7 +162,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 03',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -186,7 +186,7 @@ export const turmas: Array<ITurmaGetAll> = [
         nome: 'Aluno 08',
         email: 'aluno01@totvs.com.br',
         cpf: '0293745511',
-        matricula: 1500,
+        matricula: '1500',
         formaIngresso: 'EAD',
       }
     ]
@@ -197,8 +197,12 @@ export function mapToInterface( turma: any): any {
 
   return {
     id: turma.id,
-    disciplinas: turma.disciplinas,
-    ano: turma.ano,
-    nrVagas: turma.nrVagas
+    nome: turma.nome,
+    email: turma.email,
+    cpf: turma.cpf,
+    matricula: turma.matricula,
+    formaIngresso: turma.formaIngresso,
+    listDisciplinas: turma.listDisciplinas,
+    listAlunos: turma.listAlunos
   };
 }

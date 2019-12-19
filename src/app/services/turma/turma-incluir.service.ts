@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPostEntity, MappedHttpPostLocation } from 'totvs-log-base-foundation';
 import { AppConfigService } from '../../app-config.service';
-import { Turma } from '../../entities/turma/turma.entity';
+import { Turma } from './../../controle-matricula/turma/entities/turma.entitiy';
 
 @Injectable()
-export class TurmaIncluirService implements IPostEntity<Turma, string> {
+export class TurmaIncluirServiceOld implements IPostEntity<Turma, string> {
 
   get url(): string {
-    return `${this.servicoConfiguracao.configuracoes.urlWMS.controleMatricula}/turmas`;
+    return `${this.servicoConfiguracao.configuracoes.urlWMS.recebimentoQuery}/turmas`;
   }
 
   private mapped: MappedHttpPostLocation<Turma, string>;

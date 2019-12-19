@@ -1,6 +1,6 @@
-export interface ITurma {
-    id: string;
-    descricao: string;
-    ano: number;
-    nrVagas: number;
-}
+// export interface ITurma {
+//     id: string;
+//     descricao: string;
+//     ano: number;
+//     nrVagas: number;
+// }
