@@ -1,4 +1,9 @@
 <po-page-default [p-title]="global.i18n.literals['inclusaoNovaTurma']">
+
+    <div class="align-left">
+        <po-button p-label="volta" (click)="voltarStep()"></po-button>    
+        <po-button p-label="proximo" (click)="proximoStep()" p-type="primary"></po-button>  
+    </div>
     <po-stepper 
         class="po-xl-12 po-lg-12 po-md-12 po-sm-12" 
         p-orientation="vertical" 
@@ -8,6 +13,7 @@
 
         <po-step [p-label]="'inicio'" [p-status]="">
             <app-turma #formTurma></app-turma>
+            <po-button p-label="salvar turma" (click)="salvarTurma()" p-type="primary"></po-button>  
         </po-step>
         <po-step p-label="Lista Alunos">
             <app-aluno-list></app-aluno-list> 
@@ -40,9 +46,6 @@
                 <!-- <app-aluno></app-aluno> -->
         </po-step>
     </po-stepper>
-
-    <po-button p-label="volta" (click)="voltarStep()"></po-button>    
-    <po-button p-label="proximo" (click)="proximoStep()"></po-button>  
     
     <po-modal 
         #modalProfessor

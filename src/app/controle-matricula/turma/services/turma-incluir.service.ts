@@ -14,8 +14,7 @@ export class TurmaIncluirService implements IPostEntity<ITurma, ITurma> {
 
     constructor(http: HttpClient, private readonly appConfig: AppConfigService) {
         this.mapped = new MappedHttpPostLocation(
-            // `${this.appConfig.configuracoes.urlWMS.recebimentoQuery}/turmas`,
-            `${this.appConfig.configuracoes.urlWMS.recebimentoQuery}/turmas`,
+            `${this.appConfig.configuracoes.urlWMS.recebimento}/turmas`,
             {
                 MapTo: ( turma ) => turma
             },
@@ -24,6 +23,8 @@ export class TurmaIncluirService implements IPostEntity<ITurma, ITurma> {
     }
 
     Post(data: ITurma): Observable<any> {
-        return this.mapped.Post(data, data.id);
+        console.log('Post - TurmaIncluirService:');
+        console.log(data);
+        return this.mapped.Post(data);
     }
 }

@@ -1,10 +1,6 @@
-<h1>Aluno list component</h1>
 
-<po-button p-label="'label botao'" (click)="abrirModalAluno()">
-
-</po-button>
-
-<!-- <po-page-list [p-actions]="actions">  -->
+<po-page-list> <!-- [p-actions]="actions" -->
+<po-button [p-label]="global.i18n.literals['novoAluno']" (click)="abrirModalAluno()"></po-button>
 
 <div class="po-grid">
     <div class="po-row">
@@ -19,38 +15,15 @@
         (dataStateChange)="alteracaoEstadoDados($event)" 
         [filter]="gridState.filter" 
         >
-        <kendo-grid-column [width]="120" field="nome" class="grid-column-align-left" [title]="global.i18n.literals.aluno"></kendo-grid-column>
-        <!-- <kendo-grid-column [width]="30" field="inicio" filter="date" [format]="global.i18n.literals.dateFormat" class="grid-column-align-rigth" [title]="global.i18n.literals.ano"></kendo-grid-column>
-        <kendo-grid-column [width]="20" field="nrVagas" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column>  -->
-        
-        <!-- id: 'ff0d32a4-f6f3-4319-89b7-d657d869c95c',
-        nome: 'Aluno 01',
-        email: 'aluno01@totvs.com.br',
-        cpf: '0293745511',
-        matricula: 1500,
-        formaIngresso: 'EAD', -->
+        <kendo-grid-column [width]="40" field="nome" class="grid-column-align-left" [title]="global.i18n.literals.aluno"></kendo-grid-column>
+        <kendo-grid-column [width]="25" field="email" class="grid-column-align-rigth" [title]="global.i18n.literals.email"></kendo-grid-column>
+        <kendo-grid-column [width]="15" field="cpf" class="grid-column-align-right" title="cpf"></kendo-grid-column> 
+        <kendo-grid-column [width]="15" field="matricula" class="grid-column-align-right" [title]="global.i18n.literals.matricula"></kendo-grid-column> 
+        <kendo-grid-column [width]="15" field="formaIngresso" class="grid-column-align-right" [title]="global.i18n.literals.formaIngresso"></kendo-grid-column> 
 
     </kendo-grid>
     </div>
-</div>
-
-<!-- </po-page-list> -->
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>    
 
 <po-modal #modalAluno
     [p-title]="global.i18n.literals.cadastroAluno">
@@ -60,3 +33,5 @@
         </div>
     </div> 
 </po-modal>
+
+</po-page-list>

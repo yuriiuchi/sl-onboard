@@ -526,7 +526,15 @@
     "titulacao": "titration",
     "disciplina": "disciplina-US",
     "sigla": "sigla-US",
-    "cargaHoraria": "Carga horaria-US"
+    "cargaHoraria": "Carga horaria-US",
+    "novoAluno": "Novo aluno-US",
+    "email": "e-mail",
+    "matricula": "matricula-US",
+    "alunos": "alunos-US",
+    "alu": "alu-US",
+    "professores": "professores-US",
+    "turmaSalvaComSucesso": "Turma salva com sucesso-US"
+
   },
   "es": {
     "acaoExcluiraItens": "Esta acción eliminará permanentemente todos los elementos. ¿Desea continuar?",
@@ -1055,7 +1063,14 @@
     "titulacao": "titulación",
     "disciplina": "disciplina-ES",
     "sigla": "sigla-ES",
-    "cargaHoraria": "Carga horaria-ES"
+    "cargaHoraria": "Carga horaria-ES",
+    "novoAluno": "Novo aluno-ES",
+    "email": "mail-ES",
+    "matricula": "matricula-ES",
+    "alunos": "alunos-ES",
+    "alu": "alu-ES",
+    "professores": "professores-ES",
+    "turmaSalvaComSucesso": "Turma salva com sucesso-ES"
   },
   "pt-br": {
     "acaoExcluiraItens": "Essa ação irá excluir permanentemente todos os itens, deseja continuar?",
@@ -1584,6 +1599,13 @@
     "titulacao": "titulacao",
     "disciplina": "disciplina",
     "sigla": "sigla",
-    "cargaHoraria": "Carga horaria"
+    "cargaHoraria": "Carga horaria",
+    "novoAluno": "Novo aluno",
+    "email": "e-mail",
+    "matricula": "matricula",
+    "alunos": "alunos",
+    "alu": "alu",
+    "professores": "professores",
+    "turmaSalvaComSucesso": "Turma salva com sucesso"
   }
 }

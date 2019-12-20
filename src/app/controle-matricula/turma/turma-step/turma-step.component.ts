@@ -51,6 +51,10 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
         return this.formTurma ? this.formTurma.simples.validForm() : false;
     }
 
+    salvarTurma(): void {
+        this.formTurma.simples.save();
+    }
+
     changeStep($event) {
         // console.log($event);
     }
@@ -63,11 +67,6 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
 
     voltarStep() {
         this.stepper.previous();
-    }
-
-    canActiveTeste2(form: ProfessorComponent) {
-        this.stepper.steps[0].label = 'testestestsetestes';
-        return this.formTurma.simples.validForm;
     }
 
     abrirModalProfessor(): void {

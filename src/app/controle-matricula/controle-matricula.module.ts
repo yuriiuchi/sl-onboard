@@ -7,6 +7,7 @@ import { ControleMatriculaComponent } from './controle-matricula.component'
 import { ControleMatriculaRoutingModule } from './controle-matricula-routing.module';
 import { TurmaComponent } from './turma/turma/turma.component';
 import { TurmaListComponent } from './turma/turma-list/turma-list.component';
+import { TurmaListFormComponent } from './turma/turma-list/turma-list-form.component';
 import { TurmaGetAllService } from './turma/services/turma-get-all.service';
 import { TurmaStepComponent } from './turma/turma-step/turma-step.component';
 import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples.component';
@@ -26,6 +27,7 @@ import { TurmaAlterarService } from '../controle-matricula/turma/services/turma-
         ControleMatriculaComponent,
         TurmaComponent,
         TurmaListComponent,
+        TurmaListFormComponent,
         TurmaComponent,
         TurmaStepComponent,
         TurmaSimplesComponent,

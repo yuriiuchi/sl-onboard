@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { PoBreadcrumb } from '@portinari/portinari-ui';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PoBreadcrumb, PoModalComponent } from '@portinari/portinari-ui';
 import { GlobalService } from 'totvs-log-web-foundation';
 
 @Component({
@@ -8,9 +8,11 @@ import { GlobalService } from 'totvs-log-web-foundation';
     styleUrls: ['./controle-matricula.component.css']
 })
 export class ControleMatriculaComponent implements OnInit {
-    
+
+    // @ViewChild('modalEditarTurma', { static: true }) modalEditarTurma: PoModalComponent;
+
     public breadcrumbs: PoBreadcrumb;
-    
+
     constructor(private global: GlobalService) {
 
     }
@@ -31,4 +33,8 @@ export class ControleMatriculaComponent implements OnInit {
           ]
         };
     }
+
+    // abrirModalEditarTurma(): void {
+    //     this.modalEditarTurma.open();
+    // }
 }

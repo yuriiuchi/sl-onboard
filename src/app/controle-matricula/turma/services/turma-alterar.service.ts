@@ -7,7 +7,6 @@ import { AppConfigService } from '../../../app-config.service';
 
 import { Turma } from './../entities/turma.entitiy';
 import { ITurma } from './../entities/turma.interface';
-import { TurmaAlterar } from './../entities/turma-alterar.entity';
 
 @Injectable()
 export class TurmaAlterarService implements IPostEntity<Turma, ITurma> {

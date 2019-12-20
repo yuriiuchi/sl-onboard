@@ -1,9 +1,10 @@
-import { OnInit, Component, ViewChild } from '@angular/core';
+import { OnInit, Component, ViewChild, Input } from '@angular/core';
 
 import { GlobalService } from 'totvs-log-web-foundation';
 
 import { PoButtonGroupItem } from '@portinari/portinari-ui';
 import { TurmaSimplesComponent } from './turma-simples/turma-simples.component';
+import { Turma } from '../entities/turma.entitiy';
 
 @Component({
     selector:  'app-turma',
@@ -13,11 +14,12 @@ import { TurmaSimplesComponent } from './turma-simples/turma-simples.component';
 export class TurmaComponent implements OnInit {
 
     @ViewChild('simples', { static: true }) public simples: TurmaSimplesComponent;
+    @Input() turmaId: string;
+    //@Input() set turmaId(x) { console.log('log: ', x); }
 
     botoesAbas: Array<PoButtonGroupItem>;
 
     constructor(public global: GlobalService) {
-
     }
 
     ngOnInit(): void {

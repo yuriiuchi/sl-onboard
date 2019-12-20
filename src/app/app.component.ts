@@ -149,8 +149,8 @@ export class AppComponent extends BaseComponent implements OnInit {
     this.itensMenu.push({
       label: this.global.i18n.literals[label],
       shortLabel: this.global.i18n.literals[shortLabel],
-      link: link,
-      icon: icon
+      link,
+      icon
     });
   }
 
@@ -165,7 +165,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     });
 
     this.menuAdd('matriculas', 'matr', 'controle-matricula', 'po-icon po-icon-stock');
-
+    this.menuAdd('alunos', 'alu', 'controle-matricula/alunos', 'po-icon po-icon-stock');
   }
 
   definirPerfilUsuario(usuario: User) {

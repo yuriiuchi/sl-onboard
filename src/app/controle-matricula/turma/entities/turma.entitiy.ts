@@ -3,6 +3,7 @@ import { Aluno } from '../../aluno/entities/aluno.entity';
 import { ITurma } from './../../../controle-matricula/turma/entities/turma.interface';
 
 export class Turma {
+
     constructor(
         public id: string,
         public descricao: string,
@@ -15,8 +16,6 @@ export class Turma {
         }
 
     static fromDto(dto: ITurma): Turma {
-        console.log('From Dto ITurma');
-        console.log(dto);
         return new Turma(
             dto.id,
             dto.descricao,
