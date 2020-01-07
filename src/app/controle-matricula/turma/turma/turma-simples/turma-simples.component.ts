@@ -35,8 +35,6 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
         //     });
 
         }
-
-
     }
 
     formTurmaSimples: FormGroup;

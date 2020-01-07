@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from 'totvs-log-web-foundation';
 import { PoModalComponent, PoPageAction } from '@portinari/portinari-ui';
 import { BaseComponent } from 'src/app/base/base.component';
 import { Aluno } from '../entities/aluno.entity';
-import { GridDataResult, SortSettings, DataStateChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult, SortSettings, DataStateChangeEvent, SelectableSettings } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlunoGetAllService } from './../services/aluno-get-all.service';
+import { Turma } from '../../turma/entities/turma.entitiy';
 
 @Component({
     selector: 'app-aluno-list',
@@ -17,6 +18,9 @@ import { AlunoGetAllService } from './../services/aluno-get-all.service';
 export class AlunoListComponent extends BaseComponent implements OnInit {
 
     @ViewChild('modalAluno', { static: true }) modalAluno: PoModalComponent;
+    @Output()
+    public alunosSelecionados: EventEmitter<Array<Aluno>> = new EventEmitter<Array<Aluno>>();
+
 
      public alunos: Array<Aluno>;
      public alunosGrid: GridDataResult = { data: [], total: 0 };
@@ -24,14 +28,16 @@ export class AlunoListComponent extends BaseComponent implements OnInit {
        mode: 'multiple',
        allowUnsort: true
      };
-
     //  public actions: Array<PoPageAction> = this.criarBotoesPagina();
-
      public gridState: State = {
        group: [],
        sort: [],
        filter: null
      };
+     public selectable: SelectableSettings = {
+        mode: 'multiple',
+        checkboxOnly: true
+      };
 
     constructor(
         public global: GlobalService,
@@ -70,6 +76,23 @@ export class AlunoListComponent extends BaseComponent implements OnInit {
         this.gridState = state;
         this.alunosGrid = process(this.alunos, this.gridState);
     }
+
+    public onSelectedKeysChange(selecionados) {
+        const al: Array<Aluno> = [];
+        selecionados.forEach(id => {
+          const aluno = this.alunos.find(d => d.id === id);
+          if (aluno) {
+            al.push(aluno);
+          }
+        });
+        this.alunosSelecionados.emit(al);
+      }
+
+      public dataStateChange(state: DataStateChangeEvent): void {
+        this.gridState = state;
+        this.alunosGrid = process(this.alunos, this.gridState);
+        console.log('dataStateChange - não entra aqui');
+      }
 
     // private criarBotoesPagina(): Array<PoPageAction> {
     //     return [

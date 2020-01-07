@@ -31,41 +31,19 @@ export class DisciplinaListComponent extends BaseComponent implements OnInit {
 
     constructor(
         public global: GlobalService,
-        private readonly router: Router,
-        private readonly activatedRoute: ActivatedRoute,
-        private disciplinaGetAllService: DisciplinaGetAllService
     ) {
         super();
+    }
+
+    ngOnInit(): void {
+
     }
 
     criarBotoesPagina(): Array<PoPageAction> {
         return [];
     }
 
-    ngOnInit(): void {
-        this.alterarIdioma();
-        this.carregarDisciplinas();
-    }
-
-    carregarGrid( disciplinas: any ): void {
-        this.disciplinas = disciplinas;
-        this.disciplinasGrid = process(this.disciplinas, this.gridState);
-    }
-
-    carregarDisciplinas(): void {
-        this.disciplinaGetAllService.reset().subscribe( disciplinas => {
-            this.carregarGrid(disciplinas);
-        });
-    }
-
-    public alteracaoEstadoDados(state: DataStateChangeEvent): void {
-        this.gridState = state;
-        this.disciplinasGrid = process(this.disciplinas, this.gridState);
-    }
-
     alterarIdioma(): void {
         this.criarBotoesPagina();
-        /*this.criarBreadcrumb();
-        //this.opcoesFiltroSituacao = this.getOpcoesFiltroSituacao();*/
     }
 }

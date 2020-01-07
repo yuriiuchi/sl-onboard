@@ -11,8 +11,9 @@
       [groupable]="true" 
       [group]="gridState.group"
       (dataStateChange)="dataStateChange($event)" 
-      [filter]="gridState.filter" 
+      [filter]="gridState.filter"
      >
+      <!-- <kendo-grid-checkbox-column [width]="5"[columnMenu]="false"class="no-padding text-center"></kendo-grid-checkbox-column> -->
       <kendo-grid-column [width]="120" field="descricao" class="grid-column-align-left" [title]="global.i18n.literals.turma"></kendo-grid-column>
       <kendo-grid-column [width]="30" field="inicio" filter="date" [format]="global.i18n.literals.dateFormat" class="grid-column-align-rigth" [title]="global.i18n.literals.ano">
         <ng-template kendoGridCellTemplate let-dataItem>

@@ -15,6 +15,11 @@
             <app-turma #formTurma></app-turma>
             <po-button p-label="salvar turma" (click)="salvarTurma()" p-type="primary"></po-button>  
         </po-step>
+
+        <po-step p-label="Adicionar Disciplinas">
+            <app-turma-disciplina-incluir></app-turma-disciplina-incluir> 
+        </po-step>
+
         <po-step p-label="Lista Alunos">
             <app-aluno-list></app-aluno-list> 
         </po-step>

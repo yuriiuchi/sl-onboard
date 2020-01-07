@@ -16,11 +16,12 @@ import { AlunoComponent } from './aluno/aluno.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
 import { AlunoGetAllService } from './aluno/services/aluno-get-all.service';
 import { DisciplinaListComponent } from './disciplina/disciplina-list/disciplina-list.component';
+import { DisciplinaListFormComponent } from './disciplina/disciplina-list/disciplina-list-form.component';
 import { DisciplinaGetAllService } from './disciplina/services/disciplina-get-all.service';
 import { TurmaGetByIdService } from './turma/services/turma-get-by-id.service';
 import { TurmaIncluirService } from '../controle-matricula/turma/services/turma-incluir.service';
 import { TurmaAlterarService } from '../controle-matricula/turma/services/turma-alterar.service';
-
+import { TurmaDisciplinaIncluirComponent } from '../controle-matricula/turma/turma-disciplina/turma-disciplina-incluir.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,9 @@ import { TurmaAlterarService } from '../controle-matricula/turma/services/turma-
         AlunoComponent,
         AlunoListComponent,
         TurmaListComponent,
-        DisciplinaListComponent
+        DisciplinaListComponent,
+        TurmaDisciplinaIncluirComponent,
+        DisciplinaListFormComponent
     ],
     imports: [
         SharedModule,

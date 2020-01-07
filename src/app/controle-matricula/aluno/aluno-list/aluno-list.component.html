@@ -5,16 +5,23 @@
 <div class="po-grid">
     <div class="po-row">
     <kendo-grid 
-        class="wms-max-width thf-shadow-container"
+        class="wms-max-width po-shadow-container"
+        (dataStateChange)="dataStateChange($event)"
         [data]="alunosGrid"
         [columnMenu]="true"
+        [selectable]="selectable"
         [sortable]="sortable"
         [sort]="gridState.sort"
         [groupable]="true" 
         [group]="gridState.group"
         (dataStateChange)="alteracaoEstadoDados($event)" 
         [filter]="gridState.filter" 
+        [resizable]="true"
+        [kendoGridSelectBy]="'id'"
+        (selectedKeysChange)="onSelectedKeysChange($event)"
         >
+
+        <kendo-grid-checkbox-column [width]="5"[columnMenu]="false"class="no-padding text-center"></kendo-grid-checkbox-column>
         <kendo-grid-column [width]="40" field="nome" class="grid-column-align-left" [title]="global.i18n.literals.aluno"></kendo-grid-column>
         <kendo-grid-column [width]="25" field="email" class="grid-column-align-rigth" [title]="global.i18n.literals.email"></kendo-grid-column>
         <kendo-grid-column [width]="15" field="cpf" class="grid-column-align-right" title="cpf"></kendo-grid-column> 

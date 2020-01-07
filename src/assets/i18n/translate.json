@@ -533,7 +533,9 @@
     "alunos": "alunos-US",
     "alu": "alu-US",
     "professores": "professores-US",
-    "turmaSalvaComSucesso": "Turma salva com sucesso-US"
+    "turmaSalvaComSucesso": "Turma salva com sucesso-US",
+    "adicionarTurmas": "Adicionar Turmas-US", 
+    "adicionarDisciplinas": "Adicionar Disciplinas-US"
 
   },
   "es": {
@@ -1070,7 +1072,9 @@
     "alunos": "alunos-ES",
     "alu": "alu-ES",
     "professores": "professores-ES",
-    "turmaSalvaComSucesso": "Turma salva com sucesso-ES"
+    "turmaSalvaComSucesso": "Turma salva com sucesso-ES",
+    "adicionarTurmas": "Adicionar Turmas-ES", 
+    "adicionarDisciplinas": "Adicionar Disciplinas-ES"
   },
   "pt-br": {
     "acaoExcluiraItens": "Essa ação irá excluir permanentemente todos os itens, deseja continuar?",
@@ -1606,6 +1610,8 @@
     "alunos": "alunos",
     "alu": "alu",
     "professores": "professores",
-    "turmaSalvaComSucesso": "Turma salva com sucesso"
+    "turmaSalvaComSucesso": "Turma salva com sucesso",
+    "adicionarTurmas": "Adicionar Turmas", 
+    "adicionarDisciplinas": "Adicionar Disciplinas"
   }
 }
