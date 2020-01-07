@@ -17,13 +17,12 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
 
     //@Input('turmaId') turmaId: string;
     @Input() set turmaId(x) {
-        console.log('log: ', x);
         this.idTurma = x;
         //this.formTurmaSimples.setValue
         if (this.formTurmaSimples && this.idTurma) {
 
             this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
-                console.log(turma);
+                console.log('@Input() set turmaId(x): ', turma);
 
                 this.formTurmaSimples.patchValue({ descricao: turma.descricao});
                 this.formTurmaSimples.patchValue({ nrVagas: turma.nrVagas});
@@ -38,7 +37,7 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
     }
 
     formTurmaSimples: FormGroup;
-    private idTurma: string;
+    public idTurma: string;
     turma: Turma;
 
     // get nome() {
@@ -59,7 +58,7 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
 
     getTurmaById(): void {
         this.turmaByIdService.Get(this.turmaId).subscribe( turma => {
-            console.log(turma);
+            console.log('getTurmaById: ', turma);
         });
     }
 

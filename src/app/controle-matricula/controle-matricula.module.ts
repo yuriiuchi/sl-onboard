@@ -22,6 +22,8 @@ import { TurmaGetByIdService } from './turma/services/turma-get-by-id.service';
 import { TurmaIncluirService } from '../controle-matricula/turma/services/turma-incluir.service';
 import { TurmaAlterarService } from '../controle-matricula/turma/services/turma-alterar.service';
 import { TurmaDisciplinaIncluirComponent } from '../controle-matricula/turma/turma-disciplina/turma-disciplina-incluir.component';
+import { TurmaDisciplinaGetAllService } from './turma/services/turma-disciplina-get-all.service';
+import { TurmaDisciplinaListFormComponent } from './turma/turma-disciplina/turma-disciplina-list-form.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,8 @@ import { TurmaDisciplinaIncluirComponent } from '../controle-matricula/turma/tur
         TurmaListComponent,
         DisciplinaListComponent,
         TurmaDisciplinaIncluirComponent,
-        DisciplinaListFormComponent
+        DisciplinaListFormComponent,
+        TurmaDisciplinaListFormComponent
     ],
     imports: [
         SharedModule,
@@ -51,7 +54,8 @@ import { TurmaDisciplinaIncluirComponent } from '../controle-matricula/turma/tur
         DisciplinaGetAllService,
         TurmaGetByIdService,
         TurmaIncluirService,
-        TurmaAlterarService
+        TurmaAlterarService,
+        TurmaDisciplinaGetAllService
     ]
 })
 export class ControleMatriculaModule {}

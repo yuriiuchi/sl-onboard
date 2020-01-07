@@ -53,6 +53,7 @@ export class TurmaGetAllService implements IGetAllPagination<Turma> {
     }
 
     private _isLoading = false;
+
     public get isLoading(): boolean {
     return this._isLoading;
     }
@@ -85,6 +86,7 @@ export class TurmaGetAllService implements IGetAllPagination<Turma> {
         pageSize: undefined,
         query: queryFilter
     });
+
     this._isLoading = true;
     return this.mappedGetAll.reset(apiQueryString).pipe(
         finalize(() => this._isLoading = false)

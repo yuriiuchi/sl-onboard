@@ -1,8 +1,14 @@
 <h1>Disciplinas</h1>
 
-<div class="align-left">
+<div class="align-left po-row">
     <po-button p-label="Adicionar" (click)="abrirModalDisciplina()"></po-button>    
 </div>
+
+<div class="po-row margem-top">
+    <app-turma-list-form-disciplina></app-turma-list-form-disciplina>
+</div>
+
+
 
 <po-modal #modalDisciplinas
     [p-title]="global.i18n.literals.adicionarDisciplinas">

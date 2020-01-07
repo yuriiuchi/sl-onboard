@@ -1,0 +1,28 @@
+<div class="po-grid">
+    <div class="po-row">
+    <kendo-grid 
+        class="wms-max-width thf-shadow-container"
+        [data]="disciplinasGrid"
+        [columnMenu]="true"
+        [sortable]="sortable"
+        [sort]="gridState.sort"
+        [groupable]="true" 
+        [group]="gridState.group"
+        (dataStateChange)="alteracaoEstadoDados($event)" 
+        [filter]="gridState.filter"
+        [kendoGridSelectBy]="'id'"
+        (selectedKeysChange)="onSelectedKeysChange($event)"
+        >
+        
+        <kendo-grid-checkbox-column [width]="5"[columnMenu]="false"class="no-padding text-center"></kendo-grid-checkbox-column>
+        <kendo-grid-column [width]="80" field="descricao" class="grid-column-align-left" [title]="global.i18n.literals.disciplina"></kendo-grid-column>
+        <kendo-grid-column [width]="20" field="sigla" class="grid-column-align-rigth" [title]="global.i18n.literals.sigla"></kendo-grid-column>
+        <kendo-grid-column [width]="40" field="cargaHoraria" class="grid-column-align-right" [title]="global.i18n.literals.nrVagas"></kendo-grid-column> 
+
+    </kendo-grid>
+    </div>
+</div>
+
+
+    
+    
