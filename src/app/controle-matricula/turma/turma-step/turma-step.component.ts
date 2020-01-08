@@ -26,7 +26,7 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
             this.modalProfessor.close();
         },
         label: this.global.i18n.literals.salvar
-      };
+    };
 
     modalProfessorAcaoSecundaria: PoModalAction = {
     action: () => {

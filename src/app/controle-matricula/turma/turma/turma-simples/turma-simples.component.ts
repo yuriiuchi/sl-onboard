@@ -89,8 +89,19 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
     }
 
     save(): void {
+
+        console.log('save() turma: ', this.idTurma);
+        if (this.idTurma) {
+            this.alterar(this.idTurma);
+        } else {
+            this.salvar();
+        }
+    }
+
+    alterar(id: string): void {
+        console.log('Alterar - SimplesComponent:');
         if (this.formTurmaSimples.valid) {
-            console.log('Save - SimplesComponent:');
+            console.log('Alterar - SimplesComponent2:');
             console.log(this);
             const turma: Turma = {
                 id: this.idTurma,
@@ -100,16 +111,58 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
                 listDisciplinas: [],
                 listAlunos: []
             };
-            //this.turmaIncluirService.Post(turma);
+
+            console.log('save: ', this.idTurma, this.turmaId);
+
+            this.turmaAlterarService.Post(turma).subscribe( callback => {
+                console.log('turmaAlterarService: ', callback);
+                this.global.msg.displayMessage({
+                    messageType: ShowMessageType.NotificationSuccess,
+                    messageText: 'turma alterada com sucesso'
+                });
+                this.idTurma = callback.id;
+                }
+            );
+
+        } else {
+            this.global.msg.displayMessage({
+                messageType: ShowMessageType.NotificationInformation,
+                messageText: 'Não é possivel alterar a turma. Faltam informações obrigatórias'
+            });
+        }
+    }
+
+    salvar(): void {
+        console.log('Save - SimplesComponent:');
+        if (this.formTurmaSimples.valid) {
+            console.log('Save - SimplesComponent2:');
+            console.log(this);
+            const turma: Turma = {
+                id: this.idTurma,
+                descricao: this.descricao,
+                inicio: this.inicio,
+                nrVagas: this.nrVagas,
+                listDisciplinas: [],
+                listAlunos: []
+            };
+
+            console.log('save: ', this.idTurma, this.turmaId);
 
             this.turmaIncluirService.Post(turma).subscribe( callback => {
-                console.log(callback);
+                console.log('turmaIncluirService: ', callback);
                 this.global.msg.displayMessage({
                     messageType: ShowMessageType.NotificationSuccess,
                     messageText: this.global.i18n.literals.turmaSalvaComSucesso
-                  });
+                });
+                this.idTurma = callback;
                 }
             );
+
+        } else {
+            this.global.msg.displayMessage({
+                messageType: ShowMessageType.NotificationInformation,
+                messageText: 'Não é possivel salvar a turma. Faltam informações obrigatórias'
+            });
         }
     }
 }

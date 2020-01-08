@@ -3,7 +3,9 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { BaseComponent } from './../../../base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PoModalComponent } from '@portinari/portinari-ui';
+import { PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
+import { TurmaDisciplinaListFormComponent } from './turma-disciplina-list-form.component';
+import { DisciplinaListFormComponent } from '../../disciplina/disciplina-list/disciplina-list-form.component';
 
 @Component({
     selector: 'app-turma-disciplina-incluir',
@@ -13,6 +15,18 @@ import { PoModalComponent } from '@portinari/portinari-ui';
 export class TurmaDisciplinaIncluirComponent extends BaseComponent implements OnInit {
 
     @ViewChild('modalDisciplinas', { static: true }) modalDisciplina: PoModalComponent;
+    @ViewChild('formListTurmaDisciplina', { static: true }) formListTurmaDisciplina: TurmaDisciplinaListFormComponent;
+    @ViewChild('formDisciplina', { static: true }) formDisciplina: DisciplinaListFormComponent;
+
+    modalTurmaDisciplinasPrimaria: PoModalAction = {
+        action: () => {
+            this.adicionarDiciplinas();
+            this.modalDisciplina.close();
+            this.formListTurmaDisciplina.carregarDisciplinas();
+        },
+        label: this.global.i18n.literals.salvar
+    };
+
     constructor(
         public global: GlobalService,
         private readonly router: Router,
@@ -36,7 +50,10 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
     abrirModalDisciplina(): void {
         this.modalDisciplina.open();
-        //this.carregarTurmaDisciplina();
+    }
+
+    private adicionarDiciplinas() {
+        console.log('adicionarDiciplinas', this.formDisciplina.listDisciplinasSelecionadas);
     }
 
 }

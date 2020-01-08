@@ -18,6 +18,7 @@ export class DisciplinaListFormComponent extends BaseComponent implements OnInit
 
     public disciplinas: Array<Disciplina>;
     public disciplinasGrid: GridDataResult = { data: [], total: 0 };
+    public listDisciplinasSelecionadas: Array<Disciplina>;
     public sortable: SortSettings = {
         mode: 'multiple',
         allowUnsort: true
@@ -80,5 +81,6 @@ export class DisciplinaListFormComponent extends BaseComponent implements OnInit
           }
         });
         this.disciplinasSelecionadas.emit(dis);
+        this.listDisciplinasSelecionadas = dis;
       }
 }

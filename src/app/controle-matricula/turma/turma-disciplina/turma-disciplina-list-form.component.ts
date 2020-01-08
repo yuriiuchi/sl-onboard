@@ -34,6 +34,7 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
 
     public disciplinasSelecionadas: EventEmitter<Array<Disciplina>> = new EventEmitter<Array<Disciplina>>();
+
     constructor(
         public global: GlobalService,
         private readonly router: Router,
@@ -54,8 +55,6 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
 
     carregarGrid( disciplinas: any ): void {
         this.disciplinas = disciplinas;
-        console.log('carregarDisciplinas 2: ', disciplinas);
-        console.log('carregarDisciplinas 3: ', disciplinas);
         this.disciplinasGrid = process(this.disciplinas, this.gridState);
     }
 
@@ -77,7 +76,6 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     }
 
     public onSelectedKeysChange(selecionadas) {
-        //const dis: Array<TurmaDisciplina> = [];
         const dis: TurmaDisciplina = null;
         selecionadas.forEach(id => {
           const disciplina = this.disciplinas.find(d => d.id === id);

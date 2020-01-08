@@ -1,7 +1,7 @@
 import { OnInit, Component, ViewChild } from '@angular/core';
 
 import { GlobalService } from 'totvs-log-web-foundation';
-import { PoPageAction, PoPopupComponent, PoPopupAction, PoModalComponent } from '@portinari/portinari-ui';
+import { PoPageAction, PoPopupComponent, PoPopupAction, PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
 import { process, State } from '@progress/kendo-data-query';
 import { GridDataResult, SortSettings, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { Turma } from './../entities/turma.entitiy';
@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TurmaGetByIdService } from './../services/turma-get-by-id.service';
 import { TurmaIncluirService } from './../services/turma-incluir.service';
 import { TurmaAlterarService } from './../services/turma-alterar.service';
+import { TurmaComponent } from '../turma/turma.component';
 
 @Component({
   selector: 'app-turma-list-form',
@@ -38,12 +39,24 @@ export class TurmaListFormComponent extends BaseComponent implements OnInit {
   @ViewChild('popupMoreActions', { static: false }) private popup: PoPopupComponent;
   @ViewChild('modalEditarTurma', { static: true }) modalEditarTurma: PoModalComponent;
 
+  @ViewChild('formTurma', { static: true }) formTurma: TurmaComponent;
+
   readonly popupActions: Array<PoPopupAction> = [
     { label: 'Editar', action: () => {
       this.getTurmaById();
       this.abrirModalEditarTurma();
+
     }, visible: true, disabled: false }
   ];
+
+  modalsalvarTurmaAcaoPrimaria: PoModalAction = {
+    action: () => {
+        this.salvarTurma();
+        this.modalEditarTurma.close();
+        this.getTurmas();
+    },
+    label: this.global.i18n.literals.salvar
+  };
 
   constructor(
     public global: GlobalService,
@@ -95,7 +108,7 @@ export class TurmaListFormComponent extends BaseComponent implements OnInit {
 
   private getTurmaById() {
     this.turmaByIdService.Get(this.itemSelecionadoGrid).subscribe( turma => {
-      turma.nrVagas = turma.nrVagas; //50
+      turma.nrVagas = turma.nrVagas;
 
       // this.turmaAlterarService.Post(turma).subscribe( callback => {
       //   this.getTurmas();
@@ -115,9 +128,12 @@ export class TurmaListFormComponent extends BaseComponent implements OnInit {
   }
 
   abrirModalEditarTurma(): void {
-    console.log('abrir modal:');
-    console.log(this.itemSelecionadoGrid);
     this.modalEditarTurma.open();
+  }
+
+  salvarTurma(): void {
+    console.log('salvarTurma');
+    this.formTurma.simples.save();
   }
 
 }

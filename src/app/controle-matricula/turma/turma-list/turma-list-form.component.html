@@ -36,14 +36,16 @@
   </div>
 </div>
 
-<!-- </po-page-list> -->
-
 <po-modal #modalEditarTurma
-    [p-title]="'Editar turma'">
+    [p-title]="'Editar turma'"
+    [p-primary-action]="modalsalvarTurmaAcaoPrimaria">
     <div class="po-row">
         <div class="po-md-12">
             <app-turma #formTurma [turmaId]="itemSelecionadoGrid"></app-turma>
         </div>
     </div> 
 </po-modal>
+<!-- 
+[p-primary-action]="modalProfessorAcaoPrimaria"
+[p-secondary-action]="modalProfessorAcaoSecundaria">> -->
 

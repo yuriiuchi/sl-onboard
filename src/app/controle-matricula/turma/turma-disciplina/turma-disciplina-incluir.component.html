@@ -5,13 +5,12 @@
 </div>
 
 <div class="po-row margem-top">
-    <app-turma-list-form-disciplina></app-turma-list-form-disciplina>
+    <app-turma-list-form-disciplina #formListTurmaDisciplina></app-turma-list-form-disciplina>
 </div>
 
-
-
 <po-modal #modalDisciplinas
-    [p-title]="global.i18n.literals.adicionarDisciplinas">
+    [p-title]="global.i18n.literals.adicionarDisciplinas"
+    [p-primary-action]="modalTurmaDisciplinasPrimaria">
     <div class="po-row">
         <div class="po-md-12">
             <app-list-form-disciplina #formDisciplina></app-list-form-disciplina>
