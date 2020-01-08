@@ -51,7 +51,6 @@ export class DisciplinaListFormComponent extends BaseComponent implements OnInit
 
     carregarGrid( disciplinas: any ): void {
         this.disciplinas = disciplinas;
-        console.log('carregarGrid: ', disciplinas);
         this.disciplinasGrid = process(this.disciplinas, this.gridState);
     }
 

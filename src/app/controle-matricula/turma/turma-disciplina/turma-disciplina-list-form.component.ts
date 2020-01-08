@@ -85,6 +85,6 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
         });
 
         this.disciplinasSelecionadas.emit(dis.listTurmaDisciplinas);
-        console.log('onSelectedKeysChange: ', dis.listTurmaDisciplinas);
+        //console.log('onSelectedKeysChange: ', dis.listTurmaDisciplinas);
     }
 }

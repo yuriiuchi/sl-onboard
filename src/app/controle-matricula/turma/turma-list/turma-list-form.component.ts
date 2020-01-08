@@ -132,7 +132,6 @@ export class TurmaListFormComponent extends BaseComponent implements OnInit {
   }
 
   salvarTurma(): void {
-    console.log('salvarTurma');
     this.formTurma.simples.save();
   }
 

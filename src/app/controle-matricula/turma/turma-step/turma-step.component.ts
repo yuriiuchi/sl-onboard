@@ -56,10 +56,8 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     salvarListaDisciplinas(): void {
-        console.log('salvarListaDisciplinas: ', this.formTurma.simples.idTurma);
         if (!this.formTurma.simples.idTurma) {
             this.salvarTurma();
-            alert('turma não estava salva salvei agora');
         }
     }
 

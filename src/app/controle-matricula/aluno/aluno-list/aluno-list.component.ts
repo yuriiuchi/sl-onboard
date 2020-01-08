@@ -92,6 +92,5 @@ export class AlunoListComponent extends BaseComponent implements OnInit {
   public dataStateChange(state: DataStateChangeEvent): void {
     this.gridState = state;
     this.alunosGrid = process(this.alunos, this.gridState);
-    console.log('dataStateChange - não entra aqui');
   }
 }
