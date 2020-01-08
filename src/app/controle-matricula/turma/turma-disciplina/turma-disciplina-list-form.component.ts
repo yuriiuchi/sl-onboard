@@ -61,7 +61,6 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     carregarDisciplinas(): void {
         //this.turmaDisciplinaGetAllService.reset().subscribe( disciplinas => {
         this.turmaDisciplinaGetAllService.Get(this.turmaId).subscribe( disciplinas => {
-            console.log('carregarDisciplinas: ', disciplinas);
             this.carregarGrid(disciplinas);
         });
     }
@@ -76,13 +75,16 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     }
 
     public onSelectedKeysChange(selecionadas) {
-        const dis: TurmaDisciplina = null;
+        const dis: TurmaDisciplina = new TurmaDisciplina([]);
+
         selecionadas.forEach(id => {
-          const disciplina = this.disciplinas.find(d => d.id === id);
-          if (disciplina) {
-            dis.listTurmaDisciplinas.push(disciplina);
-          }
+            const disciplina = this.disciplinas.find(d => d.id === id);
+            if (disciplina) {
+                dis.listTurmaDisciplinas.push(disciplina);
+            }
         });
+
         this.disciplinasSelecionadas.emit(dis.listTurmaDisciplinas);
-      }
+        console.log('onSelectedKeysChange: ', dis.listTurmaDisciplinas);
+    }
 }

@@ -17,90 +17,81 @@ import { Turma } from '../../turma/entities/turma.entitiy';
 })
 export class AlunoListComponent extends BaseComponent implements OnInit {
 
-    @ViewChild('modalAluno', { static: true }) modalAluno: PoModalComponent;
-    @Output()
-    public alunosSelecionados: EventEmitter<Array<Aluno>> = new EventEmitter<Array<Aluno>>();
+  @ViewChild('modalAluno', { static: true }) modalAluno: PoModalComponent;
+  @Output()
+
+  public alunosSelecionados: EventEmitter<Array<Aluno>> = new EventEmitter<Array<Aluno>>();
 
 
-     public alunos: Array<Aluno>;
-     public alunosGrid: GridDataResult = { data: [], total: 0 };
-     public sortable: SortSettings = {
-       mode: 'multiple',
-       allowUnsort: true
-     };
-    //  public actions: Array<PoPageAction> = this.criarBotoesPagina();
-     public gridState: State = {
-       group: [],
-       sort: [],
-       filter: null
-     };
-     public selectable: SelectableSettings = {
-        mode: 'multiple',
-        checkboxOnly: true
-      };
+    public alunos: Array<Aluno>;
+    public alunosGrid: GridDataResult = { data: [], total: 0 };
+    public sortable: SortSettings = {
+      mode: 'multiple',
+      allowUnsort: true
+    };
+  //  public actions: Array<PoPageAction> = this.criarBotoesPagina();
+    public gridState: State = {
+      group: [],
+      sort: [],
+      filter: null
+    };
+    public selectable: SelectableSettings = {
+      mode: 'multiple',
+      checkboxOnly: true
+    };
 
-    constructor(
-        public global: GlobalService,
-        private readonly router: Router,
-        public readonly activatedRoute: ActivatedRoute,
-        private alunoGetAllService: AlunoGetAllService
-        ) {
-        super();
-    }
+  constructor(
+    public global: GlobalService,
+    private readonly router: Router,
+    public readonly activatedRoute: ActivatedRoute,
+    private alunoGetAllService: AlunoGetAllService
+    ) {
+    super();
+  }
 
-    ngOnInit(): void {
-        this.alterarIdioma();
-        this.carreagarAlunos();
-    }
+  ngOnInit(): void {
+      this.alterarIdioma();
+      this.carreagarAlunos();
+  }
 
-    alterarIdioma() {
+  alterarIdioma() {
 
-    }
+  }
 
-    abrirModalAluno(): void {
-        this.modalAluno.open();
-    }
+  abrirModalAluno(): void {
+      this.modalAluno.open();
+  }
 
-    carreagarAlunos(): void {
-        this.alunoGetAllService.reset().subscribe(turmas => {
-            this.carregarGrid(turmas);
-        });
-    }
+  carreagarAlunos(): void {
+      this.alunoGetAllService.reset().subscribe(turmas => {
+          this.carregarGrid(turmas);
+      });
+  }
 
-    private carregarGrid(alunos: any): void {
-        this.alunos = alunos;
-        this.alunosGrid = process(this.alunos, this.gridState);
-    }
+  private carregarGrid(alunos: any): void {
+      this.alunos = alunos;
+      this.alunosGrid = process(this.alunos, this.gridState);
+  }
 
-    public alteracaoEstadoDados(state: DataStateChangeEvent): void {
-        this.gridState = state;
-        this.alunosGrid = process(this.alunos, this.gridState);
-    }
+  public alteracaoEstadoDados(state: DataStateChangeEvent): void {
+      this.gridState = state;
+      this.alunosGrid = process(this.alunos, this.gridState);
+  }
 
-    public onSelectedKeysChange(selecionados) {
-        const al: Array<Aluno> = [];
-        selecionados.forEach(id => {
-          const aluno = this.alunos.find(d => d.id === id);
-          if (aluno) {
-            al.push(aluno);
-          }
-        });
-        this.alunosSelecionados.emit(al);
+  public onSelectedKeysChange(selecionados) {
+    const al: Array<Aluno> = [];
+    selecionados.forEach(id => {
+      const aluno = this.alunos.find(d => d.id === id);
+      if (aluno) {
+        al.push(aluno);
       }
+    });
+    this.alunosSelecionados.emit(al);
+  }
 
-      public dataStateChange(state: DataStateChangeEvent): void {
-        this.gridState = state;
-        this.alunosGrid = process(this.alunos, this.gridState);
-        console.log('dataStateChange - não entra aqui');
-      }
-
-    // private criarBotoesPagina(): Array<PoPageAction> {
-    //     return [
-    //       { label: this.global.i18n.literals.inclusaoNovaTurma, action: this.incluirNovoAluno.bind(this), icon: 'po-icon-plus' }
-    //     ];
-    // }
-
-    // private incluirNovoAluno(): void {
-    //     this.router.navigate(['incluir'], { relativeTo: this.activatedRoute });
-    // }
+  public dataStateChange(state: DataStateChangeEvent): void {
+    this.gridState = state;
+    this.alunosGrid = process(this.alunos, this.gridState);
+    console.log('dataStateChange - não entra aqui');
+  }
 }
