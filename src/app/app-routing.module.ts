@@ -11,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'controle-matricula',
-    loadChildren: () => import('./controle-matricula/controle-matricula.module').then(m => m.ControleMatriculaModule)
+    loadChildren: () => import('./controle-matricula/controle-matricula.module').then(m => m.ControleMatriculaModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth-callback',

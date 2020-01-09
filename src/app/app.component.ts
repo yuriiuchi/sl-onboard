@@ -77,6 +77,7 @@ export class AppComponent extends BaseComponent implements OnInit {
   }
 
   tratarAutenticacaoEfetuada() {
+    //YURI IUCHI Assinando a navegação 
     this.autenticacao.userLoadedEvent.pipe(
       take(1)
     ).subscribe((usuario: User) => {
