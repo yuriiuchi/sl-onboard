@@ -96,6 +96,7 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         });
         return listDisciplinas2;
     }
+
     private adicionarDiciplinas() {
         let turma: Turma;
         //= new Turma('1345234', 'Turma Nova', new Date(2020, 10), 99, [], []);
@@ -122,27 +123,40 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
             });
         });
 
-        // this.turmaIncluirService.Post(turma).subscribe( callback => {
-        //     console.log('this.turmaIncluirService: ', callback);
-        //     this.idTurma = callback;
+    }
 
-        //     this.global.msg.displayMessage({
-        //         messageType: ShowMessageType.NotificationSuccess,
-        //         messageText: this.global.i18n.literals.turmaSalvaComSucesso
-        //     });
+    private mergeRemoveDisciplinas(
+        listDisciplinas1: Array<Disciplina>,
+        listDisciplinas2: Array<Disciplina>): Array<Disciplina> {
 
-        // });
+        const retorno: Array<Disciplina> = [];
+        listDisciplinas1.map( disciplina => {
+            let encontrado = false;
 
+            listDisciplinas2.forEach( dis => {
+                if (disciplina.id === dis.id) {
+                    encontrado = true;
+                }
+            });
+            if (!encontrado) {
+                retorno.push(disciplina);
+            }
+        });
+        return retorno;
+    }
 
-        // this.turmaGetByIdService.Get(this.idTurma).subscribe( turma => {
+    removerDisciplinas() {
+        let turma: Turma;
+        console.log('remover: ', this.formDisciplina.listDisciplinasSelecionadas);
 
-        //     this.formDisciplina.
-
-        //     // this.formTurmaSimples.patchValue({ descricao: turma.descricao});
-        //     // this.formTurmaSimples.patchValue({ nrVagas: turma.nrVagas});
-        //     // this.formTurmaSimples.patchValue({ inicio: turma.inicio});
-        // });
-
+        this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
+            turma = callbackId;
+            turma.listDisciplinas = this.mergeRemoveDisciplinas(turma.listDisciplinas, 
+                this.formListTurmaDisciplina.listDisciplinasSelecionadas);
+            this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
+                this.formListTurmaDisciplina.carregarDisciplinas();
+            });
+        });
     }
 
 }

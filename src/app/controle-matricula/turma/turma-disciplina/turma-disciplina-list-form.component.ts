@@ -7,7 +7,7 @@ import { GlobalService } from 'totvs-log-web-foundation';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { TurmaDisciplinaGetAllService } from './../services/turma-disciplina-get-all.service';
-import { PoPageAction } from '@portinari/portinari-ui';
+import { PoPageAction, PoPopupAction } from '@portinari/portinari-ui';
 import { TurmaDisciplina } from '../entities/turma-disciplina.entitiy';
 import { Disciplina } from '../../disciplina/entities/disciplina.entity';
 
@@ -35,7 +35,17 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     public actions: Array<PoPageAction> = this.criarBotoesPagina();
 
     public disciplinasSelecionadas: EventEmitter<Array<Disciplina>> = new EventEmitter<Array<Disciplina>>();
+    public listDisciplinasSelecionadas: Array<Disciplina>;
+    // readonly popupActions: Array<PoPopupAction> = [
+    //     { label: 'Remover', action: () => {
+    //         this.disciplinas.indexOf(turma)
+    //         this.disciplinas.splice()
+    //       this.getTurmaById();
+    //       this.abrirModalEditarTurma();
 
+    
+    //     }, visible: true, disabled: false }
+    //   ];
     constructor(
         public global: GlobalService,
         private readonly router: Router,
@@ -76,16 +86,17 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     }
 
     public onSelectedKeysChange(selecionadas) {
-        const dis: TurmaDisciplina = new TurmaDisciplina([]);
+        const dis: Array<Disciplina> = [];
 
         selecionadas.forEach(id => {
             const disciplina = this.disciplinas.find(d => d.id === id);
             if (disciplina) {
-                dis.listTurmaDisciplinas.push(disciplina);
+                dis.push(disciplina);
             }
         });
 
-        this.disciplinasSelecionadas.emit(dis.listTurmaDisciplinas);
-        //console.log('onSelectedKeysChange: ', dis.listTurmaDisciplinas);
+        this.disciplinasSelecionadas.emit(dis);
+        this.listDisciplinasSelecionadas = dis;
     }
+
 }
