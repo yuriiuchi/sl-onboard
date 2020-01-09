@@ -47,7 +47,6 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         action: () => {
             this.adicionarDiciplinas();
             this.modalDisciplina.close();
-            this.formListTurmaDisciplina.carregarDisciplinas();
         },
         label: this.global.i18n.literals.salvar
     };
@@ -119,6 +118,7 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
             this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
                 console.log('turmaDisciplinaAlterarService', callbackAlterar);
+                this.formListTurmaDisciplina.carregarDisciplinas();
             });
         });
 
