@@ -7,13 +7,14 @@ import { AppConfigService } from '../../../app-config.service';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class TurmaIncluirService implements IPostEntity<ITurma, ITurma> {
+export class TurmaDisciplinaIncluirService implements IPostEntity<ITurma, ITurma> {
 
     private readonly mapped: MappedHttpPostLocation<ITurma, ITurma>;
 
     constructor(http: HttpClient, private readonly appConfig: AppConfigService) {
         this.mapped = new MappedHttpPostLocation(
             `${this.appConfig.configuracoes.urlWMS.recebimento}/turmas`,
+            //`${this.appConfig.configuracoes.urlWMS.recebimento}/turmaDisciplinas`,
             {
                 MapTo: ( turma ) => turma
             },

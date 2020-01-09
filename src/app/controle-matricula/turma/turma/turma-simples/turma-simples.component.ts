@@ -24,6 +24,8 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
             this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
                 console.log('@Input() set turmaId(x): ', turma);
 
+                this.idTurma = turma.id; //teste
+
                 this.formTurmaSimples.patchValue({ descricao: turma.descricao});
                 this.formTurmaSimples.patchValue({ nrVagas: turma.nrVagas});
                 this.formTurmaSimples.patchValue({ inicio: turma.inicio});
@@ -93,12 +95,13 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
             this.alterar(this.idTurma);
         } else {
             this.salvar();
+            console.log('depois de salvar');
         }
     }
 
     alterar(id: string): void {
         if (this.formTurmaSimples.valid) {
-            console.log(this);
+            console.log('alterar: ', this);
             const turma: Turma = {
                 id: this.idTurma,
                 descricao: this.descricao,
@@ -113,7 +116,6 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
                     messageType: ShowMessageType.NotificationSuccess,
                     messageText: 'turma alterada com sucesso'
                 });
-                this.idTurma = callback.id;
                 }
             );
 
@@ -137,13 +139,15 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
             };
 
             this.turmaIncluirService.Post(turma).subscribe( callback => {
+                console.log('this.turmaIncluirService: ', callback);
+                this.idTurma = callback;
+
                 this.global.msg.displayMessage({
                     messageType: ShowMessageType.NotificationSuccess,
                     messageText: this.global.i18n.literals.turmaSalvaComSucesso
                 });
-                this.idTurma = callback;
-                }
-            );
+
+            });
 
         } else {
             this.global.msg.displayMessage({

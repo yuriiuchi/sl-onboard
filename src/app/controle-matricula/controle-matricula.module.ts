@@ -24,6 +24,8 @@ import { TurmaAlterarService } from '../controle-matricula/turma/services/turma-
 import { TurmaDisciplinaIncluirComponent } from '../controle-matricula/turma/turma-disciplina/turma-disciplina-incluir.component';
 import { TurmaDisciplinaGetAllService } from './turma/services/turma-disciplina-get-all.service';
 import { TurmaDisciplinaListFormComponent } from './turma/turma-disciplina/turma-disciplina-list-form.component';
+import { TurmaDisciplinaIncluirService } from './turma/services/turma-disciplina-incluir.service';
+import { TurmaDisciplinaAlterarService } from './turma/services/turma-disciplina-alterar.service';
 
 @NgModule({
     declarations: [
@@ -55,7 +57,9 @@ import { TurmaDisciplinaListFormComponent } from './turma/turma-disciplina/turma
         TurmaGetByIdService,
         TurmaIncluirService,
         TurmaAlterarService,
-        TurmaDisciplinaGetAllService
+        TurmaDisciplinaGetAllService,
+        TurmaDisciplinaIncluirService,
+        TurmaDisciplinaAlterarService
     ]
 })
 export class ControleMatriculaModule {}

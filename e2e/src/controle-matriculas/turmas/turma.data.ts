@@ -6,6 +6,8 @@ import { collectionName, turmas } from './turma.mock';
 dataService(collectionName, (dbService: InMemoryDataService) => {
     dbService.addReplaceUrl('recebimento/turmas', collectionName);
     dbService.addReplaceUrl('recebimentoQuery/turmas', collectionName);
+    dbService.addReplaceUrl('recebimento/turmaDisciplinas', collectionName);
+    dbService.addReplaceUrl('recebimentoQuery/turmaDisciplinas', collectionName);
 
     // dbService.addSearchTermMap(collectionName, ['identificador']);
 

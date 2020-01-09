@@ -1,4 +1,4 @@
-import { OnInit, Component, EventEmitter } from '@angular/core';
+import { OnInit, Component, EventEmitter, Input } from '@angular/core';
 
 import { GridDataResult, SortSettings, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
@@ -18,6 +18,9 @@ import { Disciplina } from '../../disciplina/entities/disciplina.entity';
 })
 export class TurmaDisciplinaListFormComponent extends BaseComponent implements OnInit {
 
+    //@Input() turmaId: string;
+    private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
+
     public disciplinas: Array<Disciplina>;
     public disciplinasGrid: GridDataResult = { data: [], total: 0 };
     public sortable: SortSettings = {
@@ -30,8 +33,6 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
         filter: null
     };
     public actions: Array<PoPageAction> = this.criarBotoesPagina();
-
-    private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
 
     public disciplinasSelecionadas: EventEmitter<Array<Disciplina>> = new EventEmitter<Array<Disciplina>>();
 

@@ -1,3 +1,9 @@
 .margem-top {
     margin-top: 20px;
 }
+
+.right {
+    clear: left;
+    position: relative;
+    float: right !important;
+}

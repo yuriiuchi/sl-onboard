@@ -21,6 +21,7 @@ export class EstruturaFisicaEditarFormComponent extends BaseComponent implements
 
   private _estruturaFisica: EstruturaFisica = undefined;
 
+  //console.log('ler este input');
   @Input()
   set estruturaFisica(valor: EstruturaFisica) {
     this.form.limparConfiguracoes();
