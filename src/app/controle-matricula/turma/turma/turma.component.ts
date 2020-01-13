@@ -4,7 +4,6 @@ import { GlobalService } from 'totvs-log-web-foundation';
 
 import { PoButtonGroupItem } from '@portinari/portinari-ui';
 import { TurmaSimplesComponent } from './turma-simples/turma-simples.component';
-import { Turma } from '../entities/turma.entitiy';
 
 @Component({
     selector:  'app-turma',

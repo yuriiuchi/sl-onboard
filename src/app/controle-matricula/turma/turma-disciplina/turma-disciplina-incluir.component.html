@@ -1,8 +1,16 @@
-<h1>Disciplinas</h1>
 
 <div class="po-row">
-    <po-button p-label="Adicionar" (click)="abrirModalDisciplina()"></po-button>    
-    <po-button p-label="Remover" (click)="removerDisciplinas()"></po-button> 
+    <h1>Disciplinas</h1> 
+</div>
+<div class="po-row">
+    <po-button class="margem-top-right" 
+        p-label="Adicionar" 
+        (click)="abrirModalDisciplina()"
+        p-type="primary">
+    </po-button>    
+    <po-button class="margem-top-right" p-label="Remover" (click)="removerDisciplinas()"></po-button>
+    <po-button class="margem-top-right" p-label="Nova" (click)="abrirModalNovaDisciplina()"></po-button>
+
 </div>
 
 <div class="po-row margem-top">
@@ -18,4 +26,10 @@
             <app-list-form-disciplina #formDisciplina></app-list-form-disciplina>
         </div>
     </div> 
+</po-modal>
+
+<po-modal class="po-xl-12 po-lg-12 po-md-12 po-sm-12" #modalNovaDisciplina
+    [p-title]="'Nova Disciplina 2'"
+    [p-primary-action]="modalNovaDisciplinaPrimaria">
+    <app-disciplina-incluir #formNovaDisciplina class="po-xl-12 po-lg-12 po-md-12 po-sm-12"></app-disciplina-incluir>
 </po-modal>

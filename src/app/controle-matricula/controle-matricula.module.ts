@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module'
 import { PoButtonGroupModule } from '@portinari/portinari-ui';
 
-import { ControleMatriculaComponent } from './controle-matricula.component'
+import { ControleMatriculaComponent } from './controle-matricula.component';
 import { ControleMatriculaRoutingModule } from './controle-matricula-routing.module';
 import { TurmaComponent } from './turma/turma/turma.component';
 import { TurmaListComponent } from './turma/turma-list/turma-list.component';
@@ -26,7 +26,16 @@ import { TurmaDisciplinaGetAllService } from './turma/services/turma-disciplina-
 import { TurmaDisciplinaListFormComponent } from './turma/turma-disciplina/turma-disciplina-list-form.component';
 import { TurmaDisciplinaIncluirService } from './turma/services/turma-disciplina-incluir.service';
 import { TurmaDisciplinaAlterarService } from './turma/services/turma-disciplina-alterar.service';
-
+import { TurmaAlunoListFormComponent } from './turma/turma-aluno/turma-aluno-list-form.component';
+import { TurmaAlunoIncluirComponent } from './turma/turma-aluno/turma-aluno-incluir.component';
+import { TurmaAlunoAlterarService } from './turma/services/turma-aluno-alterar.service';
+import { TurmaAlunoGetAllService } from './turma/services/turma-aluno-get-all.service';
+import { TurmaAlunoIncluirService } from './turma/services/turma-aluno-incluir.service';
+import { AlunoListFormComponent } from './aluno/aluno-list/aluno-list-form.component';
+import { DisciplinaIncluirFormComponent } from './disciplina/disciplina-incluir-form/disciplina-incluir-form.component';
+import { DisciplinaIncluirComponent } from './disciplina/disciplina-incluir/disciplina-incluir.component';
+import { DisciplinaIncluirService } from './disciplina/services/disciplina-incluir.service';
+import { DisciplinaAlterarService } from './disciplina/services/disciplina-alterar.service';
 @NgModule({
     declarations: [
         ControleMatriculaComponent,
@@ -43,7 +52,12 @@ import { TurmaDisciplinaAlterarService } from './turma/services/turma-disciplina
         DisciplinaListComponent,
         TurmaDisciplinaIncluirComponent,
         DisciplinaListFormComponent,
-        TurmaDisciplinaListFormComponent
+        TurmaDisciplinaListFormComponent,
+        TurmaAlunoListFormComponent,
+        TurmaAlunoIncluirComponent,
+        AlunoListFormComponent,
+        DisciplinaIncluirFormComponent,
+        DisciplinaIncluirComponent
     ],
     imports: [
         SharedModule,
@@ -59,7 +73,12 @@ import { TurmaDisciplinaAlterarService } from './turma/services/turma-disciplina
         TurmaAlterarService,
         TurmaDisciplinaGetAllService,
         TurmaDisciplinaIncluirService,
-        TurmaDisciplinaAlterarService
+        TurmaDisciplinaAlterarService,
+        TurmaAlunoAlterarService,
+        TurmaAlunoGetAllService,
+        TurmaAlunoIncluirService,
+        DisciplinaIncluirService,
+        DisciplinaAlterarService
     ]
 })
 export class ControleMatriculaModule {}

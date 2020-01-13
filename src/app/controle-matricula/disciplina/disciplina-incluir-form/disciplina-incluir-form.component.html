@@ -1,0 +1,30 @@
+<form [formGroup]="formDisciplinaIncluir">
+    <div class="po-row">
+        <po-input 
+            class="po-lg-12 po-md-12 po-sm-12"
+            formControlName="descricao"
+            p-label="Descricao"
+            name="disciplinaDescricao"
+            p-placeholder="descricao"
+        ></po-input>
+    </div>
+
+    <div class="po-row">
+        <po-input
+            float-clear-left
+            formControlName="sigla" 
+            [p-label]="'sigla'"
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-12 "
+            [p-placeholder]="'sigla'"
+            >
+        </po-input>
+    
+        <po-number
+            formControlName="cargaHoraria"
+            [p-label]="'cargaHoraria'"
+            [p-placeholder]="'cargaHoraria'"             
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-12">
+        </po-number> 
+    </div>  
+</form>
+    

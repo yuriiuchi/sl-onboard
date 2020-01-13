@@ -1,7 +1,7 @@
 <po-page-default [p-title]="global.i18n.literals['inclusaoNovaTurma']">
 
     <div class="align-left">
-        <po-button p-label="volta" (click)="voltarStep()"></po-button>    
+        <po-button class= "margem-right" p-label="volta" (click)="voltarStep()"></po-button>    
         <po-button p-label="proximo" (click)="proximoStep()" p-type="primary"></po-button>  
     </div>
     <po-stepper 
@@ -13,14 +13,19 @@
 
         <po-step [p-label]="'inicio'" [p-status]="">
             <app-turma #formTurma></app-turma>
-            <po-button p-label="salvar turma" (click)="salvarTurma()" p-type="primary"></po-button>  
+            <!-- <po-button p-label="salvar turma" (click)="salvarTurma()" p-type="primary"></po-button>   -->
         </po-step>
 
         <po-step p-label="Adicionar Disciplinas">
             <app-turma-disciplina-incluir #formTurmaDisciplina [turmaId]="turmaId"></app-turma-disciplina-incluir> 
-            <div class="po-row margem-top">
+            <!-- <div class="po-row margem-top">
                 <po-button p-label="salvar lista disciplinas" (click)="salvarListaDisciplinas()" p-type="primary"></po-button>
-            </div>
+            </div> -->
+        </po-step>
+
+        <po-step p-label="Adicionar Alunos">
+            <h1>Adicionar Alunos</h1>
+            <app-turma-aluno-incluir #formTurmaAluno [turmaId]="turmaId"></app-turma-aluno-incluir>
         </po-step>
 
         <po-step p-label="Lista Alunos">
@@ -64,4 +69,14 @@
             <app-professor #formProfessor></app-professor>
         </div> 
     </po-modal>
+
+    <po-modal #modalAluno
+    [p-title]="global.i18n.literals.cadastroAluno">
+    <div class="po-row">
+        <div class="po-md-12">
+            <app-aluno #formAluno></app-aluno>
+        </div>
+    </div> 
+    </po-modal>
+    
 </po-page-default>

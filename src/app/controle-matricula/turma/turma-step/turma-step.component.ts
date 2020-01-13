@@ -20,7 +20,6 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     @ViewChild('modalProfessor', { static: true }) modalProfessor: PoModalComponent;
 
     @ViewChild('#formTurmaDisciplina', { static: true }) formTurmaDisciplina: TurmaDisciplinaIncluirComponent;
-    //turmaId: string;
     turmaId =  '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
 
     professorList = [{ value: 'Professor 01' }, { value: 'Professor 02' }, { value: 'Professor 03'}];
@@ -89,5 +88,9 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
 
     abrirModalProfessor(): void {
         this.modalProfessor.open();
+    }
+
+    incluirNovaDisciplina(): void {
+        
     }
 }

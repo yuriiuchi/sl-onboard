@@ -23,30 +23,30 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
     @ViewChild('modalDisciplinas', { static: true }) modalDisciplina: PoModalComponent;
     @ViewChild('formListTurmaDisciplina', { static: true }) formListTurmaDisciplina: TurmaDisciplinaListFormComponent;
     @ViewChild('formDisciplina', { static: true }) formDisciplina: DisciplinaListFormComponent;
+    @ViewChild('modalNovaDisciplina', { static: true }) modalNovaDisciplina: PoModalComponent;
 
     @Input() turmaId: string;
-    // @Input() set turmaId(x) {
-    //     this.turmaId = x;
-    //     alert(x);
-    // }
-
-
-    // @Input() set turmaId(x) {
-    //     this.idTurma = x;
-    //     if (this.formTurmaSimples && this.idTurma) {
-    //         this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
-    //             this.idTurma = turma.id;
-    //             this.formTurmaSimples.patchValue({ descricao: turma.descricao});
-    //             this.formTurmaSimples.patchValue({ nrVagas: turma.nrVagas});
-    //             this.formTurmaSimples.patchValue({ inicio: turma.inicio});
-    //         });
-    //     }
-    // }
 
     modalTurmaDisciplinasPrimaria: PoModalAction = {
         action: () => {
             this.adicionarDiciplinas();
             this.modalDisciplina.close();
+        },
+        label: this.global.i18n.literals.salvar
+    };
+
+    // modalNovaTurmaDisciplinaPrimaria: PoModalAction = {
+    //     action: () => {
+    //         this.novaDisciplina();
+    //         this.modalNovaDisciplina.close();
+    //     },
+    //     label: this.global.i18n.literals.salvar
+    // };
+
+    modalNovaDisciplinaPrimaria: PoModalAction = {
+        action: () => {
+            this.novaDisciplina();
+            this.modalNovaDisciplina.close();
         },
         label: this.global.i18n.literals.salvar
     };
@@ -99,30 +99,22 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
     private adicionarDiciplinas() {
         let turma: Turma;
-        //= new Turma('1345234', 'Turma Nova', new Date(2020, 10), 99, [], []);
-
-        console.log('adicionarDisciplinas', this.formDisciplina.listDisciplinasSelecionadas);
-
-        console.log('adicionarDisciplinas', this.turmaId);
-
         this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
-            console.log('turmaGetByIdService: ', callbackId);
-
             turma = callbackId;
-
             turma.listDisciplinas = turma.listDisciplinas.concat(this.formDisciplina.listDisciplinasSelecionadas);
             turma.listDisciplinas = this.mergeDisciplinas(turma.listDisciplinas, this.formDisciplina.listDisciplinasSelecionadas);
 
             // this.turmaDisciplinaIncluirService.Post(turma).subscribe( callbackIncluir => {
             //     console.log('turmaDisciplinaIncluirService: ', callbackIncluir);
             // });
+            console.log('Está somente alterando corrigir o incluir: ');
+            console.log('TurmaId fixo: ');
 
             this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
                 console.log('turmaDisciplinaAlterarService', callbackAlterar);
                 this.formListTurmaDisciplina.carregarDisciplinas();
             });
         });
-
     }
 
     private mergeRemoveDisciplinas(
@@ -158,6 +150,30 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
             });
         });
     }
+
+    abrirModalNovaDisciplina(): void {
+        this.modalNovaDisciplina.open();
+    }
+
+    novaDisciplina() {
+        // let turma: Turma;
+        // this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
+        //     turma = callbackId;
+        //     //turma.listDisciplinas = this.mergeDisciplinas(turma.listDisciplinas, this.formDisciplina.listDisciplinasSelecionadas);
+
+        //     console.log('Está somente alterando corrigir o incluir: ');
+        //     console.log('TurmaId fixo: ');
+
+        //     this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
+        //         console.log('turmaDisciplinaAlterarService', callbackAlterar);
+        //         this.formListTurmaDisciplina.carregarDisciplinas();
+        //     });
+
+        //     //incluir na tabela de disciplina para simular o backend
+        // });
+        alert('incluir nova disciplina');
+    }
+
 
 }
 

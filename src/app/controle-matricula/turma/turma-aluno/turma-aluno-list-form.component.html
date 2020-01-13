@@ -1,0 +1,37 @@
+<div class="po-grid">
+    <div class="po-row">
+    <kendo-grid 
+        class="wms-max-width thf-shadow-container"
+        [data]="alunosGrid"
+        [columnMenu]="true"
+        [sortable]="sortable"
+        [sort]="gridState.sort"
+        [groupable]="true" 
+        [group]="gridState.group"
+        (dataStateChange)="alteracaoEstadoDados($event)" 
+        [filter]="gridState.filter"
+        [kendoGridSelectBy]="'id'"
+        (selectedKeysChange)="onSelectedKeysChange($event)"
+        >
+        
+        <kendo-grid-checkbox-column [width]="5"[columnMenu]="false"class="no-padding text-center"></kendo-grid-checkbox-column>
+        <kendo-grid-column [width]="50" field="nome" class="grid-column-align-left" [title]="'nome'"></kendo-grid-column>
+        <kendo-grid-column [width]="25" field="email" class="grid-column-align-rigth" [title]="'email'"></kendo-grid-column>
+        <kendo-grid-column [width]="20" field="cpf" class="grid-column-align-right" [title]="'cpf'"></kendo-grid-column> 
+        <kendo-grid-column [width]="15" field="matricula" class="grid-column-align-right" [title]="'matricula'"></kendo-grid-column> 
+        <kendo-grid-column [width]="15" field="formaIngresso" class="grid-column-align-right" [title]="'ingresso'"></kendo-grid-column> 
+
+        <!-- public id: string,
+        public nome: string,
+        public email: string,
+        public cpf: string,
+        public matricula: string,
+        public formaIngresso: string -->
+
+    </kendo-grid>
+    </div>
+</div>
+
+
+    
+    

@@ -1,0 +1,27 @@
+<div class="po-row">
+    <h1>Alunos</h1> 
+</div>
+<div class="po-row">
+    <po-button class="margem-top-right" 
+        p-label="Adicionar" 
+        (click)="abrirModalAluno()"
+        p-type="primary">
+    </po-button>    
+    <po-button class="margem-top-right" p-label="Remover" (click)="removerAlunos()"></po-button> 
+    <po-button class="margem-top-right" p-label="Novo" (click)="abrirModalNovoAluno()"></po-button> 
+</div>
+
+<div class="po-row margem-top">
+    <app-turma-list-form-aluno #formListTurmaAluno
+    ></app-turma-list-form-aluno>
+</div>
+
+<po-modal #modalAlunos
+    [p-title]="'Adicionar alunos'"
+    [p-primary-action]="modalTurmaAlunosPrimaria">
+    <div class="po-row">
+        <div class="po-md-12">
+            <app-aluno-list-form #formAluno></app-aluno-list-form>
+        </div>
+    </div> 
+</po-modal>

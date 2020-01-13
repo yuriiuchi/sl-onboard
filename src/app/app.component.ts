@@ -167,6 +167,11 @@ export class AppComponent extends BaseComponent implements OnInit {
 
     this.menuAdd('matriculas', 'matr', 'controle-matricula', 'po-icon po-icon-stock');
     this.menuAdd('alunos', 'alu', 'controle-matricula/alunos', 'po-icon po-icon-stock');
+
+    this.menuAdd('professor', 'prof', 'controle-matricula/professores', 'po-icon po-icon-stock');
+    this.menuAdd('disciplina', 'disc', 'controle-matricula/disciplinas', 'po-icon po-icon-stock');
+  
+    //this.menuAdd('literal', 'literal', 'link', 'po-icon po-icon-stock');
   }
 
   definirPerfilUsuario(usuario: User) {

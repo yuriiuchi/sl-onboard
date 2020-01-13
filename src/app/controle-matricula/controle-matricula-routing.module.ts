@@ -24,7 +24,7 @@ const routes: Routes = [
         component: ProfessorComponent
     },
     {
-        path: 'disc',
+        path: 'disciplinas',
         component: DisciplinaListComponent
     }
 ];

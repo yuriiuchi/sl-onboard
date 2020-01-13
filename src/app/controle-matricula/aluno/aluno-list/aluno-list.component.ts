@@ -17,11 +17,7 @@ import { Turma } from '../../turma/entities/turma.entitiy';
 })
 export class AlunoListComponent extends BaseComponent implements OnInit {
 
-  @ViewChild('modalAluno', { static: true }) modalAluno: PoModalComponent;
-  @Output()
-
-  public alunosSelecionados: EventEmitter<Array<Aluno>> = new EventEmitter<Array<Aluno>>();
-
+  @ViewChild('formAluno', { static: true }) formAluno: AlunoListComponent;
 
     public alunos: Array<Aluno>;
     public alunosGrid: GridDataResult = { data: [], total: 0 };
@@ -29,68 +25,34 @@ export class AlunoListComponent extends BaseComponent implements OnInit {
       mode: 'multiple',
       allowUnsort: true
     };
-  //  public actions: Array<PoPageAction> = this.criarBotoesPagina();
+
     public gridState: State = {
       group: [],
       sort: [],
       filter: null
     };
+    //YURI IUCHI SELECTABLE
     public selectable: SelectableSettings = {
       mode: 'multiple',
       checkboxOnly: true
     };
 
   constructor(
-    public global: GlobalService,
-    private readonly router: Router,
-    public readonly activatedRoute: ActivatedRoute,
-    private alunoGetAllService: AlunoGetAllService
+    public global: GlobalService
     ) {
     super();
   }
 
   ngOnInit(): void {
       this.alterarIdioma();
-      this.carreagarAlunos();
   }
 
   alterarIdioma() {
 
   }
 
-  abrirModalAluno(): void {
-      this.modalAluno.open();
+  abrirModalAluno() {
+    this.formAluno.abrirModalAluno();
   }
 
-  carreagarAlunos(): void {
-      this.alunoGetAllService.reset().subscribe(turmas => {
-          this.carregarGrid(turmas);
-      });
-  }
-
-  private carregarGrid(alunos: any): void {
-      this.alunos = alunos;
-      this.alunosGrid = process(this.alunos, this.gridState);
-  }
-
-  public alteracaoEstadoDados(state: DataStateChangeEvent): void {
-      this.gridState = state;
-      this.alunosGrid = process(this.alunos, this.gridState);
-  }
-
-  public onSelectedKeysChange(selecionados) {
-    const al: Array<Aluno> = [];
-    selecionados.forEach(id => {
-      const aluno = this.alunos.find(d => d.id === id);
-      if (aluno) {
-        al.push(aluno);
-      }
-    });
-    this.alunosSelecionados.emit(al);
-  }
-
-  public dataStateChange(state: DataStateChangeEvent): void {
-    this.gridState = state;
-    this.alunosGrid = process(this.alunos, this.gridState);
-  }
 }
