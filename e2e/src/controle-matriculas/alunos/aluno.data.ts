@@ -5,13 +5,8 @@ import { collectionName, alunos } from './aluno.mock';
 import { IAlunoGetAll } from './../../../../src/app/controle-matricula/aluno/entities/aluno-get-all.interface';
 
 dataService(collectionName, (dbService: InMemoryDataService) => {
+    dbService.addReplaceUrl('recebimento/alunos', collectionName);
     dbService.addReplaceUrl('recebimentoQuery/alunos', collectionName);
-
-    // dbService.addSearchTermMap(collectionName, ['identificador']);
-
-    // dbService.addFieldFilterMap(collectionName, 'dataEmissaoDe', (value: string, documento: ITurmaGetAll) => {
-    //     return new Date(documento.dataEmissao) >= new Date(value + ' 00:00:00 -03');
-    // });
 
     alunos.forEach(aluno => {
         dbService.storeData(collectionName, aluno);

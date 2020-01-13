@@ -7,11 +7,10 @@ import { PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
 import { TurmaDisciplinaListFormComponent } from './turma-disciplina-list-form.component';
 import { DisciplinaListFormComponent } from '../../disciplina/disciplina-list/disciplina-list-form.component';
 import { TurmaGetByIdService } from '../services/turma-get-by-id.service';
-import { TurmaDisciplinaIncluirService } from '../services/turma-disciplina-incluir.service';
 import { Turma } from '../entities/turma.entitiy';
 import { TurmaDisciplinaAlterarService } from '../services/turma-disciplina-alterar.service';
 import { Disciplina } from '../../disciplina/entities/disciplina.entity';
-import { disciplinas } from 'e2e/src/controle-matriculas/disciplinas/disciplina.mock';
+import { DisciplinaIncluirComponent } from '../../disciplina/disciplina-incluir/disciplina-incluir.component';
 
 @Component({
     selector: 'app-turma-disciplina-incluir',
@@ -25,12 +24,17 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
     @ViewChild('formDisciplina', { static: true }) formDisciplina: DisciplinaListFormComponent;
     @ViewChild('modalNovaDisciplina', { static: true }) modalNovaDisciplina: PoModalComponent;
 
+    @ViewChild('formNovaDisciplina', { static: false }) formNovaDisciplina: DisciplinaIncluirComponent;
+
     @Input() turmaId: string;
+
+    @Input() disciplinaId: string;
 
     modalTurmaDisciplinasPrimaria: PoModalAction = {
         action: () => {
             this.adicionarDiciplinas();
             this.modalDisciplina.close();
+            this.formDisciplina.carregarDisciplinas();
         },
         label: this.global.i18n.literals.salvar
     };
@@ -56,8 +60,9 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
         private turmaGetByIdService: TurmaGetByIdService,
-        private turmaDisciplinaIncluirService: TurmaDisciplinaIncluirService,
-        private turmaDisciplinaAlterarService: TurmaDisciplinaAlterarService
+        //private turmaDisciplinaIncluirService: TurmaDisciplinaIncluirService,
+        private turmaDisciplinaAlterarService: TurmaDisciplinaAlterarService,
+        //private disciplinaIncluirService: DisciplinaIncluirService
     ) {
         super();
     }
@@ -111,7 +116,6 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
             console.log('TurmaId fixo: ');
 
             this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
-                console.log('turmaDisciplinaAlterarService', callbackAlterar);
                 this.formListTurmaDisciplina.carregarDisciplinas();
             });
         });
@@ -156,22 +160,8 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
     }
 
     novaDisciplina() {
-        // let turma: Turma;
-        // this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
-        //     turma = callbackId;
-        //     //turma.listDisciplinas = this.mergeDisciplinas(turma.listDisciplinas, this.formDisciplina.listDisciplinasSelecionadas);
-
-        //     console.log('Está somente alterando corrigir o incluir: ');
-        //     console.log('TurmaId fixo: ');
-
-        //     this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
-        //         console.log('turmaDisciplinaAlterarService', callbackAlterar);
-        //         this.formListTurmaDisciplina.carregarDisciplinas();
-        //     });
-
-        //     //incluir na tabela de disciplina para simular o backend
-        // });
-        alert('incluir nova disciplina');
+        this.formNovaDisciplina.formDisciplina.salvar();
+        this.formDisciplina.carregarDisciplinas();
     }
 
 

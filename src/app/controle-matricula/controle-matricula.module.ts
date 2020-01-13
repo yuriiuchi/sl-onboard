@@ -15,6 +15,8 @@ import { ProfessorComponent } from './professor/professor.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
 import { AlunoGetAllService } from './aluno/services/aluno-get-all.service';
+import { AlunoAlterarService } from './aluno/services/aluno-alterar.service';
+import { AlunoIncluirService } from './aluno/services/aluno-incluir.service';
 import { DisciplinaListComponent } from './disciplina/disciplina-list/disciplina-list.component';
 import { DisciplinaListFormComponent } from './disciplina/disciplina-list/disciplina-list-form.component';
 import { DisciplinaGetAllService } from './disciplina/services/disciplina-get-all.service';
@@ -36,6 +38,8 @@ import { DisciplinaIncluirFormComponent } from './disciplina/disciplina-incluir-
 import { DisciplinaIncluirComponent } from './disciplina/disciplina-incluir/disciplina-incluir.component';
 import { DisciplinaIncluirService } from './disciplina/services/disciplina-incluir.service';
 import { DisciplinaAlterarService } from './disciplina/services/disciplina-alterar.service';
+import { DisciplinaGetByIdService } from './disciplina/services/disciplina-get-by-id.service';
+import { AlunoGetByIdService } from './aluno/services/aluno-get-by-id.service';
 @NgModule({
     declarations: [
         ControleMatriculaComponent,
@@ -66,7 +70,6 @@ import { DisciplinaAlterarService } from './disciplina/services/disciplina-alter
     ],
     providers: [
         TurmaGetAllService,
-        AlunoGetAllService,
         DisciplinaGetAllService,
         TurmaGetByIdService,
         TurmaIncluirService,
@@ -78,7 +81,12 @@ import { DisciplinaAlterarService } from './disciplina/services/disciplina-alter
         TurmaAlunoGetAllService,
         TurmaAlunoIncluirService,
         DisciplinaIncluirService,
-        DisciplinaAlterarService
+        DisciplinaAlterarService,
+        DisciplinaGetByIdService,
+        AlunoGetAllService,
+        AlunoAlterarService,
+        AlunoIncluirService,
+        AlunoGetByIdService
     ]
 })
 export class ControleMatriculaModule {}

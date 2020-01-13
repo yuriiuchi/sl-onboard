@@ -25,3 +25,13 @@
         </div>
     </div> 
 </po-modal>
+
+<po-modal #modalNovoAluno
+    [p-title]="'Novo aluno'"
+    [p-primary-action]="modalTurmaNovoAlunoPrimaria">
+    <div class="po-row">
+        <div class="po-md-12">
+            <app-aluno #formNovoAluno></app-aluno>
+        </div>
+    </div> 
+</po-modal>

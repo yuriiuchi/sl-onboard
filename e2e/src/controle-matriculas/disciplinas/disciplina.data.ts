@@ -3,6 +3,7 @@ import { InMemoryDataService } from '../../../../src/app/memory/data-service/in-
 import { collectionName, disciplinas } from './disciplina.mock';
 
 dataService(collectionName, (dbService: InMemoryDataService) => {
+    dbService.addReplaceUrl('recebimento/disciplinas', collectionName);
     dbService.addReplaceUrl('recebimentoQuery/disciplinas', collectionName);
 
     // dbService.addSearchTermMap(collectionName, ['identificador']);

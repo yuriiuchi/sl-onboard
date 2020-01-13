@@ -15,36 +15,25 @@ import { TurmaGetByIdService } from '../../services/turma-get-by-id.service';
 })
 export class TurmaSimplesComponent extends BaseComponent implements OnInit {
 
-    //@Input('turmaId') turmaId: string;
     @Input() set turmaId(x) {
         this.idTurma = x;
-        //this.formTurmaSimples.setValue
         if (this.formTurmaSimples && this.idTurma) {
 
             this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
                 console.log('@Input() set turmaId(x): ', turma);
 
-                this.idTurma = turma.id; //teste
+                this.idTurma = turma.id;
 
                 this.formTurmaSimples.patchValue({ descricao: turma.descricao});
                 this.formTurmaSimples.patchValue({ nrVagas: turma.nrVagas});
                 this.formTurmaSimples.patchValue({ inicio: turma.inicio});
             });
-
-        // this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
-        //     console.log(turma);
-        //     });
-
         }
     }
 
     formTurmaSimples: FormGroup;
     public idTurma: string;
-    turma: Turma;
-
-    // get nome() {
-    //     return this.formTurmaSimples.get('nome').value;
-    // }
+    //turma: Turma;
 
     get descricao() {
         return this.formTurmaSimples.get('descricao').value;
@@ -79,11 +68,7 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.formTurmaSimples = new FormGroup({
-        //     descricao: new FormControl('this.turma.descricao', [Validators.required]),
-        //     nrVagas: new FormControl('this.turma.nrVagas', [Validators.required, Validators.min(1), Validators.max(175)]),
-        //     inicio: new FormControl('this.turma.inicio', [Validators.required])
-        // });
+
     }
 
     public validForm(): boolean {

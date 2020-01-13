@@ -31,5 +31,7 @@
 <po-modal class="po-xl-12 po-lg-12 po-md-12 po-sm-12" #modalNovaDisciplina
     [p-title]="'Nova Disciplina 2'"
     [p-primary-action]="modalNovaDisciplinaPrimaria">
-    <app-disciplina-incluir #formNovaDisciplina class="po-xl-12 po-lg-12 po-md-12 po-sm-12"></app-disciplina-incluir>
+    <app-disciplina-incluir #formNovaDisciplina 
+        class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+        [disciplinaId]="disciplinaId"></app-disciplina-incluir>
 </po-modal>

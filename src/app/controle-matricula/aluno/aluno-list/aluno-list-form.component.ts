@@ -30,15 +30,12 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
       mode: 'multiple',
       allowUnsort: true
     };
-  //  public actions: Array<PoPageAction> = this.criarBotoesPagina();
+
     public gridState: State = {
       group: [],
       sort: [],
       filter: null
     };
-
-    //public disciplinasSelecionadas: EventEmitter<Array<Disciplina>> = new EventEmitter<Array<Disciplina>>();
-    //public listDisciplinasSelecionadas: Array<Disciplina>;
 
     public selectable: SelectableSettings = {
       mode: 'multiple',

@@ -16,11 +16,9 @@
             <!-- <po-button p-label="salvar turma" (click)="salvarTurma()" p-type="primary"></po-button>   -->
         </po-step>
 
+        <!-- *ngIf="validarFormularioProfessor()"> -->
         <po-step p-label="Adicionar Disciplinas">
             <app-turma-disciplina-incluir #formTurmaDisciplina [turmaId]="turmaId"></app-turma-disciplina-incluir> 
-            <!-- <div class="po-row margem-top">
-                <po-button p-label="salvar lista disciplinas" (click)="salvarListaDisciplinas()" p-type="primary"></po-button>
-            </div> -->
         </po-step>
 
         <po-step p-label="Adicionar Alunos">
@@ -28,13 +26,13 @@
             <app-turma-aluno-incluir #formTurmaAluno [turmaId]="turmaId"></app-turma-aluno-incluir>
         </po-step>
 
-        <po-step p-label="Lista Alunos">
+        <!-- <po-step p-label="Lista Alunos">
             <app-aluno-list></app-aluno-list> 
         </po-step>
         <po-step p-label="lista Disciplinas">
                 <app-list-disciplina ></app-list-disciplina>
-        </po-step>
-        <po-step 
+        </po-step> -->
+        <!-- <po-step 
             [p-label]="global.i18n.literals['professor']" 
             [p-status]="" 
             *ngIf="validarFormularioTurma()">
@@ -49,15 +47,15 @@
                 p-type="link"
                 [p-label]="global.i18n.literals.novo"
                 (p-click)="abrirModalProfessor()">
-            </po-button>
+            </po-button> -->
             <!-- <div class="po-row"><div class="po-md-6"><app-professor #formProfessor></app-professor></div></div>  -->
-        </po-step>
-        <po-step 
+        <!-- </po-step> -->
+        <!-- <po-step 
             [p-label]="global.i18n.literals['aluno']" 
             [p-status]="" 
             *ngIf="validarFormularioProfessor()">
-                <!-- <app-aluno></app-aluno> -->
-        </po-step>
+                <app-aluno></app-aluno>
+        </po-step> -->
     </po-stepper>
     
     <po-modal 

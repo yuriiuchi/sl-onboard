@@ -56,7 +56,6 @@ export class TurmaAlunoListFormComponent extends BaseComponent implements OnInit
 
     carregarGrid( alunos: any ): void {
         this.alunos = alunos;
-        console.log('carregarGrid: ', alunos);
         this.alunosGrid = process(this.alunos, this.gridState);
     }
 

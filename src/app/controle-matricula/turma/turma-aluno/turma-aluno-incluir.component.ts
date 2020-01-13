@@ -12,6 +12,9 @@ import { Turma } from '../entities/turma.entitiy';
 import { TurmaAlunoAlterarService } from '../services/turma-aluno-alterar.service';
 import { Aluno } from '../../aluno/entities/aluno.entity';
 import { alunos } from 'e2e/src/controle-matriculas/alunos/aluno.mock';
+import { AlunoComponent } from '../../aluno/aluno.component';
+import { AlunoListComponent } from '../../aluno/aluno-list/aluno-list.component';
+import { AlunoListFormComponent } from '../../aluno/aluno-list/aluno-list-form.component';
 
 @Component({
     selector: 'app-turma-aluno-incluir',
@@ -21,16 +24,27 @@ import { alunos } from 'e2e/src/controle-matriculas/alunos/aluno.mock';
 export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit {
 
     @ViewChild('modalAlunos', { static: true }) modalAlunos: PoModalComponent;
+    @ViewChild('modalNovoAluno', { static: true }) modalNovoAluno: PoModalComponent;
     @ViewChild('formListTurmaAluno', { static: true }) formListTurmaAluno: TurmaAlunoListFormComponent;
-    @ViewChild('formAluno', { static: true }) formAluno: TurmaAlunoListFormComponent;
+    @ViewChild('formNovoAluno', { static: true }) formNovoAluno: AlunoComponent;
+    @ViewChild('formAluno', { static: true }) formAluno: AlunoListFormComponent;//TurmaAlunoListFormComponent;
 
     @Input() turmaId: string;
 
     modalTurmaAlunosPrimaria: PoModalAction = {
         action: () => {
-            console.log('modalTurmaAlunosPrimaria: ', this.turmaId);
             this.adicionarAlunos();
             this.modalAlunos.close();
+        },
+        label: this.global.i18n.literals.salvar
+    };
+
+    modalTurmaNovoAlunoPrimaria: PoModalAction = {
+        action: () => {
+            this.formNovoAluno.salvar();
+            this.formAluno.carreagarAlunos();
+            console.log('modalTurmaNovoAlunoPrimaria: ', this.formAluno);
+            this.modalNovoAluno.close();
         },
         label: this.global.i18n.literals.salvar
     };
@@ -64,7 +78,7 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
     }
 
     abrirModalNovoAluno(): void {
-        this.modalAlunos.open();
+        this.modalNovoAluno.open();
     }
 
     private mergeAlunos(
@@ -93,7 +107,7 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
         this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
             console.log('turmaGetByIdService: ', callbackId);
             turma = callbackId;
-            turma.listAlunos = this.mergeAlunos(turma.listAlunos, this.formAluno.listAlunosSelecionados);
+            turma.listAlunos = this.mergeAlunos(turma.listAlunos, this.formAluno.listAlunosSelecionados); /**/
 
             this.turmaAlunosAlterarService.Post(turma).subscribe ( callbackAlterar => {
                 console.log('turmaAlunosAlterarService', callbackAlterar);
@@ -126,7 +140,7 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
 
     removerAlunos() {
         let turma: Turma;
-        console.log('remover: ', this.formAluno.listAlunosSelecionados);
+        console.log('remover: ', this.formAluno.listAlunosSelecionados); ///*this.formAluno.listAlunosSelecionados*/
 
         this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
             turma = callbackId;

@@ -10,7 +10,7 @@ import { DisciplinaIncluirFormComponent } from './../disciplina-incluir-form/dis
 export class DisciplinaIncluirComponent implements OnInit {
 
     @ViewChild('formDisciplina', { static: true }) public formDisciplina: DisciplinaIncluirFormComponent;
-    @Input() turmaId: string;
+    @Input() disciplinaId: string;
 
     constructor(public global: GlobalService) {
     }

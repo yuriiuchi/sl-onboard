@@ -10,6 +10,7 @@ import { ShowMessageType } from 'totvs-log-base-foundation';
 //import { disciplinas } from 'e2e/src/controle-matriculas/disciplinas/disciplina.mock';
 import { Disciplina } from '../entities/disciplina.entity';
 import { disciplinas } from 'e2e/src/controle-matriculas/disciplinas/disciplina.mock';
+import { DisciplinaGetByIdService } from '../services/disciplina-get-by-id.service';
 
 @Component({
     selector:  'app-disciplina-incluir-form',
@@ -20,18 +21,6 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
 
     @Input() set disciplinaId(x) {
          this.idDisciplina = x;
-        // if (this.formDisciplinaIncluir && this.idDisciplina) {
-
-            // this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
-            //     console.log('@Input() set turmaId(x): ', turma);
-
-                //this.idTurma = turma.id;
-
-                // this.formDisciplinaIncluir.patchValue({ descricao: turma.descricao});
-                // this.formDisciplinaIncluir.patchValue({ nrVagas: turma.nrVagas});
-                // this.formDisciplinaIncluir.patchValue({ inicio: turma.inicio});
-            // });
-        //}
     }
 
     formDisciplinaIncluir: FormGroup;
@@ -50,17 +39,11 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
         return this.formDisciplinaIncluir.get('cargaHoraria').value;
     }
 
-    // getTurmaById(): void {
-    //     this.turmaByIdService.Get(this.turmaId).subscribe( turma => {
-    //         console.log('getTurmaById: ', turma);
-    //     });
-    // }
-
     constructor(
         private global: GlobalService,
         private disciplinaIncluirService: DisciplinaIncluirService,
         private disciplinaAlterarService: DisciplinaAlterarService,
-        //private turmaByIdService: TurmaGetByIdService
+        private disciplinaGetByIdService: DisciplinaGetByIdService
     ) {
         super();
         this.formDisciplinaIncluir = new FormGroup({
@@ -74,40 +57,39 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
 
     }
 
-    public validForm(): boolean {
+    validForm(): boolean {
         return this.formDisciplinaIncluir.valid;
     }
 
-    save(): void {
-        this.alterar(this.idDisciplina);
+    salvar(): void {
+        console.log('salvar() idDisciplina: ', this.idDisciplina);
+        this.incluir();
     }
 
     alterar(id: string): void {
-        alert('alterar disciplina');
-        // if (this.formDisciplinaIncluir.valid) {
-        //     console.log('incluindo disciplina: ', this);
+         if (this.formDisciplinaIncluir.valid) {
+            alert('alterar disciplina');
 
-        //     let disciplinas: Array<Disciplina> = [];
+            this.disciplinaGetByIdService.Get(this.idDisciplina).subscribe( disciplina => {
 
-        //     this.disciplinaByIdService.Get(this.idDisciplina).subscribe( disciplina => {
-                
-        //         this.disciplinaAlterarService.Post(disciplina).subscribe( callback => {
-        //             this.global.msg.displayMessage({
-        //                 messageType: ShowMessageType.NotificationSuccess,
-        //                 messageText: 'disciplina incluida com sucesso'
-        //             });
-        //             }
-        //         );
-        //     });
-        // } else {
-        //     this.global.msg.displayMessage({
-        //         messageType: ShowMessageType.NotificationInformation,
-        //         messageText: 'Não é possivel alterar a disciplina. Faltam informações obrigatórias'
-        //     });
-        // }
+                 this.disciplinaAlterarService.Post(disciplina).subscribe( callback => {
+                     this.global.msg.displayMessage({
+                         messageType: ShowMessageType.NotificationSuccess,
+                         messageText: 'disciplina incluida com sucesso'
+                     });
+                     }
+                 );
+             });
+         } else {
+             this.global.msg.displayMessage({
+                 messageType: ShowMessageType.NotificationInformation,
+                 messageText: 'Não é possivel alterar a disciplina. Faltam informações obrigatórias'
+             });
+         }
     }
 
     incluir() {
+        console.log('incluir -  DisciplinaIncluirFormComponent');
         if (this.formDisciplinaIncluir.valid) {
             const disciplina: Disciplina = {
                 id: this.idDisciplina,

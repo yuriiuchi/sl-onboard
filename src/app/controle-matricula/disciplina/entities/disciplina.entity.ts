@@ -1,10 +1,11 @@
-import { Professor } from './../../professor/entities/professor.entity';
+import { IDisciplinaGetAll } from './disciplina-get-all.interface';
 
 export class Disciplina {
 
     public id: string;
 
     constructor(
+        id: string,
         public descricao: string,
         public sigla: string,
         public cargaHoraria: number
@@ -12,7 +13,12 @@ export class Disciplina {
 
     }
 
-    public static empty() {
-        return new Disciplina('', '', 0);
+    static fromDto(dto: IDisciplinaGetAll): Disciplina {
+        return new Disciplina(
+            dto.id,
+            dto.descricao,
+            dto.sigla,
+            dto.cargaHoraria
+        );
     }
 }
