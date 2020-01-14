@@ -12,6 +12,7 @@ import { TurmaGetAllService } from './turma/services/turma-get-all.service';
 import { TurmaStepComponent } from './turma/turma-step/turma-step.component';
 import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples.component';
 import { ProfessorComponent } from './professor/professor.component';
+import { ProfessorFormComponent } from './professor/professor-form/professor-form.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
 import { AlunoGetAllService } from './aluno/services/aluno-get-all.service';
@@ -61,7 +62,8 @@ import { AlunoGetByIdService } from './aluno/services/aluno-get-by-id.service';
         TurmaAlunoIncluirComponent,
         AlunoListFormComponent,
         DisciplinaIncluirFormComponent,
-        DisciplinaIncluirComponent
+        DisciplinaIncluirComponent,
+        ProfessorFormComponent
     ],
     imports: [
         SharedModule,

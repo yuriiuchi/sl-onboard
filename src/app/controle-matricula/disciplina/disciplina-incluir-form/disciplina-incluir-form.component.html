@@ -25,6 +25,31 @@
             [p-placeholder]="'cargaHoraria'"             
             class="po-xl-6 po-lg-6 po-md-6 po-sm-12">
         </po-number> 
+
+        <!-- formControlName="professor" -->
+        <po-combo
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-12"
+            name="comboProfessor"
+            
+            [p-label]="'professor'"
+            [p-options]="professorList">
+        </po-combo>
+
+        <po-button
+            class="icon-24px"
+            p-type="link"
+            p-icon="po-icon po-icon-plus"
+            (p-click)="abrirModalProfessor()">
+        </po-button>
     </div>  
 </form>
     
+<po-modal #modalProfessor
+    [p-title]="'Cadastro professor'"
+    [p-primary-action]="modalProfessorAcaoPrimaria">
+    <div class="po-row">
+        <div class="po-md-12">
+            <app-professor-form #formProfessor></app-professor-form>
+        </div>
+    </div> 
+</po-modal>

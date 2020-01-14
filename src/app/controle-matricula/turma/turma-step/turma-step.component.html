@@ -13,16 +13,14 @@
 
         <po-step [p-label]="'inicio'" [p-status]="">
             <app-turma #formTurma></app-turma>
-            <!-- <po-button p-label="salvar turma" (click)="salvarTurma()" p-type="primary"></po-button>   -->
         </po-step>
 
         <!-- *ngIf="validarFormularioProfessor()"> -->
-        <po-step p-label="Adicionar Disciplinas">
+        <po-step p-label="Adicionar Disciplinas" *ngIf="validarFormularioTurma()">
             <app-turma-disciplina-incluir #formTurmaDisciplina [turmaId]="turmaId"></app-turma-disciplina-incluir> 
         </po-step>
 
-        <po-step p-label="Adicionar Alunos">
-            <h1>Adicionar Alunos</h1>
+        <po-step p-label="Adicionar Alunos" *ngIf="validarTurmaEDisciplina()">
             <app-turma-aluno-incluir #formTurmaAluno [turmaId]="turmaId"></app-turma-aluno-incluir>
         </po-step>
 
@@ -57,6 +55,8 @@
                 <app-aluno></app-aluno>
         </po-step> -->
     </po-stepper>
+
+    <po-button class="margem-top-right" p-label="Salvar tudo" (click)="salvarTudo()"></po-button>
     
     <po-modal 
         #modalProfessor

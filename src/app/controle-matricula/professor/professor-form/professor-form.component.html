@@ -1,0 +1,20 @@
+<form [formGroup]="formProfessor">
+    <div class="po-row">
+        <po-input 
+        class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            formControlName="nome"
+            p-label="Professor"
+            name="professor"
+            p-placeholder="professor"
+        ></po-input>
+    </div>
+    <div class="po-row">
+        <po-combo
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            name="comboTitulacao"
+            formControlName="titulacao"
+            [p-label]=global.i18n.literals.titulacao
+            [p-options]="titulacaoList">
+        </po-combo>
+    </div>
+</form>

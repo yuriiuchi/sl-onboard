@@ -164,6 +164,9 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         this.formDisciplina.carregarDisciplinas();
     }
 
-
+    public validForm(): boolean {
+        return this.formNovaDisciplina.formDisciplina.validForm();
+    }
 }
+
 

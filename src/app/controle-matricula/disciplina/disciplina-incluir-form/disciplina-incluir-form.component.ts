@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from '../../../base/base.component';
 import { Turma } from './../../turma/entities/turma.entitiy';
@@ -11,6 +11,8 @@ import { ShowMessageType } from 'totvs-log-base-foundation';
 import { Disciplina } from '../entities/disciplina.entity';
 import { disciplinas } from 'e2e/src/controle-matriculas/disciplinas/disciplina.mock';
 import { DisciplinaGetByIdService } from '../services/disciplina-get-by-id.service';
+import { PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
+import { ProfessorFormComponent } from '../../professor/professor-form/professor-form.component';
 
 @Component({
     selector:  'app-disciplina-incluir-form',
@@ -19,6 +21,8 @@ import { DisciplinaGetByIdService } from '../services/disciplina-get-by-id.servi
 })
 export class DisciplinaIncluirFormComponent extends BaseComponent implements OnInit {
 
+    @ViewChild('modalProfessor', { static: true }) modalProfessor: PoModalComponent;
+    @ViewChild('formProfessor', { static: true }) formProfessor: ProfessorFormComponent;
     @Input() set disciplinaId(x) {
          this.idDisciplina = x;
     }
@@ -26,6 +30,18 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
     formDisciplinaIncluir: FormGroup;
     public idDisciplina: string;
     disciplina: Disciplina;
+
+    professorList = [{ value: 'Professor algum' }, { value: 'Outro Professor' }, { value: 'mais professor'}];
+
+    modalProfessorAcaoPrimaria: PoModalAction = {
+        action: () => {
+            this.formProfessor.salvar();
+            console.log('modalProfessorAcaoPrimaria');
+            this.modalProfessor.close();
+            //this.formDisciplina.carregarDisciplinas();
+        },
+        label: this.global.i18n.literals.salvar
+    };
 
     get descricao() {
         return this.formDisciplinaIncluir.get('descricao').value;
@@ -68,7 +84,6 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
 
     alterar(id: string): void {
          if (this.formDisciplinaIncluir.valid) {
-            alert('alterar disciplina');
 
             this.disciplinaGetByIdService.Get(this.idDisciplina).subscribe( disciplina => {
 
@@ -115,6 +130,14 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
                 messageText: 'Não é possivel salvar a turma. Faltam informações obrigatórias'
             });
         }
+    }
+
+    abrirModalProfessor() {
+        this.modalProfessor.open();
+    }
+
+    salvarProfessor(): void {
+        this.formProfessor.salvar();
     }
 }
 
