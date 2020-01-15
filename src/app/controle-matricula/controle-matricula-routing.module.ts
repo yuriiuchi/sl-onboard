@@ -5,6 +5,7 @@ import { TurmaStepComponent } from './turma/turma-step/turma-step.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { DisciplinaListComponent } from './disciplina/disciplina-list/disciplina-list.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
+import { ProfessorListComponent } from './professor/professor-list/professor-list.component';
 
 const routes: Routes = [
     {
@@ -19,13 +20,17 @@ const routes: Routes = [
         path: 'alunos',
         component: AlunoListComponent
     },
-    {
-        path:  'professores',
-        component: ProfessorComponent
-    },
+    // {
+    //     path:  'professores',
+    //     component: ProfessorComponent
+    // },
     {
         path: 'disciplinas',
         component: DisciplinaListComponent
+    },
+    {
+        path: 'professores',
+        component: ProfessorListComponent
     }
 ];
 @NgModule({

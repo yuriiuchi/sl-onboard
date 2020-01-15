@@ -14,6 +14,7 @@ import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples
 import { ProfessorComponent } from './professor/professor.component';
 import { ProfessorFormComponent } from './professor/professor-form/professor-form.component';
 import { ProfessorListFormComponent } from './professor/professor-list/professor-list-form.component';
+import { ProfessorListComponent } from './professor/professor-list/professor-list.component';
 import { ProfessorGetAllService } from './professor/services/professor-get-all.service';
 import { ProfessorAlterarService } from './professor/services/professor-alterar.service';
 import { ProfessorGetByIdService } from './professor/services/professor-get-by-id.service';
@@ -68,7 +69,9 @@ import { AlunoGetByIdService } from './aluno/services/aluno-get-by-id.service';
         AlunoListFormComponent,
         DisciplinaIncluirFormComponent,
         DisciplinaIncluirComponent,
-        ProfessorFormComponent
+        ProfessorFormComponent,
+        ProfessorListComponent,
+        ProfessorListFormComponent
     ],
     imports: [
         SharedModule,
@@ -98,7 +101,6 @@ import { AlunoGetByIdService } from './aluno/services/aluno-get-by-id.service';
         ProfessorAlterarService,
         ProfessorGetByIdService,
         ProfessorIncluirService,
-        ProfessorListFormComponent
     ]
 })
 export class ControleMatriculaModule {}
