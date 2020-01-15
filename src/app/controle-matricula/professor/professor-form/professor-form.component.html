@@ -8,9 +8,27 @@
             p-placeholder="professor"
         ></po-input>
     </div>
+
     <div class="po-row">
+        <po-input 
+        class="po-lg-12 po-md-12 po-sm-12"
+            formControlName="email"
+            p-label="email"
+            name="email"
+            p-placeholder="email"
+        ></po-input>
+    </div>
+    <div class="po-row">
+        <po-input 
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            formControlName="cpf"
+            p-label="cpf"
+            name="cpf"
+            p-placeholder="cpf"
+            p-mask="999.999.999-99"
+        ></po-input>  
         <po-combo
-            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            class="po-xl-8 po-lg-8 po-md-8 po-sm-12"
             name="comboTitulacao"
             formControlName="titulacao"
             [p-label]=global.i18n.literals.titulacao

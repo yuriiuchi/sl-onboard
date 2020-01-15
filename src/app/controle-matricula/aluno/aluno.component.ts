@@ -40,23 +40,28 @@ export class AlunoComponent extends BaseComponent implements OnInit {
     }
 
     salvar(): void {
-        console.log('salvar: ', this.formAluno.get('formaIngresso').value);
-        console.log(this.formAluno.get('nome').value);
-        const aluno = new Aluno(
-            '',
-            this.formAluno.get('nome').value,
-            this.formAluno.get('email').value,
-            this.formAluno.get('cpf').value,
-            this.formAluno.get('matricula').value,
-            this.formAluno.get('formaIngresso').value
-            );
+        if (this.formAluno.valid) {
+            const aluno = new Aluno(
+                '',
+                this.formAluno.get('nome').value,
+                this.formAluno.get('email').value,
+                this.formAluno.get('cpf').value,
+                this.formAluno.get('matricula').value,
+                this.formAluno.get('formaIngresso').value
+                );
 
-        this.alunoIncluirService.Post(aluno).subscribe( calback => {
-            console.log(calback);
-            this.global.msg.displayMessage({
+            this.alunoIncluirService.Post(aluno).subscribe( calback => {
+                this.global.msg.displayMessage({
                 messageType: ShowMessageType.NotificationSuccess,
-                messageText: 'Aluno incluido com sucesso'
+                    messageText: 'Aluno incluido com sucesso'
+                });
             });
-        });
+        } else {
+        this.global.msg.displayMessage({
+            messageType: ShowMessageType.NotificationInformation,
+            messageText: 'Não é possivel salvar o aluno. Faltam informações obrigatórias'
+            });
+        }
     }
+
 }

@@ -2,7 +2,7 @@
 import { IProfessorGetAll } from './../../../../src/app/controle-matricula/professor/entities/professor-get-all.interface';
 export const collectionName = 'professor';
 
-export const professor: Array<IProfessorGetAll> = [
+export const professores: Array<IProfessorGetAll> = [
   {
     id: '4de2a143-8b78-4623-bfe9-f349266c0f69',
     nome: 'Professor 01',

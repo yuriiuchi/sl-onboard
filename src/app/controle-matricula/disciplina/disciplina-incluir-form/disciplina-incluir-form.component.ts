@@ -39,10 +39,8 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
     modalProfessorAcaoPrimaria: PoModalAction = {
         action: () => {
             this.formProfessor.salvar();
-            this.carregarprofessores();
-            console.log('modalProfessorAcaoPrimaria');
             this.modalProfessor.close();
-            //this.formDisciplina.carregarDisciplinas();
+            this.carregarprofessores();
         },
         label: this.global.i18n.literals.salvar
     };
