@@ -5,15 +5,12 @@ import { GlobalService } from 'totvs-log-web-foundation';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
 import { TurmaAlunoListFormComponent } from './turma-aluno-list-form.component';
-//import { AlunoListFormComponent } from '../../aluno/aluno-list/aluno-list-form.component';
 import { TurmaGetByIdService } from '../services/turma-get-by-id.service';
 import { TurmaAlunoIncluirService } from '../services/turma-aluno-incluir.service';
 import { Turma } from '../entities/turma.entitiy';
 import { TurmaAlunoAlterarService } from '../services/turma-aluno-alterar.service';
 import { Aluno } from '../../aluno/entities/aluno.entity';
-import { alunos } from 'e2e/src/controle-matriculas/alunos/aluno.mock';
 import { AlunoComponent } from '../../aluno/aluno.component';
-import { AlunoListComponent } from '../../aluno/aluno-list/aluno-list.component';
 import { AlunoListFormComponent } from '../../aluno/aluno-list/aluno-list-form.component';
 
 @Component({

@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { BaseComponent } from '../../../base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
+import { ProfessorIncluirService } from '../services/professor-incluir.service';
+import { Professor } from '../entities/professor.entity';
 @Component({
     selector:  'app-professor-form',
     templateUrl: './professor-form.component.html',
@@ -13,7 +15,9 @@ export class ProfessorFormComponent extends BaseComponent implements OnInit {
     private formProfessor: FormGroup;
     private titulacaoList = [{ value: 'Mestre' }, { value: 'Doutor' }, { value: 'PHD'}];
 
-    constructor(private global: GlobalService) {
+    constructor(
+        private global: GlobalService,
+        private professorIncluirService: ProfessorIncluirService) {
         super();
 
         this.formProfessor = new FormGroup({
@@ -29,7 +33,11 @@ export class ProfessorFormComponent extends BaseComponent implements OnInit {
     }
 
     salvar(): void {
-        console.log("salvando o professor")
+        const professor = new Professor('teste', 'test', 'teste', 'tes', 'tes');
+        this.professorIncluirService.Post(professor).subscribe( calback => {
+
+        });
+        console.log('salvando o professor');
         alert('salvar professor');
     }
 

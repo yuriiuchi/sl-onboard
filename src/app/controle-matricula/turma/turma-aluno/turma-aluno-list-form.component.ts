@@ -52,6 +52,7 @@ export class TurmaAlunoListFormComponent extends BaseComponent implements OnInit
     ngOnInit(): void {
         this.alterarIdioma();
         this.carregarAlunos();
+        console.log('turmaId = 6d7e918a-e1c1-4eef-9436-07b1e7cab5f5');
     }
 
     carregarGrid( alunos: any ): void {

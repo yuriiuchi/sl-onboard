@@ -13,6 +13,9 @@ import { disciplinas } from 'e2e/src/controle-matriculas/disciplinas/disciplina.
 import { DisciplinaGetByIdService } from '../services/disciplina-get-by-id.service';
 import { PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
 import { ProfessorFormComponent } from '../../professor/professor-form/professor-form.component';
+import { ProfessorAlterarService } from '../../professor/services/professor-alterar.service';
+import { ProfessorGetAllService } from '../../professor/services/professor-get-all.service';
+import { IProfessorGetAll } from '../../professor/entities/professor-get-all.interface';
 
 @Component({
     selector:  'app-disciplina-incluir-form',
@@ -36,6 +39,7 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
     modalProfessorAcaoPrimaria: PoModalAction = {
         action: () => {
             this.formProfessor.salvar();
+            this.carregarprofessores();
             console.log('modalProfessorAcaoPrimaria');
             this.modalProfessor.close();
             //this.formDisciplina.carregarDisciplinas();
@@ -55,22 +59,28 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
         return this.formDisciplinaIncluir.get('cargaHoraria').value;
     }
 
+    get professor() {
+        return this.formDisciplinaIncluir.get('professor').value;
+    }
+
     constructor(
         private global: GlobalService,
         private disciplinaIncluirService: DisciplinaIncluirService,
         private disciplinaAlterarService: DisciplinaAlterarService,
-        private disciplinaGetByIdService: DisciplinaGetByIdService
+        private disciplinaGetByIdService: DisciplinaGetByIdService,
+        private professorGetAllService: ProfessorGetAllService,
     ) {
         super();
         this.formDisciplinaIncluir = new FormGroup({
             descricao: new FormControl('', [Validators.required]),
             sigla: new FormControl('', [Validators.required]),
             cargaHoraria: new FormControl('', [Validators.required, Validators.min(8), Validators.max(80)]),
+            professor: new FormControl('', [Validators.required])
         });
     }
 
     ngOnInit(): void {
-
+        this.carregarprofessores();
     }
 
     validForm(): boolean {
@@ -105,12 +115,14 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
 
     incluir() {
         console.log('incluir -  DisciplinaIncluirFormComponent');
+        console.log('incluir -  DisciplinaIncluirFormComponent', this.professor);
         if (this.formDisciplinaIncluir.valid) {
             const disciplina: Disciplina = {
                 id: this.idDisciplina,
                 descricao: this.descricao,
                 sigla: this.sigla,
                 cargaHoraria: this.cargaHoraria,
+                professor: this.professor
             };
 
             this.disciplinaIncluirService.Post(disciplina).subscribe( callback => {
@@ -138,6 +150,15 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
 
     salvarProfessor(): void {
         this.formProfessor.salvar();
+    }
+
+    carregarprofessores(): void {
+        this.professorGetAllService.reset().subscribe( (callback: Array<IProfessorGetAll>) => {
+            this.professorList = callback.map( back => {
+                console.log(back.nome);
+                return { value: back.nome };
+            });
+        });
     }
 }
 

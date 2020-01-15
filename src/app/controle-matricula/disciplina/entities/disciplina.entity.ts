@@ -8,7 +8,8 @@ export class Disciplina {
         id: string,
         public descricao: string,
         public sigla: string,
-        public cargaHoraria: number
+        public cargaHoraria: number,
+        public professor
     ) {
 
     }
@@ -18,7 +19,8 @@ export class Disciplina {
             dto.id,
             dto.descricao,
             dto.sigla,
-            dto.cargaHoraria
+            dto.cargaHoraria,
+            dto.professor
         );
     }
 }

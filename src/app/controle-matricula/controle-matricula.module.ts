@@ -13,6 +13,11 @@ import { TurmaStepComponent } from './turma/turma-step/turma-step.component';
 import { TurmaSimplesComponent } from './turma/turma/turma-simples/turma-simples.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { ProfessorFormComponent } from './professor/professor-form/professor-form.component';
+import { ProfessorListFormComponent } from './professor/professor-list/professor-list-form.component';
+import { ProfessorGetAllService } from './professor/services/professor-get-all.service';
+import { ProfessorAlterarService } from './professor/services/professor-alterar.service';
+import { ProfessorGetByIdService } from './professor/services/professor-get-by-id.service';
+import { ProfessorIncluirService } from './professor/services/professor-incluir.service';
 import { AlunoComponent } from './aluno/aluno.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
 import { AlunoGetAllService } from './aluno/services/aluno-get-all.service';
@@ -88,7 +93,12 @@ import { AlunoGetByIdService } from './aluno/services/aluno-get-by-id.service';
         AlunoGetAllService,
         AlunoAlterarService,
         AlunoIncluirService,
-        AlunoGetByIdService
+        AlunoGetByIdService,
+        ProfessorGetAllService,
+        ProfessorAlterarService,
+        ProfessorGetByIdService,
+        ProfessorIncluirService,
+        ProfessorListFormComponent
     ]
 })
 export class ControleMatriculaModule {}

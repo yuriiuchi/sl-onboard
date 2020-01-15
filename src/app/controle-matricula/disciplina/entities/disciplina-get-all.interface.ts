@@ -4,4 +4,5 @@ export interface IDisciplinaGetAll {
     descricao: string;
     sigla: string;
     cargaHoraria: number;
+    professor: string;
 }

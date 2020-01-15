@@ -4,7 +4,6 @@ import { BaseComponent } from './../../../../app/base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
 import { PoStepperComponent, PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
 import { TurmaComponent } from '../turma/turma.component';
-import { ProfessorComponent } from '../../professor/professor.component';
 import { TurmaDisciplinaIncluirComponent } from '../turma-disciplina/turma-disciplina-incluir.component';
 import { ProfessorFormComponent } from '../../professor/professor-form/professor-form.component';
 
@@ -25,27 +24,12 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
 
     professorList = this.carregarProfessores;
 
-    modalProfessorAcaoPrimaria: PoModalAction = {
-        action: () => {
-            alert('acao primaria');
-            this.modalProfessor.close();
-        },
-        label: this.global.i18n.literals.salvar
-    };
-
-    modalProfessorAcaoSecundaria: PoModalAction = {
-    action: () => {
-        alert('acao secundaria');
-    },
-    label: this.global.i18n.literals.cancelar
-    };
-
     constructor(private global: GlobalService) {
         super();
     }
 
     ngOnInit(): void {
-
+        console.log('turmaId = 6d7e918a-e1c1-4eef-9436-07b1e7cab5f5');
     }
 
     validarFormularioProfessor(): boolean {
@@ -71,7 +55,8 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
         if (!this.formTurma.simples.idTurma) {
             this.salvarTurma();
 
-            this.formTurmaDisciplina.formDisciplina
+            //this.formTurmaDisciplina.formDisciplina
+            console.log('salvar a lista de disciplinas pode ser removido');
         }
     }
 
