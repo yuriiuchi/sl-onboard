@@ -22,7 +22,6 @@ export class DisciplinaIncluirService implements IPostEntity<IDisciplinaGetAll, 
     }
 
     Post(data: IDisciplinaGetAll): Observable<any> {
-        console.log(data);
         return this.mapped.Post(data);
     }
 }

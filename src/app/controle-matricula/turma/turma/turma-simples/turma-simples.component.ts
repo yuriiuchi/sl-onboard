@@ -7,6 +7,7 @@ import { TurmaIncluirService } from '../../services/turma-incluir.service';
 import { TurmaAlterarService } from '../../services/turma-alterar.service';
 import { ShowMessageType } from 'totvs-log-base-foundation';
 import { TurmaGetByIdService } from '../../services/turma-get-by-id.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector:  'app-turma-simples',
@@ -20,8 +21,6 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
         if (this.formTurmaSimples && this.idTurma) {
 
             this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
-                console.log('@Input() set turmaId(x): ', turma);
-
                 this.idTurma = turma.id;
 
                 this.formTurmaSimples.patchValue({ descricao: turma.descricao});
@@ -33,7 +32,6 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
 
     formTurmaSimples: FormGroup;
     public idTurma: string;
-    //turma: Turma;
 
     get descricao() {
         return this.formTurmaSimples.get('descricao').value;
@@ -48,8 +46,8 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
     }
 
     getTurmaById(): void {
-        this.turmaByIdService.Get(this.turmaId).subscribe( turma => {
-            console.log('getTurmaById: ', turma);
+        this.turmaByIdService.Get(this.idTurma).subscribe( turma => {
+
         });
     }
 
@@ -80,13 +78,11 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
             this.alterar(this.idTurma);
         } else {
             this.salvar();
-            console.log('depois de salvar');
         }
     }
 
     alterar(id: string): void {
         if (this.formTurmaSimples.valid) {
-            console.log('alterar: ', this);
             const turma: Turma = {
                 id: this.idTurma,
                 descricao: this.descricao,
@@ -114,24 +110,13 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
 
     salvar(): void {
         if (this.formTurmaSimples.valid) {
-            const turma: Turma = {
-                id: this.idTurma,
-                descricao: this.descricao,
-                inicio: this.inicio,
-                nrVagas: this.nrVagas,
-                listDisciplinas: [],
-                listAlunos: []
-            };
-
-            this.turmaIncluirService.Post(turma).subscribe( callback => {
-                console.log('this.turmaIncluirService: ', callback);
+            this.salvando().subscribe( callback => {
                 this.idTurma = callback;
 
                 this.global.msg.displayMessage({
                     messageType: ShowMessageType.NotificationSuccess,
                     messageText: this.global.i18n.literals.turmaSalvaComSucesso
                 });
-
             });
 
         } else {
@@ -140,5 +125,18 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
                 messageText: 'Não é possivel salvar a turma. Faltam informações obrigatórias'
             });
         }
+    }
+
+    salvando(): Observable<string> {
+        const turma: Turma = {
+            id: this.idTurma,
+            descricao: this.descricao,
+            inicio: this.inicio,
+            nrVagas: this.nrVagas,
+            listDisciplinas: [],
+            listAlunos: []
+        };
+
+        return this.turmaIncluirService.Post(turma);
     }
 }

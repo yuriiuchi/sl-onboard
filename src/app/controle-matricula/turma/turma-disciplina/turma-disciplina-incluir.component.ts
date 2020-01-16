@@ -11,6 +11,7 @@ import { Turma } from '../entities/turma.entitiy';
 import { TurmaDisciplinaAlterarService } from '../services/turma-disciplina-alterar.service';
 import { Disciplina } from '../../disciplina/entities/disciplina.entity';
 import { DisciplinaIncluirComponent } from '../../disciplina/disciplina-incluir/disciplina-incluir.component';
+import { TurmaDisciplinaIncluirService } from '../services/turma-disciplina-incluir.service';
 
 @Component({
     selector: 'app-turma-disciplina-incluir',
@@ -26,9 +27,13 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
     @ViewChild('formNovaDisciplina', { static: false }) formNovaDisciplina: DisciplinaIncluirComponent;
 
-    @Input() turmaId: string;
+    @Input() set turmaId(x) {
+        this.idTurma = x;
+    }
 
     @Input() disciplinaId: string;
+
+    private idTurma: string;
 
     modalTurmaDisciplinasPrimaria: PoModalAction = {
         action: () => {
@@ -38,14 +43,6 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         },
         label: this.global.i18n.literals.salvar
     };
-
-    // modalNovaTurmaDisciplinaPrimaria: PoModalAction = {
-    //     action: () => {
-    //         this.novaDisciplina();
-    //         this.modalNovaDisciplina.close();
-    //     },
-    //     label: this.global.i18n.literals.salvar
-    // };
 
     modalNovaDisciplinaPrimaria: PoModalAction = {
         action: () => {
@@ -60,25 +57,24 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
         private turmaGetByIdService: TurmaGetByIdService,
-        //private turmaDisciplinaIncluirService: TurmaDisciplinaIncluirService,
         private turmaDisciplinaAlterarService: TurmaDisciplinaAlterarService,
-        //private disciplinaIncluirService: DisciplinaIncluirService
+        private turmaDisciplinaIncluirService: TurmaDisciplinaIncluirService,
     ) {
         super();
     }
 
     ngOnInit(): void {
         this.alterarIdioma();
-        this.carregarTurmaDisciplina();
+        //this.carregarTurmaDisciplina();
     }
 
     private alterarIdioma(): void {
 
     }
 
-    private carregarTurmaDisciplina(): void {
+    // private carregarTurmaDisciplina(): void {
 
-    }
+    // }
 
     abrirModalDisciplina(): void {
         this.modalDisciplina.open();
@@ -104,21 +100,16 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
     private adicionarDiciplinas() {
         let turma: Turma;
-        this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
-            turma = callbackId;
-            turma.listDisciplinas = turma.listDisciplinas.concat(this.formDisciplina.listDisciplinasSelecionadas);
-            turma.listDisciplinas = this.mergeDisciplinas(turma.listDisciplinas, this.formDisciplina.listDisciplinasSelecionadas);
-
-            // this.turmaDisciplinaIncluirService.Post(turma).subscribe( callbackIncluir => {
-            //     console.log('turmaDisciplinaIncluirService: ', callbackIncluir);
-            // });
-            console.log('Está somente alterando corrigir o incluir: ');
-            console.log('TurmaId fixo: ');
-
-            this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
-                this.formListTurmaDisciplina.carregarDisciplinas();
+        if (this.idTurma) {
+            this.turmaGetByIdService.Get(this.idTurma).subscribe( callbackId => {
+                turma = callbackId;
+                turma.listDisciplinas = turma.listDisciplinas.concat(this.formDisciplina.listDisciplinasSelecionadas);
+                turma.listDisciplinas = this.mergeDisciplinas(turma.listDisciplinas, this.formDisciplina.listDisciplinasSelecionadas);
+                this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
+                    this.formListTurmaDisciplina.carregarDisciplinas();
+                });
             });
-        });
+        }
     }
 
     private mergeRemoveDisciplinas(
@@ -143,9 +134,7 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
     removerDisciplinas() {
         let turma: Turma;
-        console.log('remover: ', this.formDisciplina.listDisciplinasSelecionadas);
-
-        this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
+        this.turmaGetByIdService.Get(this.idTurma).subscribe( callbackId => {
             turma = callbackId;
             turma.listDisciplinas = this.mergeRemoveDisciplinas(turma.listDisciplinas, 
                 this.formListTurmaDisciplina.listDisciplinasSelecionadas);

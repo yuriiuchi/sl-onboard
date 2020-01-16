@@ -17,8 +17,7 @@ import { Aluno } from '../../aluno/entities/aluno.entity';
     styleUrls: ['./turma-aluno-list-form.component.css']
 })
 export class TurmaAlunoListFormComponent extends BaseComponent implements OnInit {
-
-    private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
+    @Input() turmaId: string;
 
     public alunos: Array<Aluno>;
     public alunosGrid: GridDataResult = { data: [], total: 0 };
@@ -52,7 +51,6 @@ export class TurmaAlunoListFormComponent extends BaseComponent implements OnInit
     ngOnInit(): void {
         this.alterarIdioma();
         this.carregarAlunos();
-        console.log('turmaId = 6d7e918a-e1c1-4eef-9436-07b1e7cab5f5');
     }
 
     carregarGrid( alunos: any ): void {
@@ -61,9 +59,11 @@ export class TurmaAlunoListFormComponent extends BaseComponent implements OnInit
     }
 
     carregarAlunos(): void {
-        this.turmaAlunoGetAllService.Get(this.turmaId).subscribe( alunos => {
-            this.carregarGrid(alunos);
-        });
+        if (this.turmaId) {
+            this.turmaAlunoGetAllService.Get(this.turmaId).subscribe( alunos => {
+                this.carregarGrid(alunos);
+            });
+        }
     }
 
     public alteracaoEstadoDados(state: DataStateChangeEvent): void {
@@ -87,7 +87,6 @@ export class TurmaAlunoListFormComponent extends BaseComponent implements OnInit
 
         this.alunosSelecionadas.emit(al);
         this.listAlunosSelecionados = al;
-        console.log('onSelectedKeysChange:', al);
     }
 
 }

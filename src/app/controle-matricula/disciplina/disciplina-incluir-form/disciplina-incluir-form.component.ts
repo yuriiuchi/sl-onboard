@@ -86,7 +86,6 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
     }
 
     salvar(): void {
-        console.log('salvar() idDisciplina: ', this.idDisciplina);
         this.incluir();
     }
 
@@ -112,8 +111,6 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
     }
 
     incluir() {
-        console.log('incluir -  DisciplinaIncluirFormComponent');
-        console.log('incluir -  DisciplinaIncluirFormComponent', this.professor);
         if (this.formDisciplinaIncluir.valid) {
             const disciplina: Disciplina = {
                 id: this.idDisciplina,
@@ -124,7 +121,6 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
             };
 
             this.disciplinaIncluirService.Post(disciplina).subscribe( callback => {
-                console.log('this.disciplinaIncluirService: ', callback);
                 this.idDisciplina = callback;
 
                 this.global.msg.displayMessage({
@@ -153,7 +149,6 @@ export class DisciplinaIncluirFormComponent extends BaseComponent implements OnI
     carregarprofessores(): void {
         this.professorGetAllService.reset().subscribe( (callback: Array<IProfessorGetAll>) => {
             this.professorList = callback.map( back => {
-                console.log(back.nome);
                 return { value: back.nome };
             });
         });

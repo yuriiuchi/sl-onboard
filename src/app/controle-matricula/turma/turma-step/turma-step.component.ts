@@ -15,12 +15,14 @@ import { ProfessorFormComponent } from '../../professor/professor-form/professor
 export class TurmaStepComponent extends BaseComponent implements OnInit {
 
     @ViewChild('stepper', {static: true}) stepper: PoStepperComponent;
-    @ViewChild('formTurma', {static: true}) formTurma: TurmaComponent;
+    @ViewChild('formTurma', {static: false}) formTurma: TurmaComponent;
     @ViewChild('formProfessor', {static: false}) formProfessor: ProfessorFormComponent;
     @ViewChild('modalProfessor', { static: true }) modalProfessor: PoModalComponent;
 
-    @ViewChild('#formTurmaDisciplina', { static: true }) formTurmaDisciplina: TurmaDisciplinaIncluirComponent;
-    turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
+    @ViewChild('#formTurmaDisciplina', { static: false }) formTurmaDisciplina: TurmaDisciplinaIncluirComponent;
+    //turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
+    turmaId = '';
+    variavel: number = 10;
 
     professorList = this.carregarProfessores;
 
@@ -29,11 +31,10 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('turmaId = 6d7e918a-e1c1-4eef-9436-07b1e7cab5f5');
+
     }
 
     validarFormularioProfessor(): boolean {
-        console.log('corrigir alteração no form');
         return this.formProfessor ? this.formProfessor.validForm() : false;
     }
 
@@ -46,17 +47,14 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     salvarTurma(): void {
-        this.formTurma.simples.save();
-        this.formTurmaDisciplina.turmaId = this.turmaId;
-        console.log('this.formTurmaDisciplina.turmaId =');
+        this.formTurma.simples.salvando().subscribe( callback => {
+            this.turmaId = callback;
+        });
     }
 
     salvarListaDisciplinas(): void {
         if (!this.formTurma.simples.idTurma) {
             this.salvarTurma();
-
-            //this.formTurmaDisciplina.formDisciplina
-            console.log('salvar a lista de disciplinas pode ser removido');
         }
     }
 
@@ -67,17 +65,30 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     changeStep($event) {
-        // console.log($event);
+        
     }
 
     proximoStep() {
         if (this.formTurma.simples.validForm()) {
+            this.salvarTurma();
             this.stepper.next();
         }
     }
 
+    clickStep(): boolean {
+        if (this.formTurma.simples.validForm()) {
+            this.salvarTurma();
+        }
+        return true;
+    }
+
     voltarStep() {
-        this.stepper.previous();
+        console.log('voltarStep()', this.stepper.currentStepIndex);
+        console.log('voltarStep()', this.stepper);
+        console.log('voltarStep()', this.stepper.step);
+        if (this.stepper.currentStepIndex > 0) {
+            this.stepper.previous();
+        }
     }
 
     abrirModalProfessor(): void {
@@ -91,7 +102,6 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     carregarProfessores(): any {
-        //professorList = this.carregarProfessores;
         return [{ value: 'Professor 01' }, { value: 'Professor 02' }, { value: 'Professor 03'}];
     }
 }

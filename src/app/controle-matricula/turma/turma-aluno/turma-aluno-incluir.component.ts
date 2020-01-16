@@ -40,7 +40,6 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
         action: () => {
             this.formNovoAluno.salvar();
             this.formAluno.carreagarAlunos();
-            console.log('modalTurmaNovoAlunoPrimaria: ', this.formAluno);
             this.modalNovoAluno.close();
         },
         label: this.global.i18n.literals.salvar
@@ -83,8 +82,6 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
         listAlunos2: Array<Aluno>): Array<Aluno> {
             listAlunos1.map( aluno => {
             let encontrado = false;
-
-            console.log('mergeAlunos:', listAlunos2);
             listAlunos2.forEach( al => {
                 if (aluno.id === al.id) {
                     encontrado = true;
@@ -99,19 +96,14 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
 
     private adicionarAlunos() {
         let turma: Turma;
-        console.log('adicionarAlunos', this.turmaId);
-
         this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
-            console.log('turmaGetByIdService: ', callbackId);
             turma = callbackId;
             turma.listAlunos = this.mergeAlunos(turma.listAlunos, this.formAluno.listAlunosSelecionados); /**/
 
             this.turmaAlunosAlterarService.Post(turma).subscribe ( callbackAlterar => {
-                console.log('turmaAlunosAlterarService', callbackAlterar);
                 this.formListTurmaAluno.carregarAlunos();
             });
         });
-
     }
 
     private mergeRemoveAlunos(
@@ -121,8 +113,6 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
         const retorno: Array<Aluno> = [];
         listAlunos1.map( aluno => {
             let encontrado = false;
-
-            console.log('mergeRemoveAlunos:', listAlunos2);
             listAlunos2.forEach( al => {
                 if (aluno.id === al.id) {
                     encontrado = true;
@@ -137,8 +127,6 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
 
     removerAlunos() {
         let turma: Turma;
-        console.log('remover: ', this.formAluno.listAlunosSelecionados); ///*this.formAluno.listAlunosSelecionados*/
-
         this.turmaGetByIdService.Get(this.turmaId).subscribe( callbackId => {
             turma = callbackId;
             turma.listAlunos = this.mergeRemoveAlunos(turma.listAlunos,

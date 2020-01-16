@@ -1,7 +1,7 @@
 <form [formGroup]="formTurmaSimples">
     <div class="po-row">
         <po-input 
-            class="po-pl-0 po-md-12"
+            class="po-md-12"
             formControlName="descricao"
             p-label="Descricao"
             name="turmaDescricao"
@@ -14,7 +14,7 @@
             float-clear-left
             formControlName="nrVagas" 
             [p-label]="global.i18n.literals['maxAlunos']"
-            class="po-pl-0 po-md-6 "
+            class="po-md-6 "
             [p-placeholder]="global.i18n.literals['maxAlunos']"
             >
         </po-number>
@@ -23,7 +23,7 @@
             formControlName="inicio"
             [p-label]="global.i18n.literals['inicio']"
             [p-placeholder]="global.i18n.literals['dateFormat']"             
-            class="po-pl-0 po-md-6">
+            class="po-md-6">
         </po-datepicker> 
     </div>  
 </form>

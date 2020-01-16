@@ -1,21 +1,24 @@
 <po-page-default [p-title]="global.i18n.literals['inclusaoNovaTurma']">
 
     <div class="align-left">
-        <po-button class= "margem-right" p-label="volta" (click)="voltarStep()"></po-button>    
+        <po-button 
+            class= "margem-right" 
+            p-label="volta" (click)="voltarStep()"
+            ></po-button>
         <po-button p-label="proximo" (click)="proximoStep()" p-type="primary"></po-button>  
     </div>
     <po-stepper 
         class="po-xl-12 po-lg-12 po-md-12 po-sm-12" 
         p-orientation="vertical" 
-        [p-step]="1"
+        [p-step]="variavel"
         (p-change-step)="changeStep($event)" 
         #stepper>
 
-        <po-step [p-label]="'inicio'" [p-status]="">
-            <app-turma #formTurma></app-turma>
+        <po-step [p-label]="'inicio'" [p-status]=""
+            [p-can-active-next-step]="clickStep.bind(this)">
+            <app-turma class="po-xl-6 po-lg-6 po-md-6 po-sm-12" #formTurma></app-turma>
         </po-step>
 
-        <!-- *ngIf="validarFormularioProfessor()"> -->
         <po-step p-label="Adicionar Disciplinas" *ngIf="validarFormularioTurma()">
             <app-turma-disciplina-incluir #formTurmaDisciplina [turmaId]="turmaId"></app-turma-disciplina-incluir> 
         </po-step>
@@ -23,37 +26,6 @@
         <po-step p-label="Adicionar Alunos" *ngIf="validarTurmaEDisciplina()">
             <app-turma-aluno-incluir #formTurmaAluno [turmaId]="turmaId"></app-turma-aluno-incluir>
         </po-step>
-
-        <!-- <po-step p-label="Lista Alunos">
-            <app-aluno-list></app-aluno-list> 
-        </po-step>
-        <po-step p-label="lista Disciplinas">
-                <app-list-disciplina ></app-list-disciplina>
-        </po-step> -->
-        <!-- <po-step 
-            [p-label]="global.i18n.literals['professor']" 
-            [p-status]="" 
-            *ngIf="validarFormularioTurma()">
-            <po-combo
-                class="po-lg-6 po-md-6 po-sm-12"
-                name="combo"
-                [p-label]=global.i18n.literals.professor
-                [p-options]="professorList">
-            </po-combo>
-            <po-button
-                class="po-pl-1"
-                p-type="link"
-                [p-label]="global.i18n.literals.novo"
-                (p-click)="abrirModalProfessor()">
-            </po-button> -->
-            <!-- <div class="po-row"><div class="po-md-6"><app-professor #formProfessor></app-professor></div></div>  -->
-        <!-- </po-step> -->
-        <!-- <po-step 
-            [p-label]="global.i18n.literals['aluno']" 
-            [p-status]="" 
-            *ngIf="validarFormularioProfessor()">
-                <app-aluno></app-aluno>
-        </po-step> -->
     </po-stepper>
 
     <po-button class="margem-top-right" p-label="Salvar tudo" (click)="salvarTudo()"></po-button>

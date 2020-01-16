@@ -17,9 +17,15 @@ import { Disciplina } from '../../disciplina/entities/disciplina.entity';
     styleUrls: ['./turma-disciplina-list-form.component.css']
 })
 export class TurmaDisciplinaListFormComponent extends BaseComponent implements OnInit {
+    @Input() turmaId: string;
+//     @Input() set disciplinaId(x) {
+//         this.idDisciplina = x;
+//    }
 
-    //@Input() turmaId: string;
-    private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
+
+
+
+    //private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
 
     public disciplinas: Array<Disciplina>;
     public disciplinasGrid: GridDataResult = { data: [], total: 0 };
@@ -70,10 +76,11 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
     }
 
     carregarDisciplinas(): void {
-        //this.turmaDisciplinaGetAllService.reset().subscribe( disciplinas => {
-        this.turmaDisciplinaGetAllService.Get(this.turmaId).subscribe( disciplinas => {
-            this.carregarGrid(disciplinas);
-        });
+        if (this.turmaId) {
+            this.turmaDisciplinaGetAllService.Get(this.turmaId).subscribe( disciplinas => {
+                this.carregarGrid(disciplinas);
+            });
+        }
     }
 
     public alteracaoEstadoDados(state: DataStateChangeEvent): void {

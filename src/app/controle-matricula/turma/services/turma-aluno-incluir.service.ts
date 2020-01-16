@@ -22,7 +22,6 @@ export class TurmaAlunoIncluirService implements IPostEntity<ITurma, ITurma> {
     }
 
     Post(data: ITurma): Observable<any> {
-        console.log(data);
         return this.mapped.Post(data);
     }
 }

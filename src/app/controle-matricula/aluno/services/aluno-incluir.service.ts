@@ -22,7 +22,6 @@ export class AlunoIncluirService implements IPostEntity<IAluno, IAluno> {
     }
 
     Post(data: IAluno): Observable<any> {
-        console.log(data);
         return this.mapped.Post(data);
     }
 }

@@ -14,7 +14,6 @@ export class TurmaComponent implements OnInit {
 
     @ViewChild('simples', { static: true }) public simples: TurmaSimplesComponent;
     @Input() turmaId: string;
-    //@Input() set turmaId(x) { console.log('log: ', x); }
 
     botoesAbas: Array<PoButtonGroupItem>;
 

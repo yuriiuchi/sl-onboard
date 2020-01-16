@@ -55,7 +55,9 @@ export class DisciplinaListFormComponent extends BaseComponent implements OnInit
     }
 
     carregarDisciplinas(): void {
+        console.log('carregarDisciplinas(): void {: ', '123');
         this.disciplinaGetAllService.reset().subscribe( disciplinas => {
+            console.log('carregarDisciplinas(): void {2:', disciplinas);
             this.carregarGrid(disciplinas);
         });
     }

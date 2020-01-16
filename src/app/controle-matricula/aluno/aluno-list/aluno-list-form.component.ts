@@ -90,7 +90,6 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
     });
     this.alunosSelecionados.emit(al);
     this.listAlunosSelecionados = al;
-    console.log('Aluno - onSelectedKeysChange: ', al);
   }
 
   public dataStateChange(state: DataStateChangeEvent): void {

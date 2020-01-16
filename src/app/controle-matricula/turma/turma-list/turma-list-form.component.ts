@@ -63,9 +63,7 @@ export class TurmaListFormComponent extends BaseComponent implements OnInit {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private turmaGetAllService: TurmaGetAllService,
-    private turmaByIdService: TurmaGetByIdService,
-    private turmaIncluirService: TurmaIncluirService,
-    private turmaAlterarService: TurmaAlterarService
+    private turmaByIdService: TurmaGetByIdService
   ) {
     super();
 
@@ -110,15 +108,7 @@ export class TurmaListFormComponent extends BaseComponent implements OnInit {
     this.turmaByIdService.Get(this.itemSelecionadoGrid).subscribe( turma => {
       turma.nrVagas = turma.nrVagas;
 
-      // this.turmaAlterarService.Post(turma).subscribe( callback => {
-      //   this.getTurmas();
-      //   }
-      // );
     });
-
-    // this.turmaByIdService.Get(this.itemSelecionadoGrid).subscribe( turma => {
-    //   console.log(turma);
-    // });
   }
 
   clickMoreActions($event: Event, dataItem: Turma) {

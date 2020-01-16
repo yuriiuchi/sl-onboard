@@ -22,7 +22,6 @@ export class ProfessorIncluirService implements IPostEntity<IProfessorGetAll, IP
     }
 
     Post(data: IProfessorGetAll): Observable<any> {
-        console.log(data);
         return this.mapped.Post(data);
     }
 }
