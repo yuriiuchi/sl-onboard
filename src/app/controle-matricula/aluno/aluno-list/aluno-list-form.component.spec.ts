@@ -46,7 +46,7 @@ describe('aluno-list-form.component.spec | AlunoListFormComponent', () => {
   let httpClient: HttpClient;
   let appConfigService: AppConfigService;
   let alunoGetAllService: AlunoGetAllService;
-  let alunoIncluirService: AlunoIncluirService;
+  //let alunoIncluirService: AlunoIncluirService;
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
@@ -81,8 +81,6 @@ describe('aluno-list-form.component.spec | AlunoListFormComponent', () => {
   it('Todos componentes e funções devem estar criados', fakeAsync( () => {
     expect(component.modalAluno).toBeTruthy();
     expect(component.alunosSelecionados).toBeTruthy();
-    expect(component.listAlunosSelecionados).toBeTruthy();
-    expect(component.alunos).toBeTruthy();
     expect(component.sortable).toBeTruthy();
     expect(component.gridState).toBeTruthy();
     expect(component.alterarIdioma).toBeTruthy();
@@ -93,11 +91,6 @@ describe('aluno-list-form.component.spec | AlunoListFormComponent', () => {
     expect(component.dataStateChange).toBeTruthy();
     expect(component.gridState).toBeTruthy();
     expect(component.global).toBeTruthy();
-
-    //private readonly router: Router,
-    //public readonly activatedRoute: ActivatedRoute,
-    //private alunoGetAllService: AlunoGetAllService
-    // private expect(component.carregarGrid).toBeTruthy();
   }));
 
   it('Deve carregar a lista de alunos', fakeAsync(() => {

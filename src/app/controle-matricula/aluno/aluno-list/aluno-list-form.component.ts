@@ -8,7 +8,6 @@ import { State, process } from '@progress/kendo-data-query';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlunoGetAllService } from './../services/aluno-get-all.service';
-import { Turma } from '../../turma/entities/turma.entitiy';
 
 @Component({
     selector: 'app-aluno-list-form',

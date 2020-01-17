@@ -126,7 +126,7 @@ describe('app.component.spec | AppComponent', () => {
 
     component.definirItensMenu(user);
 
-    expect(component.itensMenu.length).toBe(6);
+    expect(component.itensMenu.length).toBe(5);
   });
 
   it('Deve navegar para a rota de configuração inicial', async () => {

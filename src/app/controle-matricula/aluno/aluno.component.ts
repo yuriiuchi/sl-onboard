@@ -15,9 +15,10 @@ import { Aluno } from './entities/aluno.entity';
 })
 export class AlunoComponent extends BaseComponent implements OnInit {
 
-    private formAluno: FormGroup;
+    formAluno: FormGroup;
     formaIngressoList = [{ value: 'ENADE' }, { value: 'Vestibular' }];
 
+    alunoId: string;
     constructor(
         private global: GlobalService,
         private alunoIncluirService: AlunoIncluirService,
@@ -51,6 +52,7 @@ export class AlunoComponent extends BaseComponent implements OnInit {
                 );
 
             this.alunoIncluirService.Post(aluno).subscribe( calback => {
+                this.alunoId = calback;
                 this.global.msg.displayMessage({
                 messageType: ShowMessageType.NotificationSuccess,
                     messageText: 'Aluno incluido com sucesso'

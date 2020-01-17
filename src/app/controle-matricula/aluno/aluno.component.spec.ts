@@ -51,60 +51,120 @@ describe('aluno.component.spec | AlunoComponent', () => {
     httpClient = TestBed.get(HttpClient);
     appConfigService = TestBed.get(AppConfigService);
     alunoGetByIdService = TestBed.get(AlunoGetByIdService);
+    alunoIncluirService = TestBed.get(AlunoIncluirService);
   }));
 
   it('Deve criar o componente', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('Todos componentes e funções devem estar criados', fakeAsync( () => {
-    expect(component.formaIngressoList).toBeTruthy();
+  it('Todos componentes e funções devem estar criados', fakeAsync( () => {
+
     expect(component.validForm).toBeTruthy();
+    expect(component.formaIngressoList).toBeTruthy();
 
-    // expect(component.formaIngressoList)
-    //   .toEqual([{ value: 'ENADE' }, { value: 'Vestibular' }]);
-
-    //     this.formAluno = new FormGroup({
-    //         nome: new FormControl('',  [Validators.required]),
-    //         email: new FormControl('', [Validators.required, Validators.email]),
-    //         cpf: new FormControl('', [Validators.required, cpfValidator()]),
-    //         matricula: new FormControl('', [Validators.required]),
-    //         formaIngresso: new FormControl('', [Validators.required])
-    //     });
-    // }
-    //validForm
-
-    //salvar()
-
+    expect(component.formaIngressoList[0].value).toEqual('ENADE');
+    expect(component.formaIngressoList[1].value).toEqual('Vestibular');
   }));
 
+  it('Deve carregar a lista de alunos', fakeAsync(() => {
+    const aluno =
+      new Aluno('', 'aluno 01', 'email01@gmail.com', '02937451969', 'mat001', 'vestibular');
 
-  // it('Deve carregar o Grid', fakeAsync( () => {
-  //   //alunosGrid: GridDataResult = { data: [], total: 0 };
+    const spySalvarService =
+      spyOn(alunoIncluirService, 'Post')
+        .and
+        .returnValue(of('001'));
 
-    
-  // }));
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
 
-  // it('Deve salvar um Aluno', fakeAsync(() => {
-  //   const aluno = new Aluno('001', 'aluno 01', 'email01@gmail.com', '02937451969', 'mat001', 'vestibular');
-  //   const spyGetAll =
-  //     spyOn(alunoIncluirService, 'Post')
-  //       .and
-  //       .returnValue(of(aluno));
+    component.salvar();
+    expect(component.alunoId).toEqual('001');
+    expect(spySalvarService).toHaveBeenCalled();
 
-    
-  //   expect(spyGetAll).toHaveBeenCalled();
-  // }));
+    expect(component.validForm()).toBeTruthy();
+  }));
 
+  it('Deve invalidar o furmulario sem nome', fakeAsync(() => {
+    const aluno =
+      new Aluno('', '', 'email01@gmail.com', '02937451969', 'mat001', 'vestibular');
 
-  // it('Deve apresentar os campos para Turma', fakeAsync(() => {
-  //   component.formTurmaSimples.patchValue({ descricao: 'Turma teste salvar'});;
-  //   component.formTurmaSimples.patchValue({ nrVagas: '10'});
-  //   component.formTurmaSimples.patchValue({ inicio: new Date()});
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
 
-  //   expect(component.descricao).toBeTruthy();
-  //   expect(component.nrVagas).toBeTruthy();
-  //   expect(component.inicio).toBeTruthy();
-  // }));
+    expect(component.validForm()).toBeFalsy();
+  }));
+
+  it('Deve invalidar o furmulario cpf errado', fakeAsync(() => {
+    const aluno =
+      new Aluno('', 'aluno 01', 'email01@gmail.com', '02937451970', 'mat001', 'vestibular');
+
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
+
+    expect(component.validForm()).toBeFalsy();
+  }));
+
+  it('Deve invalidar o furmulario email errado', fakeAsync(() => {
+    const aluno =
+      new Aluno('', 'aluno 01', 'email01gmail.com', '02937451970', 'mat001', 'vestibular');
+
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
+
+    expect(component.validForm()).toBeFalsy();
+  }));
+
+  it('Deve invalidar o furmulario sem matricula', fakeAsync(() => {
+    const aluno =
+      new Aluno('', 'aluno 01', 'email01@gmail.com', '02937451970', '', 'vestibular');
+
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
+
+    expect(component.validForm()).toBeFalsy();
+  }));
+
+  it('Deve invalidar o furmulario sem forma de ingresso', fakeAsync(() => {
+    const aluno =
+      new Aluno('', 'aluno 01', 'email01@gmail.com', '02937451970', 'mat001', '');
+
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
+
+    expect(component.validForm()).toBeFalsy();
+  }));
+
+  it('Deve validar o furmulario preenchido corretamente', fakeAsync(() => {
+    const aluno =
+      new Aluno('', 'aluno01', 'email01@gmail.com', '02937451969', 'mat001', 'vestibular');
+
+    component.formAluno.patchValue({ nome: aluno.nome});
+    component.formAluno.patchValue({ email: aluno.email});
+    component.formAluno.patchValue({ cpf: aluno.cpf});
+    component.formAluno.patchValue({ matricula: aluno.matricula});
+    component.formAluno.patchValue({ formaIngresso: aluno.formaIngresso});
+
+    expect(component.validForm()).toBeTruthy();
+  }));
 
 });
