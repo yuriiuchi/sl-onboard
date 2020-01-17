@@ -2,27 +2,29 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { BaseComponent } from './../../../../app/base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
-import { PoStepperComponent, PoModalComponent, PoModalAction } from '@portinari/portinari-ui';
+import { PoStepperComponent, PoModalComponent, PoModalAction, PoStepComponent } from '@portinari/portinari-ui';
 import { TurmaComponent } from '../turma/turma.component';
 import { TurmaDisciplinaIncluirComponent } from '../turma-disciplina/turma-disciplina-incluir.component';
 import { ProfessorFormComponent } from '../../professor/professor-form/professor-form.component';
+import { ConfiguracaoLadoColunaEnum } from 'src/app/entidades/configuracao-lado-coluna.enum';
 
 @Component({
     selector: 'app-turma-step',
-    templateUrl:  './turma-step.component.html',
+    templateUrl: './turma-step.component.html',
     styleUrls: ['./turma-step.component.css']
 })
 export class TurmaStepComponent extends BaseComponent implements OnInit {
 
-    @ViewChild('stepper', {static: true}) stepper: PoStepperComponent;
-    @ViewChild('formTurma', {static: false}) formTurma: TurmaComponent;
-    @ViewChild('formProfessor', {static: false}) formProfessor: ProfessorFormComponent;
+    @ViewChild('stepper', { static: true }) stepper: PoStepperComponent;
+    @ViewChild('formTurma', { static: false }) formTurma: TurmaComponent;
+    @ViewChild('formProfessor', { static: false }) formProfessor: ProfessorFormComponent;
     @ViewChild('modalProfessor', { static: true }) modalProfessor: PoModalComponent;
 
     @ViewChild('#formTurmaDisciplina', { static: false }) formTurmaDisciplina: TurmaDisciplinaIncluirComponent;
-    //turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
+
     turmaId = '';
-    variavel: number = 10;
+    variavel = 10;
+    habilitarVoltar = false;
 
     professorList = this.carregarProfessores;
 
@@ -47,9 +49,15 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     salvarTurma(): void {
-        this.formTurma.simples.salvando().subscribe( callback => {
-            this.turmaId = callback;
-        });
+        if (!this.turmaId) {
+            this.formTurma.simples.salvando().subscribe(callback => {
+                this.turmaId = callback;
+            });
+        } else {
+            this.formTurma.simples.turmaId = this.turmaId;
+            this.formTurma.simples.alterarando(this.turmaId).subscribe(callback => {
+            });
+        }
     }
 
     salvarListaDisciplinas(): void {
@@ -64,8 +72,11 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
         }
     }
 
-    changeStep($event) {
-        
+    changeStep($event: PoStepComponent) {
+        console.log(' changeStep($event): ', $event);
+
+        this.habilitarVoltar = $event.label !== 'inicio';
+        console.log('this.habilitarVoltar: ', this.habilitarVoltar);
     }
 
     proximoStep() {
@@ -78,6 +89,7 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     clickStep(): boolean {
         if (this.formTurma.simples.validForm()) {
             this.salvarTurma();
+            console.log('clickStep(): boolean {:');
         }
         return true;
     }
@@ -86,9 +98,7 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
         console.log('voltarStep()', this.stepper.currentStepIndex);
         console.log('voltarStep()', this.stepper);
         console.log('voltarStep()', this.stepper.step);
-        if (this.stepper.currentStepIndex > 0) {
-            this.stepper.previous();
-        }
+        this.stepper.previous();
     }
 
     abrirModalProfessor(): void {
@@ -102,6 +112,6 @@ export class TurmaStepComponent extends BaseComponent implements OnInit {
     }
 
     carregarProfessores(): any {
-        return [{ value: 'Professor 01' }, { value: 'Professor 02' }, { value: 'Professor 03'}];
+        return [{ value: 'Professor 01' }, { value: 'Professor 02' }, { value: 'Professor 03' }];
     }
 }

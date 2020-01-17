@@ -14,7 +14,6 @@ export class TurmaDisciplinaIncluirService implements IPostEntity<ITurma, ITurma
     constructor(http: HttpClient, private readonly appConfig: AppConfigService) {
         this.mapped = new MappedHttpPostLocation(
             `${this.appConfig.configuracoes.urlWMS.recebimento}/turmas`,
-            //`${this.appConfig.configuracoes.urlWMS.recebimento}/turmaDisciplinas`,
             {
                 MapTo: ( turma ) => turma
             },

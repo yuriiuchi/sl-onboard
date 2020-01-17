@@ -18,14 +18,6 @@ import { Disciplina } from '../../disciplina/entities/disciplina.entity';
 })
 export class TurmaDisciplinaListFormComponent extends BaseComponent implements OnInit {
     @Input() turmaId: string;
-//     @Input() set disciplinaId(x) {
-//         this.idDisciplina = x;
-//    }
-
-
-
-
-    //private turmaId = '6d7e918a-e1c1-4eef-9436-07b1e7cab5f5';
 
     public disciplinas: Array<Disciplina>;
     public disciplinasGrid: GridDataResult = { data: [], total: 0 };
@@ -42,16 +34,7 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
 
     public disciplinasSelecionadas: EventEmitter<Array<Disciplina>> = new EventEmitter<Array<Disciplina>>();
     public listDisciplinasSelecionadas: Array<Disciplina>;
-    // readonly popupActions: Array<PoPopupAction> = [
-    //     { label: 'Remover', action: () => {
-    //         this.disciplinas.indexOf(turma)
-    //         this.disciplinas.splice()
-    //       this.getTurmaById();
-    //       this.abrirModalEditarTurma();
 
-    
-    //     }, visible: true, disabled: false }
-    //   ];
     constructor(
         public global: GlobalService,
         private readonly router: Router,
@@ -70,14 +53,14 @@ export class TurmaDisciplinaListFormComponent extends BaseComponent implements O
         this.carregarDisciplinas();
     }
 
-    carregarGrid( disciplinas: any ): void {
+    carregarGrid(disciplinas: any): void {
         this.disciplinas = disciplinas;
         this.disciplinasGrid = process(this.disciplinas, this.gridState);
     }
 
     carregarDisciplinas(): void {
         if (this.turmaId) {
-            this.turmaDisciplinaGetAllService.Get(this.turmaId).subscribe( disciplinas => {
+            this.turmaDisciplinaGetAllService.Get(this.turmaId).subscribe(disciplinas => {
                 this.carregarGrid(disciplinas);
             });
         }

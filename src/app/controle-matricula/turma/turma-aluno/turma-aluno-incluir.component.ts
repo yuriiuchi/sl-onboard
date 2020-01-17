@@ -24,7 +24,7 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
     @ViewChild('modalNovoAluno', { static: true }) modalNovoAluno: PoModalComponent;
     @ViewChild('formListTurmaAluno', { static: true }) formListTurmaAluno: TurmaAlunoListFormComponent;
     @ViewChild('formNovoAluno', { static: true }) formNovoAluno: AlunoComponent;
-    @ViewChild('formAluno', { static: true }) formAluno: AlunoListFormComponent;//TurmaAlunoListFormComponent;
+    @ViewChild('formAluno', { static: true }) formAluno: AlunoListFormComponent;
 
     @Input() turmaId: string;
 

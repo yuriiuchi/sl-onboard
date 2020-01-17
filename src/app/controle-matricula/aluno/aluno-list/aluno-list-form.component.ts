@@ -52,8 +52,8 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.alterarIdioma();
-      this.carreagarAlunos();
+    this.alterarIdioma();
+    this.carreagarAlunos();
   }
 
   alterarIdioma() {
@@ -61,23 +61,23 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
   }
 
   abrirModalAluno(): void {
-      this.modalAluno.open();
+    this.modalAluno.open();
   }
 
   carreagarAlunos(): void {
-      this.alunoGetAllService.reset().subscribe(turmas => {
-          this.carregarGrid(turmas);
-      });
+    this.alunoGetAllService.reset().subscribe(turmas => {
+        this.carregarGrid(turmas);
+    });
   }
 
   private carregarGrid(alunos: any): void {
-      this.alunos = alunos;
-      this.alunosGrid = process(this.alunos, this.gridState);
+    this.alunos = alunos;
+    this.alunosGrid = process(this.alunos, this.gridState);
   }
 
   public alteracaoEstadoDados(state: DataStateChangeEvent): void {
-      this.gridState = state;
-      this.alunosGrid = process(this.alunos, this.gridState);
+    this.gridState = state;
+    this.alunosGrid = process(this.alunos, this.gridState);
   }
 
   public onSelectedKeysChange(selecionados) {

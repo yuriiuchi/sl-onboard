@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BaseComponent } from '../../../base/base.component';
 import { GlobalService } from 'totvs-log-web-foundation';
@@ -8,7 +8,7 @@ import { Professor } from '../entities/professor.entity';
 import { ProfessorAlterarService } from '../services/professor-alterar.service';
 import { cpfValidator, ShowMessageType } from 'totvs-log-base-foundation';
 @Component({
-    selector:  'app-professor-form',
+    selector: 'app-professor-form',
     templateUrl: './professor-form.component.html',
     styleUrls: ['./professor-form.component.css']
 })
@@ -42,17 +42,17 @@ export class ProfessorFormComponent extends BaseComponent implements OnInit {
     }
 
     salvar(): void {
-        if (this.formProfessor.valid){
+        if (this.formProfessor.valid) {
             const professor = new Professor(
                 this.professorId,
                 this.formProfessor.get('nome').value,
                 this.formProfessor.get('email').value,
                 this.formProfessor.get('cpf').value,
                 this.formProfessor.get('titulacao').value
-                );
+            );
 
             if (!this.professorId) {
-                this.professorIncluirService.Post(professor).subscribe( calback => {
+                this.professorIncluirService.Post(professor).subscribe(calback => {
                     this.professorId = calback;
                     this.global.msg.displayMessage({
                         messageType: ShowMessageType.NotificationSuccess,
@@ -60,8 +60,7 @@ export class ProfessorFormComponent extends BaseComponent implements OnInit {
                     });
                 });
             } else {
-                alert('alteração de professor');
-                //professorAlterarService
+                alert('alteração de professor desenvolvimento');
             }
         } else {
             this.global.msg.displayMessage({
@@ -72,7 +71,7 @@ export class ProfessorFormComponent extends BaseComponent implements OnInit {
     }
 
     carregarTitulacaoList(): void {
-        this.titulacaoList = [{ value: 'Mestre' }, { value: 'Doutor' }, { value: 'PHD'}];
+        this.titulacaoList = [{ value: 'Mestre' }, { value: 'Doutor' }, { value: 'PHD' }];
     }
 
 }

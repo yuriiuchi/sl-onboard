@@ -44,10 +44,6 @@ export class AlunoListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.alterarIdioma();
-  }
-
-  alterarIdioma() {
 
   }
 

@@ -88,7 +88,7 @@ export class EstruturaFisicaEditarFormComponent extends BaseComponent implements
       takeUntil(this.destroy$)).subscribe(() => {
         this.inicializar();
       }
-    );
+      );
   }
 
   public formularioEstaValido(): boolean {

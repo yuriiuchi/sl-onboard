@@ -4,8 +4,14 @@
         <po-button 
             class= "margem-right" 
             p-label="volta" (click)="voltarStep()"
-            ></po-button>
-        <po-button p-label="proximo" (click)="proximoStep()" p-type="primary"></po-button>  
+            *ngIf="habilitarVoltar">
+        </po-button>
+        <po-button 
+            p-label="proximo" 
+            (click)="proximoStep()" 
+            p-type="primary"
+            *ngIf="validarTurmaEDisciplina()">
+        </po-button>  
     </div>
     <po-stepper 
         class="po-xl-12 po-lg-12 po-md-12 po-sm-12" 
@@ -14,7 +20,7 @@
         (p-change-step)="changeStep($event)" 
         #stepper>
 
-        <po-step [p-label]="'inicio'" [p-status]=""
+        <po-step id="step01" [p-label]="'inicio'" [p-status]=""
             [p-can-active-next-step]="clickStep.bind(this)">
             <app-turma class="po-xl-6 po-lg-6 po-md-6 po-sm-12" #formTurma></app-turma>
         </po-step>
@@ -28,7 +34,11 @@
         </po-step>
     </po-stepper>
 
-    <po-button class="margem-top-right" p-label="Salvar tudo" (click)="salvarTudo()"></po-button>
+    <po-button 
+        class="margem-top-right" 
+        p-label="Salvar tudo" 
+        (click)="salvarTudo()"
+        *ngIf="validarTurmaEDisciplina()"></po-button>
     
     <po-modal 
         #modalProfessor

@@ -57,7 +57,7 @@ class TurmaIncluirPage {
 //   }
 }
 
-fdescribe('turma-simples.component.spec | TurmaSimplesComponent', () => {
+describe('turma-simples.component.spec | TurmaSimplesComponent', () => {
   let component: TurmaSimplesComponent;
   let fixture: ComponentFixture<TurmaSimplesComponent>;
   let page: TurmaIncluirPage;
@@ -108,6 +108,19 @@ fdescribe('turma-simples.component.spec | TurmaSimplesComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Deve salvar a uma turma'), fakeAsync( () => {
+    component.formTurmaSimples.patchValue({ descricao: 'Turma teste salvar'});;
+    component.formTurmaSimples.patchValue({ nrVagas: '10'});
+    component.formTurmaSimples.patchValue({ inicio: new Date()});
+
+    // component.formTurmaSimples.setValue({
+    //   descricao: 'Turma teste salvar',
+    //   nrVagas: '10',
+    //   inicio: new Date()
+    // });
+    component.salvar();
+  });
+
   it('Deve apresentar os campos para Turma', fakeAsync(() => {
 
     //component.getTurmaById()
@@ -120,18 +133,24 @@ fdescribe('turma-simples.component.spec | TurmaSimplesComponent', () => {
     // formTurmaSimples: FormGroup;
     // public idTurma: string;
     // turma: Turma;
-    fixture.detectChanges();
-    flush();
+    //fixture.detectChanges();
+    //flush();
 
-    component.idTurma = '';
+    //component.idTurma = '';
     //component.formTurmaSimples.setValue('');
-    component.validForm();
+    //component.validForm();
     //page
 
     // expect(page.descricao).toBeTruthy();
     // expect(page.nrVagas).toBeTruthy();
     // expect(page.inicio).toBeTruthy();
+    component.formTurmaSimples.patchValue({ descricao: 'Turma teste salvar'});;
+    component.formTurmaSimples.patchValue({ nrVagas: '10'});
+    component.formTurmaSimples.patchValue({ inicio: new Date()});
 
+    expect(component.descricao).toBeTruthy();
+    expect(component.nrVagas).toBeTruthy();
+    expect(component.inicio).toBeTruthy();
   }));
 
 //   it('Deve apresentar os campos para pessoa JURÍDICA e não apresentar os de pessoa FÍSICA', fakeAsync(() => {

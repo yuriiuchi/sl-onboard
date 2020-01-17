@@ -65,7 +65,6 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
 
     ngOnInit(): void {
         this.alterarIdioma();
-        //this.carregarTurmaDisciplina();
     }
 
     private alterarIdioma(): void {
@@ -81,7 +80,7 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
     }
 
     private mergeDisciplinas(
-        listDisciplinas1: Array<Disciplina>, 
+        listDisciplinas1: Array<Disciplina>,
         listDisciplinas2: Array<Disciplina>): Array<Disciplina> {
         listDisciplinas1.map( disciplina => {
             let encontrado = false;
@@ -136,7 +135,7 @@ export class TurmaDisciplinaIncluirComponent extends BaseComponent implements On
         let turma: Turma;
         this.turmaGetByIdService.Get(this.idTurma).subscribe( callbackId => {
             turma = callbackId;
-            turma.listDisciplinas = this.mergeRemoveDisciplinas(turma.listDisciplinas, 
+            turma.listDisciplinas = this.mergeRemoveDisciplinas(turma.listDisciplinas,
                 this.formListTurmaDisciplina.listDisciplinasSelecionadas);
             this.turmaDisciplinaAlterarService.Post(turma).subscribe ( callbackAlterar => {
                 this.formListTurmaDisciplina.carregarDisciplinas();

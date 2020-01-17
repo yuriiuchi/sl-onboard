@@ -8,6 +8,7 @@ import { TurmaAlterarService } from '../../services/turma-alterar.service';
 import { ShowMessageType } from 'totvs-log-base-foundation';
 import { TurmaGetByIdService } from '../../services/turma-get-by-id.service';
 import { Observable } from 'rxjs';
+import { ITurma } from '../../entities/turma.interface';
 
 @Component({
     selector:  'app-turma-simples',
@@ -83,16 +84,7 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
 
     alterar(id: string): void {
         if (this.formTurmaSimples.valid) {
-            const turma: Turma = {
-                id: this.idTurma,
-                descricao: this.descricao,
-                inicio: this.inicio,
-                nrVagas: this.nrVagas,
-                listDisciplinas: [],
-                listAlunos: []
-            };
-
-            this.turmaAlterarService.Post(turma).subscribe( callback => {
+            this.alterarando(id).subscribe( callback => {
                 this.global.msg.displayMessage({
                     messageType: ShowMessageType.NotificationSuccess,
                     messageText: 'turma alterada com sucesso'
@@ -138,5 +130,18 @@ export class TurmaSimplesComponent extends BaseComponent implements OnInit {
         };
 
         return this.turmaIncluirService.Post(turma);
+    }
+
+    alterarando(id: string): Observable<ITurma> {
+        const turma: Turma = {
+            id: this.idTurma,
+            descricao: this.descricao,
+            inicio: this.inicio,
+            nrVagas: this.nrVagas,
+            listDisciplinas: [],
+            listAlunos: []
+        };
+
+        return this.turmaAlterarService.Post(turma);
     }
 }
