@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from 'totvs-log-web-foundation';
-import { PoModalComponent, PoPageAction } from '@portinari/portinari-ui';
+import { PoModalComponent, PoPageAction, PoModalAction } from '@portinari/portinari-ui';
 import { BaseComponent } from 'src/app/base/base.component';
 import { Aluno } from '../entities/aluno.entity';
 import { GridDataResult, SortSettings, DataStateChangeEvent, SelectableSettings } from '@progress/kendo-angular-grid';
@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlunoGetAllService } from './../services/aluno-get-all.service';
 import { Turma } from '../../turma/entities/turma.entitiy';
+import { AlunoListFormComponent } from './aluno-list-form.component';
 
 @Component({
     selector: 'app-aluno-list',
@@ -17,7 +18,7 @@ import { Turma } from '../../turma/entities/turma.entitiy';
 })
 export class AlunoListComponent extends BaseComponent implements OnInit {
 
-  @ViewChild('formAluno', { static: true }) formAluno: AlunoListComponent;
+  @ViewChild('formAluno', { static: true }) formAluno: AlunoListFormComponent;
 
     public alunos: Array<Aluno>;
     public alunosGrid: GridDataResult = { data: [], total: 0 };

@@ -39,7 +39,7 @@ export class TurmaAlunoIncluirComponent extends BaseComponent implements OnInit 
     modalTurmaNovoAlunoPrimaria: PoModalAction = {
         action: () => {
             this.formNovoAluno.salvar();
-            this.formAluno.carreagarAlunos();
+            this.formAluno.carregarAlunos();
             this.modalNovoAluno.close();
         },
         label: this.global.i18n.literals.salvar

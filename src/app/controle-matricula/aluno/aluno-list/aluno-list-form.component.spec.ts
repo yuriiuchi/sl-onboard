@@ -85,7 +85,7 @@ describe('aluno-list-form.component.spec | AlunoListFormComponent', () => {
     expect(component.gridState).toBeTruthy();
     expect(component.alterarIdioma).toBeTruthy();
     expect(component.abrirModalAluno).toBeTruthy();
-    expect(component.carreagarAlunos).toBeTruthy();
+    expect(component.carregarAlunos).toBeTruthy();
     expect(component.alteracaoEstadoDados).toBeTruthy();
     expect(component.onSelectedKeysChange).toBeTruthy();
     expect(component.dataStateChange).toBeTruthy();
@@ -105,7 +105,7 @@ describe('aluno-list-form.component.spec | AlunoListFormComponent', () => {
         .and
         .returnValue(of(alunos));
 
-    component.carreagarAlunos();
+    component.carregarAlunos();
 
     expect(component.alunos.length).toEqual(3);
     expect(spyGetAll).toHaveBeenCalled();

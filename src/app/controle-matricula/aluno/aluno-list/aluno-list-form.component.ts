@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from 'totvs-log-web-foundation';
-import { PoModalComponent, PoPageAction } from '@portinari/portinari-ui';
+import { PoModalComponent, PoPageAction, PoModalAction } from '@portinari/portinari-ui';
 import { BaseComponent } from 'src/app/base/base.component';
 import { Aluno } from '../entities/aluno.entity';
 import { GridDataResult, SortSettings, DataStateChangeEvent, SelectableSettings } from '@progress/kendo-angular-grid';
@@ -8,6 +8,7 @@ import { State, process } from '@progress/kendo-data-query';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlunoGetAllService } from './../services/aluno-get-all.service';
+import { AlunoComponent } from '../aluno.component';
 
 @Component({
     selector: 'app-aluno-list-form',
@@ -17,11 +18,21 @@ import { AlunoGetAllService } from './../services/aluno-get-all.service';
 export class AlunoListFormComponent extends BaseComponent implements OnInit {
 
   @ViewChild('modalAluno', { static: true }) modalAluno: PoModalComponent;
+  @ViewChild('formAluno', { static: true }) formAluno: AlunoComponent;
   @Output()
 
   public alunosSelecionados: EventEmitter<Array<Aluno>> = new EventEmitter<Array<Aluno>>();
   public listAlunosSelecionados: Array<Aluno>;
 
+    modalAlunoPrimaria: PoModalAction = {
+    action: () => {
+        this.salvarAluno();
+        this.carregarAlunos();
+        this.modalAluno.close();
+    },
+
+    label: this.global.i18n.literals.salvar
+  };
 
     public alunos: Array<Aluno>;
     public alunosGrid: GridDataResult = { data: [], total: 0 };
@@ -52,7 +63,7 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.alterarIdioma();
-    this.carreagarAlunos();
+    this.carregarAlunos();
   }
 
   alterarIdioma() {
@@ -63,7 +74,7 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
     this.modalAluno.open();
   }
 
-  carreagarAlunos(): void {
+  carregarAlunos(): void {
     this.alunoGetAllService.reset().subscribe(turmas => {
         this.carregarGrid(turmas);
     });
@@ -94,5 +105,9 @@ export class AlunoListFormComponent extends BaseComponent implements OnInit {
   public dataStateChange(state: DataStateChangeEvent): void {
     this.gridState = state;
     this.alunosGrid = process(this.alunos, this.gridState);
+  }
+
+  salvarAluno() {
+    this.formAluno.salvar();
   }
 }
